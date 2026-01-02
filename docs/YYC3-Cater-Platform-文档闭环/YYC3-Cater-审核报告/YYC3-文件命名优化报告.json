@@ -1,0 +1,72 @@
+{
+  "timestamp": "2025-12-28T04:34:25.919721",
+  "dry_run": false,
+  "statistics": {
+    "total_files": 149,
+    "files_to_rename": 6,
+    "success_count": 6,
+    "fail_count": 0
+  },
+  "rename_actions": [
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/03-YYC3-Cater--技巧类-CI_CD流水线搭建与优化技巧.md",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/03-YYC3-Cater--技巧类-ci-cd流水线搭建与优化技巧.md",
+      "original_name": "03-YYC3-Cater--技巧类-CI_CD流水线搭建与优化技巧.md",
+      "new_name": "03-YYC3-Cater--技巧类-ci-cd流水线搭建与优化技巧.md",
+      "reason": "包含下划线、包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    },
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/02-YYC3-Cater--架构类-CI_CD流水线架构文档.md",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/02-YYC3-Cater--架构类-ci-cd流水线架构文档.md",
+      "original_name": "02-YYC3-Cater--架构类-CI_CD流水线架构文档.md",
+      "new_name": "02-YYC3-Cater--架构类-ci-cd流水线架构文档.md",
+      "reason": "包含下划线、包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    },
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/04-YYC3-Cater--技巧类-架构评审 Checklist.md",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/04-YYC3-Cater--技巧类-架构评审-checklist.md",
+      "original_name": "04-YYC3-Cater--技巧类-架构评审 Checklist.md",
+      "new_name": "04-YYC3-Cater--技巧类-架构评审-checklist.md",
+      "reason": "包含空格、包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    },
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档内容完善报告_dryrun.json",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档内容完善报告-dryrun.json",
+      "original_name": "YYC3-文档内容完善报告_dryrun.json",
+      "new_name": "YYC3-文档内容完善报告-dryrun.json",
+      "reason": "包含下划线、包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    },
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文件命名优化报告_dryrun.json",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文件命名优化报告-dryrun.json",
+      "original_name": "YYC3-文件命名优化报告_dryrun.json",
+      "new_name": "YYC3-文件命名优化报告-dryrun.json",
+      "reason": "包含下划线、包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    },
+    {
+      "original_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档闭环系统第一阶段（P0）实施报告.md",
+      "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档闭环系统第一阶段-p0-实施报告.md",
+      "original_name": "YYC3-文档闭环系统第一阶段（P0）实施报告.md",
+      "new_name": "YYC3-文档闭环系统第一阶段-p0-实施报告.md",
+      "reason": "包含大写字母、包含特殊字符",
+      "executed": true,
+      "success": true,
+      "error_message": null
+    }
+  ]
+}

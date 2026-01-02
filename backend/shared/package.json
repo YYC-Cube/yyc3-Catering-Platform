@@ -1,0 +1,30 @@
+{
+  "name": "@yyc3/shared-types",
+  "version": "1.0.0",
+  "description": "YYC³餐饮行业智能化平台 - 共享类型定义",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "yyc3",
+    "shared",
+    "types",
+    "typescript"
+  ],
+  "author": "YYC³ <admin@0379.email>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

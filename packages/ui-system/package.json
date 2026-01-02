@@ -1,0 +1,31 @@
+{
+  "name": "@yyc3/ui-system",
+  "version": "1.0.0",
+  "description": "YYC³餐饮行业智能化平台 - 统一UI组件和样式系统",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "files": [
+    "src/**/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "echo \"Building UI system...\"",
+    "dev": "echo \"Running UI system development mode...\"",
+    "lint": "eslint . --ext .js,.vue,.scss"
+  },
+  "keywords": [
+    "ui-system",
+    "components",
+    "styles",
+    "yyc3",
+    "catering"
+  ],
+  "author": "YYC³团队",
+  "license": "MIT",
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,904 @@
+# =============================================================================
+# YYC³餐饮平台 - API服务文档
+# OpenAPI 3.0 规范
+# =============================================================================
+# @project YYC³-Catering-Platform
+# @module yyc3-catering-api-service
+# @version 1.0.0
+# @author YYC³ Development Team <dev@yyc3.red>
+# @license MIT <https://opensource.org/licenses/MIT>
+# =============================================================================
+
+openapi: 3.0.3
+info:
+  title: YYC³餐饮平台API服务
+  description: |
+    YYC³餐饮平台核心RESTful API服务
+
+    ## 功能特性
+    - 🔐 完整的身份验证和授权系统
+    - 🍽️ 餐厅和菜单管理
+    - 📦 订单处理和状态跟踪
+    - 📊 统计分析和报告
+    - 🛡️ 企业级安全防护
+    - 📈 高性能API响应
+
+    ## 技术栈
+    - **运行时**: Bun 1.1+
+    - **语言**: TypeScript
+    - **数据库**: PostgreSQL
+    - **缓存**: Redis
+    - **认证**: JWT
+  version: 1.0.0
+  contact:
+    name: YYC³ Development Team
+    email: dev@yyc3.red
+    url: https://yyc3.red
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:3006
+    description: 开发环境
+  - url: https://api.0379.love
+    description: 生产环境
+
+tags:
+  - name: 健康检查
+    description: 系统健康状态和基本信息
+  - name: 身份验证
+    description: 用户登录、注册、令牌管理
+  - name: 菜单管理
+    description: 餐厅菜单和菜品管理
+  - name: 订单管理
+    description: 订单创建、状态更新、配送管理
+
+paths:
+  /health:
+    get:
+      tags:
+        - 健康检查
+      summary: 系统健康检查
+      description: 获取API服务及其依赖组件的健康状态
+      responses:
+        '200':
+          description: 服务健康
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+              example:
+                status: healthy
+                timestamp: "2025-01-09T10:00:00.000Z"
+                version: "1.0.0"
+                environment: development
+                uptime: 3600.5
+                responseTime: "5ms"
+
+  /api/v1:
+    get:
+      tags:
+        - 健康检查
+      summary: API信息
+      description: 获取API服务基本信息和可用端点
+      responses:
+        '200':
+          description: API信息
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiInfoResponse'
+
+  /api/v1/auth/register:
+    post:
+      tags:
+        - 身份验证
+      summary: 用户注册
+      description: 创建新用户账户
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: 请求参数错误
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: 邮箱已存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/login:
+    post:
+      tags:
+        - 身份验证
+      summary: 用户登录
+      description: 用户身份验证并获取访问令牌
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: 认证失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/verify:
+    get:
+      tags:
+        - 身份验证
+      summary: 验证令牌
+      description: 验证JWT令牌的有效性
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 令牌有效
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyTokenResponse'
+        '401':
+          description: 令牌无效或已过期
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/refresh-token:
+    post:
+      tags:
+        - 身份验证
+      summary: 刷新令牌
+      description: 使用刷新令牌获取新的访问令牌
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: 令牌刷新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RefreshTokenResponse'
+        '401':
+          description: 刷新令牌无效
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/auth/logout:
+    post:
+      tags:
+        - 身份验证
+      summary: 用户登出
+      description: 用户登出（在实际项目中会将令牌加入黑名单）
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+
+  /api/v1/menu/items:
+    get:
+      tags:
+        - 菜单管理
+      summary: 获取菜单列表
+      description: 获取餐厅菜单项目列表，支持分页和筛选
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: 页码
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: category
+          in: query
+          description: 菜品分类
+          required: false
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: 搜索关键词
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 菜单列表
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItemsResponse'
+
+    post:
+      tags:
+        - 菜单管理
+      summary: 创建菜单项
+      description: 添加新的菜单项目
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMenuItemRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItemResponse'
+
+  /api/v1/menu/items/{id}:
+    get:
+      tags:
+        - 菜单管理
+      summary: 获取菜单项详情
+      description: 根据ID获取特定菜单项的详细信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 菜单项ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 菜单项详情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItemResponse'
+        '404':
+          description: 菜单项不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - 菜单管理
+      summary: 更新菜单项
+      description: 更新指定菜单项的信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 菜单项ID
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMenuItemRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItemResponse'
+        '404':
+          description: 菜单项不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - 菜单管理
+      summary: 删除菜单项
+      description: 删除指定的菜单项
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 菜单项ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: 菜单项不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/orders:
+    get:
+      tags:
+        - 订单管理
+      summary: 获取订单列表
+      description: 获取订单列表，支持分页和状态筛选
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          description: 页码
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: 每页数量
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: status
+          in: query
+          description: 订单状态
+          required: false
+          schema:
+            type: string
+            enum: [pending, confirmed, preparing, ready, completed, cancelled]
+      responses:
+        '200':
+          description: 订单列表
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrdersResponse'
+
+    post:
+      tags:
+        - 订单管理
+      summary: 创建订单
+      description: 创建新的订单
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+
+  /api/v1/orders/{id}:
+    get:
+      tags:
+        - 订单管理
+      summary: 获取订单详情
+      description: 根据ID获取订单详细信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 订单ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 订单详情
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        '404':
+          description: 订单不存在
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy]
+        timestamp:
+          type: string
+          format: date-time
+        version:
+          type: string
+        environment:
+          type: string
+        uptime:
+          type: number
+        responseTime:
+          type: string
+        services:
+          type: object
+          properties:
+            database:
+              $ref: '#/components/schemas/ServiceHealth'
+        memory:
+          type: object
+          properties:
+            used:
+              type: integer
+            total:
+              type: integer
+            external:
+              type: integer
+
+    ServiceHealth:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [healthy, unhealthy]
+        responseTime:
+          type: string
+
+    ApiInfoResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        environment:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        endpoints:
+          type: object
+          properties:
+            auth:
+              type: string
+            menu:
+              type: string
+            orders:
+              type: string
+            health:
+              type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+        code:
+          type: string
+        errors:
+          type: array
+          items:
+            type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    RegisterRequest:
+      type: object
+      required:
+        - email
+        - password
+        - name
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          minLength: 8
+          example: password123
+        name:
+          type: string
+          minLength: 2
+          maxLength: 100
+          example: 张三
+
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          example: password123
+
+    AuthResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+            token:
+              type: string
+            refreshToken:
+              type: string
+            expiresIn:
+              type: string
+        message:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    VerifyTokenResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/User'
+        error:
+          type: string
+        code:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    RefreshTokenRequest:
+      type: object
+      required:
+        - refreshToken
+      properties:
+        refreshToken:
+          type: string
+
+    RefreshTokenResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+            refreshToken:
+              type: string
+            expiresIn:
+              type: string
+        timestamp:
+          type: string
+          format: date-time
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        role:
+          type: string
+          enum: [admin, restaurant_admin, customer]
+        createdAt:
+          type: string
+          format: date-time
+        lastLoginAt:
+          type: string
+          format: date-time
+
+    MenuItemsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/MenuItem'
+            pagination:
+              $ref: '#/components/schemas/Pagination'
+        timestamp:
+          type: string
+          format: date-time
+
+    MenuItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        imageUrl:
+          type: string
+        available:
+          type: boolean
+        preparationTime:
+          type: integer
+        nutritionalInfo:
+          type: object
+        ingredients:
+          type: array
+          items:
+            type: string
+
+    CreateMenuItemRequest:
+      type: object
+      required:
+        - name
+        - price
+        - category
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        imageUrl:
+          type: string
+        available:
+          type: boolean
+        preparationTime:
+          type: integer
+        nutritionalInfo:
+          type: object
+        ingredients:
+          type: array
+          items:
+            type: string
+
+    UpdateMenuItemRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        imageUrl:
+          type: string
+        available:
+          type: boolean
+        preparationTime:
+          type: integer
+        nutritionalInfo:
+          type: object
+        ingredients:
+          type: array
+          items:
+            type: string
+
+    MenuItemResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/MenuItem'
+        timestamp:
+          type: string
+          format: date-time
+
+    OrdersResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            orders:
+              type: array
+              items:
+                $ref: '#/components/schemas/Order'
+            pagination:
+              $ref: '#/components/schemas/Pagination'
+        timestamp:
+          type: string
+          format: date-time
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+        orderNumber:
+          type: string
+        userId:
+          type: integer
+        restaurantId:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        totalAmount:
+          type: number
+        status:
+          type: string
+          enum: [pending, confirmed, preparing, ready, completed, cancelled]
+        deliveryAddress:
+          type: string
+        contactPhone:
+          type: string
+        specialInstructions:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        estimatedDeliveryTime:
+          type: string
+          format: date-time
+        actualDeliveryTime:
+          type: string
+          format: date-time
+
+    OrderItem:
+      type: object
+      properties:
+        menuItemId:
+          type: integer
+        quantity:
+          type: integer
+        price:
+          type: number
+        customizations:
+          type: object
+
+    CreateOrderRequest:
+      type: object
+      required:
+        - items
+        - deliveryAddress
+        - contactPhone
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              menuItemId:
+                type: integer
+              quantity:
+                type: integer
+              customizations:
+                type: object
+        deliveryAddress:
+          type: string
+        contactPhone:
+          type: string
+        specialInstructions:
+          type: string
+
+    OrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/Order'
+        timestamp:
+          type: string
+          format: date-time
+
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer

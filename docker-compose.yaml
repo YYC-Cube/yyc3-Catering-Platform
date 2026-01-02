@@ -1,0 +1,270 @@
+version: '3.8'
+
+services:
+  # 服务注册与发现
+  consul:
+    image: hashicorp/consul:1.15.4
+    container_name: yyc3-consul
+    restart: unless-stopped
+    ports:
+      - "8500:8500"   # HTTP API
+      - "8600:8600/udp" # DNS
+    volumes:
+      - consul-data:/consul/data
+      - consul-config:/consul/config
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+      - CONSUL_CLIENT_INTERFACE=eth0
+    command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
+
+  # 配置中心
+  nacos:
+    image: nacos/nacos-server:v2.2.3
+    container_name: yyc3-nacos
+    restart: unless-stopped
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    environment:
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=mysql
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=123456
+      - MYSQL_SERVICE_DB_NAME=nacos_config
+      - NACOS_AUTH_IDENTITY_KEY=serverIdentity
+      - NACOS_AUTH_IDENTITY_VALUE=security
+      - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789
+    depends_on:
+      - mysql
+
+  # 消息队列
+  rabbitmq:
+    image: rabbitmq:3.12.10-management
+    container_name: yyc3-rabbitmq
+    restart: unless-stopped
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # Management UI
+      - "15692:15692" # Prometheus metrics
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+      - rabbitmq-logs:/var/log/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=123456
+      - RABBITMQ_DEFAULT_VHOST=/yyc3
+
+  # 分布式流处理
+  kafka:
+    image: confluentinc/cp-kafka:7.5.3
+    container_name: yyc3-kafka
+    restart: unless-stopped
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+      - KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.3
+    container_name: yyc3-zookeeper
+    restart: unless-stopped
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIME=2000
+
+  # 缓存
+  redis:
+    image: redis:7.2.3-alpine
+    container_name: yyc3-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --requirepass 123456
+
+  # 数据库
+  mysql:
+    image: mysql:8.0.35
+    container_name: yyc3-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - mysql-config:/etc/mysql/conf.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=yyc3_catering
+      - MYSQL_USER=yyc3_user
+      - MYSQL_PASSWORD=123456
+      - TZ=Asia/Shanghai
+    command: --default-authentication-plugin=mysql_native_password
+
+  # 日志收集
+  elasticsearch:
+    image: elasticsearch:8.11.3
+    container_name: yyc3-elasticsearch
+    restart: unless-stopped
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+
+  kibana:
+    image: kibana:8.11.3
+    container_name: yyc3-kibana
+    restart: unless-stopped
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+
+  logstash:
+    image: logstash:8.11.3
+    container_name: yyc3-logstash
+    restart: unless-stopped
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    depends_on:
+      - elasticsearch
+    volumes:
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+
+  # 监控系统
+  prometheus:
+    image: prom/prometheus:v2.47.2
+    container_name: yyc3-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+
+  grafana:
+    image: grafana/grafana-oss:10.2.2
+    container_name: yyc3-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+
+  # API网关
+  api-gateway:
+    build:
+      context: ./backend/services/api-gateway
+      dockerfile: Dockerfile
+    container_name: yyc3-api-gateway
+    restart: unless-stopped
+    ports:
+      - "3200:3200"
+    depends_on:
+      - consul
+      - nacos
+      - redis
+      - kafka
+    environment:
+      - NODE_ENV=development
+      - PORT=3200
+      - CONSUL_HOST=consul
+      - CONSUL_PORT=8500
+      - NACOS_HOST=nacos
+      - NACOS_PORT=8848
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=123456
+      - KAFKA_BROKERS=kafka:9092
+      - KAFKA_CLIENT_ID=api-gateway
+      - KAFKA_GROUP_ID=api-gateway-group
+
+  # 通知服务
+  notification-service:
+    build:
+      context: ./backend/services/notification-service
+      dockerfile: Dockerfile
+    container_name: yyc3-notification-service
+    restart: unless-stopped
+    ports:
+      - "3203:3203"
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+      - consul
+      - nacos
+    environment:
+      - NODE_ENV=development
+      - PORT=3203
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=yyc3_user
+      - DB_PASSWORD=123456
+      - DB_NAME=yyc3_catering
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=123456
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USER=admin
+      - RABBITMQ_PASSWORD=123456
+      - RABBITMQ_VHOST=/yyc3
+      - CONSUL_HOST=consul
+      - CONSUL_PORT=8500
+      - NACOS_HOST=nacos
+      - NACOS_PORT=8848
+
+volumes:
+  # 服务注册与发现
+  consul-data:
+  consul-config:
+
+  # 配置中心
+  nacos-data:
+
+  # 消息队列
+  rabbitmq-data:
+  rabbitmq-logs:
+
+  # 缓存
+  redis-data:
+
+  # 数据库
+  mysql-data:
+  mysql-config:
+
+  # 日志收集
+  elasticsearch-data:
+
+  # 监控系统
+  prometheus-data:
+  grafana-data:

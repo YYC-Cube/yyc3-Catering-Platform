@@ -1,0 +1,141 @@
+# 默认配置值
+replicaCount: 1
+
+image:
+  repository: yyc3-catering-platform
+  pullPolicy: Always
+  tag: "latest"
+
+imagePullSecrets:
+  - name: regcred
+
+serviceAccount:
+  create: true
+  name: yyc3-service-account
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+# API网关配置
+gateway:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: yyc3-catering-platform/api-gateway
+    tag: "latest"
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 3200
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# 用户服务配置
+userService:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: yyc3-catering-platform/user-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 3201
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# 订单服务配置
+orderService:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: yyc3-catering-platform/order-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 3202
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# 通知服务配置
+notificationService:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: yyc3-catering-platform/notification-service
+    tag: "latest"
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 3203
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+# 数据库配置
+database:
+  postgres:
+    enabled: true
+    host: postgres
+    port: 5432
+    database: yyc3_catering
+    username: postgres
+
+# Redis配置
+redis:
+  enabled: true
+  host: redis
+  port: 6379
+
+# RabbitMQ配置
+rabbitmq:
+  enabled: true
+  host: rabbitmq
+  port: 5672
+  virtualHost: /
+
+# 监控配置
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+  grafana:
+    enabled: true
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

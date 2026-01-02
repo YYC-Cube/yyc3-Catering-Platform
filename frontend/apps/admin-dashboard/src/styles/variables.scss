@@ -1,0 +1,136 @@
+/**
+ * YYC³餐饮行业智能化平台 - 样式变量
+ */
+
+// 主题色彩
+$primary-color: #409eff;
+$primary-light: #ECF5FF;
+$success-color: #67c23a;
+$success-light: #F0F9EB;
+$warning-color: #e6a23c;
+$warning-light: #FEFCE8;
+$danger-color: #f56c6c;
+$danger-light: #FEF0F0;
+$info-color: #909399;
+$info-light: #F4F4F5;
+
+// 中性色彩
+$text-primary: #303133;
+$text-regular: #606266;
+$text-secondary: #909399;
+$text-placeholder: #c0c4cc;
+
+// 扩展色彩
+$white: #FFFFFF;
+$gray-50: #FAFAFA;
+$gray-100: #F5F7FA;
+$gray-200: #E4E7ED;
+$gray-500: #C0C4CC;
+$gray-600: #606266;
+
+// 边框色彩
+$border-base: #dcdfe6;
+$border-light: #e4e7ed;
+$border-lighter: #ebeef5;
+$border-extra-light: #f2f6fc;
+
+// 背景色彩
+$bg-white: #ffffff;
+$bg-page: #f2f3f5;
+$bg-overlay: rgba(255, 255, 255, 0.9);
+
+// 阴影
+$box-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
+$box-shadow-dark: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.12);
+$box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+// 字体家族
+$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// 字体大小
+$font-size-2xl: 24px;
+$font-size-xl: 20px;
+$font-size-extra-large: 20px;
+$font-size-large: 18px;
+$font-size-medium: 16px;
+$font-size-base: 14px;
+$font-size-small: 13px;
+$font-size-sm: 14px;
+$font-size-xs: 12px;
+$font-size-extra-small: 12px;
+
+// 边距
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-6: 24px;
+$spacing-8: 32px;
+$spacing-10: 40px;
+$spacing-base: 16px;
+$spacing-large: 24px;
+$spacing-medium: 12px;
+$spacing-small: 8px;
+$spacing-mini: 4px;
+
+// 圆角
+$border-radius-base: 4px;
+$border-radius-small: 2px;
+$border-radius-sm: 2px;
+$border-radius-large: 6px;
+$border-radius-lg: 6px;
+$border-radius-round: 20px;
+
+// 动画
+$transition-base: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition-fade: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+$transition-md-fade: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+// 断点
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
+$breakpoint-xl: 1920px;
+
+// 布局
+$header-height: 60px;
+$sidebar-width: 200px;
+$sidebar-collapsed-width: 64px;
+
+// 字体权重
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// 暗黑模式变量
+$dark-bg-secondary: #303133;
+$dark-bg-tertiary: #404244;
+$dark-border-primary: #606266;
+$dark-text-primary: #E0E2E5;
+$dark-text-secondary: #909399;
+
+// 自定义变量
+:root {
+  --primary-color: $primary-color;
+  --success-color: $success-color;
+  --warning-color: $warning-color;
+  --danger-color: $danger-color;
+  --info-color: $info-color;
+  
+  --text-primary: $text-primary;
+  --text-regular: $text-regular;
+  --text-secondary: $text-secondary;
+  --text-placeholder: $text-placeholder;
+  
+  --border-base: $border-base;
+  --border-light: $border-light;
+  --border-lighter: $border-lighter;
+  --border-extra-light: $border-extra-light;
+  
+  --bg-white: $bg-white;
+  --bg-page: $bg-page;
+  --bg-overlay: $bg-overlay;
+}

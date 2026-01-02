@@ -1,0 +1,13 @@
+apiVersion: v2
+name: yyc3-catering-platform
+description: A smart catering platform with microservices architecture
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - catering
+  - food
+  - microservices
+  - yyc3
+maintainers:
+  - name: YYC3 Team
+    email: team@yyc3.com

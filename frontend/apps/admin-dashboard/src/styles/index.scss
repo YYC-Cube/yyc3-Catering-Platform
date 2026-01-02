@@ -1,0 +1,336 @@
+
+// @file 全局样式文件
+// @description 管理系统全局样式配置
+// @module styles
+// @author YYC
+// @version 1.0.0
+// @created 2024-10-15
+
+// 导入基础变量
+@import './variables.scss';
+
+// 导入主题样式
+@import './theme.scss';
+
+// 导入Element Plus样式
+@import 'element-plus/dist/index.css';
+
+// 颜色变量
+$primary-color: #409EFF;
+$primary-light: #ECF5FF;
+$success-color: #67C23A;
+$success-light: #F0F9EB;
+$warning-color: #E6A23C;
+$warning-light: #FEFCE8;
+$danger-color: #F56C6C;
+$danger-light: #FEF0F0;
+$info-color: #909399;
+$info-light: #F4F4F5;
+
+$white: #FFFFFF;
+$gray-50: #FAFAFA;
+$gray-200: #E4E7ED;
+$gray-500: #C0C4CC;
+
+// 文本颜色
+$text-primary: #303133;
+$text-secondary: #606266;
+$text-placeholder: #C0C4CC;
+
+// 边框颜色
+$border-primary: #DCDFE6;
+
+// 空间变量
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-6: 24px;
+$spacing-8: 32px;
+$spacing-10: 40px;
+
+// 边框半径
+$border-radius-sm: 2px;
+$border-radius-base: 4px;
+$border-radius-lg: 8px;
+
+// 字体大小
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+
+// 字体权重
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// 阴影
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+// 响应式断点
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// 暗黑模式变量
+$dark-bg-secondary: #303133;
+$dark-bg-tertiary: #404244;
+$dark-border-primary: #606266;
+$dark-text-primary: #E0E2E5;
+
+// 保留特定于admin-dashboard的样式
+
+/**
+ * YYC³餐饮行业智能化平台 - 管理后台全局样式
+ */
+
+/**
+ * YYC³餐饮行业智能化平台 - 管理后台全局样式
+ */
+
+// 重置样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--el-text-color-primary);
+  background-color: var(--el-bg-color-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+// 全局滚动条样式
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--el-fill-color-lighter);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--el-fill-color-dark);
+  border-radius: 3px;
+
+  &:hover {
+    background: var(--el-fill-color-darker);
+  }
+}
+
+// 通用工具类
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+// 边距工具类
+@for $i from 0 through 20 {
+  .m-#{$i} { margin: #{$i}px; }
+  .mt-#{$i} { margin-top: #{$i}px; }
+  .mr-#{$i} { margin-right: #{$i}px; }
+  .mb-#{$i} { margin-bottom: #{$i}px; }
+  .ml-#{$i} { margin-left: #{$i}px; }
+  .mx-#{$i} { margin-left: #{$i}px; margin-right: #{$i}px; }
+  .my-#{$i} { margin-top: #{$i}px; margin-bottom: #{$i}px; }
+
+  .p-#{$i} { padding: #{$i}px; }
+  .pt-#{$i} { padding-top: #{$i}px; }
+  .pr-#{$i} { padding-right: #{$i}px; }
+  .pb-#{$i} { padding-bottom: #{$i}px; }
+  .pl-#{$i} { padding-left: #{$i}px; }
+  .px-#{$i} { padding-left: #{$i}px; padding-right: #{$i}px; }
+  .py-#{$i} { padding-top: #{$i}px; padding-bottom: #{$i}px; }
+}
+
+// 隐藏元素
+.hidden {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+// 文本省略
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// 响应式辅助类
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .hidden-desktop {
+    display: none !important;
+  }
+}
+
+// 自定义组件样式
+.app-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-success) 100%);
+  z-index: 9999;
+
+  .loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top: 6px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+
+  .loading-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// 页面过渡动画
+.page-transition-enter-active,
+.page-transition-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-transition-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.page-transition-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+// 卡片阴影效果
+.card-shadow {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow-hover {
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.15);
+  }
+}
+
+// 状态颜色
+.status-success {
+  color: var(--el-color-success);
+}
+
+.status-warning {
+  color: var(--el-color-warning);
+}
+
+.status-danger {
+  color: var(--el-color-danger);
+}
+
+.status-info {
+  color: var(--el-color-info);
+}
+
+// 自定义滚动条
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--el-fill-color-light);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--el-fill-color-dark);
+    border-radius: 4px;
+
+    &:hover {
+      background: var(--el-fill-color-darker);
+    }
+  }
+}

@@ -1,0 +1,135 @@
+# 系统资源告警规则
+groups:
+  - name: system_alerts
+    rules:
+      # 高CPU负载告警
+      - alert: HighCPULoad
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "高CPU负载 (实例: {{ $labels.instance }})"
+          description: "CPU负载超过85% (当前值: {{ $value | humanizePercentage }})"
+      
+      # 高内存使用率告警
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "高内存使用率 (实例: {{ $labels.instance }})"
+          description: "内存使用率超过90% (当前值: {{ $value | humanizePercentage }})"
+      
+      # 磁盘空间不足告警
+      - alert: LowDiskSpace
+        expr: (node_filesystem_size_bytes{mountpoint="/"} - node_filesystem_avail_bytes{mountpoint="/"}) / node_filesystem_size_bytes{mountpoint="/"} * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "磁盘空间不足 (实例: {{ $labels.instance }})"
+          description: "根分区磁盘使用率超过90% (当前值: {{ $value | humanizePercentage }})"
+      
+      # 网络流量异常告警
+      - alert: HighNetworkTraffic
+        expr: rate(node_network_transmit_bytes_total[5m]) > 10000000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "网络流量异常 (实例: {{ $labels.instance }}, 接口: {{ $labels.device }})"
+          description: "网络发送流量超过10MB/s (当前值: {{ $value | humanizeBytes }})"
+
+# 应用性能告警规则
+groups:
+  - name: application_alerts
+    rules:
+      # 高API响应时间告警
+      - alert: HighAPIResponseTime
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "高API响应时间 (服务: {{ $labels.service }}, 路由: {{ $labels.route }})"
+          description: "API 95%响应时间超过2秒 (当前值: {{ $value }}秒)"
+      
+      # 高API错误率告警
+      - alert: HighAPIErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[5m])) by (service) / sum(rate(http_requests_total[5m])) by (service) * 100 > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "高API错误率 (服务: {{ $labels.service }})"
+          description: "API错误率超过5% (当前值: {{ $value | humanizePercentage }})"
+      
+      # 服务不可用告警
+      - alert: ServiceUnavailable
+        expr: up == 0
+        for: 3m
+        labels:
+          severity: critical
+        annotations:
+          summary: "服务不可用 (服务: {{ $labels.job }}, 实例: {{ $labels.instance }})"
+          description: "服务已停止响应超过3分钟"
+      
+      # 高请求队列长度告警
+      - alert: HighRequestQueueLength
+        expr: http_requests_in_flight > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "请求队列过长 (服务: {{ $labels.service }})"
+          description: "当前请求队列长度超过100 (当前值: {{ $value }})"
+
+# 数据库告警规则
+groups:
+  - name: database_alerts
+    rules:
+      # 数据库连接数过高告警
+      - alert: HighDatabaseConnections
+        expr: mysql_global_status_threads_connected > 200
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "数据库连接数过高 (实例: {{ $labels.instance }})"
+          description: "数据库连接数超过200 (当前值: {{ $value }})"
+      
+      # 数据库查询延迟过高告警
+      - alert: HighDatabaseQueryLatency
+        expr: mysql_global_status_slow_queries > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "数据库慢查询过多 (实例: {{ $labels.instance }})"
+          description: "5分钟内慢查询数超过10 (当前值: {{ $value }})"
+
+# 缓存告警规则
+groups:
+  - name: cache_alerts
+    rules:
+      # Redis缓存命中率过低告警
+      - alert: LowRedisHitRate
+        expr: (redis_keyspace_hits_total / (redis_keyspace_hits_total + redis_keyspace_misses_total)) * 100 < 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis缓存命中率过低 (实例: {{ $labels.instance }})"
+          description: "Redis缓存命中率低于80% (当前值: {{ $value | humanizePercentage }})"
+      
+      # Redis内存使用率过高告警
+      - alert: HighRedisMemoryUsage
+        expr: redis_memory_used_bytes / redis_memory_max_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis内存使用率过高 (实例: {{ $labels.instance }})"
+          description: "Redis内存使用率超过85% (当前值: {{ $value | humanizePercentage }})"

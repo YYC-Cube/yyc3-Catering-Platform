@@ -1,0 +1,76 @@
+{
+  "name": "yyc3-catering-api-service",
+  "version": "1.0.0",
+  "description": "YYC³餐饮平台核心API服务 - 企业级餐饮管理RESTful API",
+  "main": "src/app.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/app.ts",
+    "build": "bun build src/app.ts --outdir dist --target bun --minify",
+    "start": "NODE_ENV=production bun dist/app.js",
+    "start:prod": "NODE_ENV=production bun src/app.ts",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage",
+    "lint": "bunx eslint src --ext .ts --max-warnings=0",
+    "lint:fix": "bunx eslint src --ext .ts --fix",
+    "format": "bunx prettier --write src/**/*.ts",
+    "format:check": "bunx prettier --check src/**/*.ts",
+    "type-check": "bunx tsc --noEmit --strict",
+    "security:audit": "bun audit",
+    "security:check": "bunx npm-check-updates",
+    "db:migrate": "bun src/database/migrate.ts",
+    "db:seed": "bun src/database/seed.ts",
+    "db:reset": "bun src/database/reset.ts",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "yyc3",
+    "catering",
+    "restaurant",
+    "api",
+    "management",
+    "food-service",
+    "typescript",
+    "bun",
+    "postgresql",
+    "enterprise"
+  ],
+  "author": {
+    "name": "YYC³ Development Team",
+    "email": "dev@yyc3.red",
+    "url": "https://yyc3.red"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YYC-Cube/yyc3-catering-platform.git",
+    "directory": "backend/services/api-service"
+  },
+  "bugs": {
+    "url": "https://github.com/YYC-Cube/yyc3-catering-platform/issues"
+  },
+  "homepage": "https://github.com/YYC-Cube/yyc3-catering-platform#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "jose": "^5.2.0",
+    "zod": "^3.22.4",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cors": "^2.8.17",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "bun": ">=1.0.0"
+  }
+}

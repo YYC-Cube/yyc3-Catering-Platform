@@ -1,0 +1,59 @@
+{
+  "name": "yyc3-service-order",
+  "version": "1.0.0",
+  "description": "YYC³ 智能餐饮平台 - 订单服务",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "keywords": [
+    "yyc3",
+    "order-service",
+    "restaurant",
+    "food-delivery"
+  ],
+  "author": "YYC³",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "cors": "^2.8.5",
+    "sequelize": "^6.37.7",
+    "sequelize-typescript": "^2.1.6",
+    "mysql2": "^3.16.0",
+    "dotenv": "^16.4.5",
+    "winston": "^3.15.0",
+    "winston-daily-rotate-file": "^5.0.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "amqplib": "^0.10.4",
+    "redis": "^4.7.0",
+    "reflect-metadata": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@types/express": "^5.0.0",
+    "@types/cors": "^2.8.17",
+    "@types/helmet": "^4.0.0",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/amqplib": "^0.10.5",
+    "@types/jest": "^29.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "eslint": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3"
+  }
+}

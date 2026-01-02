@@ -1,0 +1,87 @@
+name: CI/CD Pipeline for Smart Kitchen Service
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Run linting
+      run: npm run lint
+    
+    - name: Run type checking
+      run: npm run typecheck
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist
+
+  deploy-staging:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download built artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist
+    
+    - name: Deploy to Staging
+      run: |
+        echo "Deploying to staging environment..."
+        # 在这里添加实际的部署脚本，比如使用SSH部署到服务器
+        # ssh user@staging-server "cd /path/to/app && git pull && npm install && pm2 restart smart-kitchen-service"
+
+  deploy-production:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download built artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist
+    
+    - name: Deploy to Production
+      run: |
+        echo "Deploying to production environment..."
+        # 在这里添加实际的部署脚本，比如使用SSH部署到服务器
+        # ssh user@production-server "cd /path/to/app && git pull && npm install && pm2 restart smart-kitchen-service"
+      
+    - name: Send Deployment Notification
+      run: |
+        echo "Sending deployment notification..."
+        # 可以添加Slack、Email等通知

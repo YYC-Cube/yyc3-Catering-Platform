@@ -1,0 +1,2196 @@
+openapi: 3.0.3
+info:
+  title: YYC³餐饮行业智能化平台 API
+  description: |
+    YYC³餐饮行业智能化平台 RESTful API 文档
+
+    ## 平台概述
+    YYC³是一个专业的餐饮行业智能化管理平台，提供从点餐、厨房管理、会员管理到营销活动的全方位解决方案。
+
+    ## 主要功能
+    - 🍽️ 菜单管理：菜品管理、分类管理、推荐管理
+    - 📋 订单管理：订单处理、状态跟踪、统计分析
+    - 👥 会员管理：会员信息、等级积分、消费记录
+    - 🎯 营销活动：优惠券、促销活动、数据分析
+    - 💳 支付管理：多种支付方式、交易记录、退款处理
+    - 🏪 门店管理：多门店支持、员工管理、运营分析
+    - 📊 报表分析：销售报表、财务报表、运营报表
+
+    ## 认证方式
+    本API使用JWT Bearer Token进行身份认证。请在请求头中添加：
+    ```
+    Authorization: Bearer <your_token>
+    ```
+
+    ## 环境信息
+    - 生产环境: https://api.yyc3.com
+    - 测试环境: https://api-test.yyc3.com
+    - 开发环境: http://localhost:3006
+
+  version: 1.0.0
+  contact:
+    name: YYC³技术支持
+    email: support@yyc3.com
+    url: https://www.yyc3.com
+  license:
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: https://api.yyc3.com/v1
+    description: 生产环境
+  - url: https://api-test.yyc3.com/v1
+    description: 测试环境
+  - url: http://localhost:3006/v1
+    description: 开发环境
+
+tags:
+  - name: 认证
+    description: 用户认证和授权相关接口
+  - name: 用户管理
+    description: 系统用户管理接口
+  - name: 门店管理
+    description: 门店和员工管理接口
+  - name: 菜单管理
+    description: 菜品、分类和选项管理接口
+  - name: 订单管理
+    description: 订单处理和状态管理接口
+  - name: 会员管理
+    description: 会员信息和积分管理接口
+  - name: 营销活动
+    description: 营销活动和优惠券管理接口
+  - name: 支付管理
+    description: 支付配置和交易管理接口
+  - name: 报表分析
+    description: 各种统计报表接口
+  - name: 系统管理
+    description: 系统配置和日志管理接口
+
+paths:
+  # 认证接口
+  /auth/login:
+    post:
+      tags: [认证]
+      summary: 用户登录
+      description: 用户使用用户名和密码登录系统
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            examples:
+              admin_login:
+                summary: 管理员登录
+                value:
+                  username: "admin"
+                  password: "password123"
+              staff_login:
+                summary: 员工登录
+                value:
+                  username: "staff001"
+                  password: "password123"
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+              examples:
+                success:
+                  summary: 登录成功
+                  value:
+                    success: true
+                    data:
+                      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                      refreshToken: "refresh_token_here"
+                      user:
+                        id: 1
+                        username: "admin"
+                        email: "admin@yyc3.com"
+                        fullName: "管理员"
+                        role: "super_admin"
+                        avatar: "https://example.com/avatar.jpg"
+                      expiresIn: 3600
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /auth/refresh:
+    post:
+      tags: [认证]
+      summary: 刷新访问令牌
+      description: 使用刷新令牌获取新的访问令牌
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties:
+                refreshToken:
+                  type: string
+                  description: 刷新令牌
+      responses:
+        '200':
+          description: 刷新成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        description: 新的访问令牌
+                      expiresIn:
+                        type: integer
+                        description: 令牌过期时间(秒)
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /auth/logout:
+    post:
+      tags: [认证]
+      summary: 用户登出
+      description: 用户登出，使当前令牌失效
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 登出成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # 用户管理接口
+  /users:
+    get:
+      tags: [用户管理]
+      summary: 获取用户列表
+      description: 分页获取系统用户列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Search'
+        - name: role
+          in: query
+          description: 按角色筛选
+          schema:
+            type: string
+            enum: [super_admin, admin, manager, staff]
+        - name: status
+          in: query
+          description: 按状态筛选
+          schema:
+            type: string
+            enum: [active, inactive, locked]
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUsersResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      tags: [用户管理]
+      summary: 创建用户
+      description: 创建新的系统用户
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+  /users/{id}:
+    get:
+      tags: [用户管理]
+      summary: 获取用户详情
+      description: 根据ID获取用户详细信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+    put:
+      tags: [用户管理]
+      summary: 更新用户信息
+      description: 更新用户的基本信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationError'
+
+    delete:
+      tags: [用户管理]
+      summary: 删除用户
+      description: 删除指定的用户
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  # 门店管理接口
+  /stores:
+    get:
+      tags: [门店管理]
+      summary: 获取门店列表
+      description: 分页获取门店列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Search'
+        - name: status
+          in: query
+          description: 按状态筛选
+          schema:
+            type: string
+            enum: [active, inactive, maintenance]
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedStoresResponse'
+
+    post:
+      tags: [门店管理]
+      summary: 创建门店
+      description: 创建新的门店
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStoreRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreResponse'
+
+  /stores/{id}:
+    get:
+      tags: [门店管理]
+      summary: 获取门店详情
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/StoreId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreResponse'
+
+    put:
+      tags: [门店管理]
+      summary: 更新门店信息
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/StoreId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStoreRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoreResponse'
+
+    delete:
+      tags: [门店管理]
+      summary: 删除门店
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/StoreId'
+      responses:
+        '200':
+          description: 删除成功
+
+  # 菜单管理接口
+  /menu/categories:
+    get:
+      tags: [菜单管理]
+      summary: 获取菜品分类列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: storeId
+          in: query
+          description: 门店ID，为空则获取全局分类
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MenuCategory'
+
+    post:
+      tags: [菜单管理]
+      summary: 创建菜品分类
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMenuCategoryRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuCategory'
+
+  /menu/items:
+    get:
+      tags: [菜单管理]
+      summary: 获取菜品列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: categoryId
+          in: query
+          description: 分类ID
+          schema:
+            type: integer
+        - name: storeId
+          in: query
+          description: 门店ID
+          schema:
+            type: integer
+        - name: isAvailable
+          in: query
+          description: 是否可售
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMenuItemsResponse'
+
+    post:
+      tags: [菜单管理]
+      summary: 创建菜品
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMenuItemRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuItem'
+
+  # 订单管理接口
+  /orders:
+    get:
+      tags: [订单管理]
+      summary: 获取订单列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: status
+          in: query
+          description: 订单状态
+          schema:
+            type: string
+            enum: [pending, confirmed, preparing, ready, serving, completed, cancelled, refunded]
+        - name: storeId
+          in: query
+          description: 门店ID
+          schema:
+            type: integer
+        - name: startDate
+          in: query
+          description: 开始日期
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          description: 结束日期
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedOrdersResponse'
+
+    post:
+      tags: [订单管理]
+      summary: 创建订单
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+  /orders/{id}:
+    get:
+      tags: [订单管理]
+      summary: 获取订单详情
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+    patch:
+      tags: [订单管理]
+      summary: 更新订单状态
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  enum: [pending, confirmed, preparing, ready, serving, completed, cancelled]
+                reason:
+                  type: string
+                  description: 状态变更原因
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+
+  # 会员管理接口
+  /members:
+    get:
+      tags: [会员管理]
+      summary: 获取会员列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - $ref: '#/components/parameters/Search'
+        - name: levelId
+          in: query
+          description: 会员等级ID
+          schema:
+            type: integer
+        - name: status
+          in: query
+          description: 会员状态
+          schema:
+            type: string
+            enum: [active, inactive, blacklisted]
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMembersResponse'
+
+    post:
+      tags: [会员管理]
+      summary: 创建会员
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMemberRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+
+  /members/{id}:
+    get:
+      tags: [会员管理]
+      summary: 获取会员详情
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/MemberId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+
+  /members/{id}/points/adjust:
+    post:
+      tags: [会员管理]
+      summary: 调整会员积分
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/MemberId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustPointsRequest'
+      responses:
+        '200':
+          description: 调整成功
+
+  # 营销活动接口
+  /marketing/activities:
+    get:
+      tags: [营销活动]
+      summary: 获取营销活动列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: type
+          in: query
+          description: 活动类型
+          schema:
+            type: string
+            enum: [coupon, discount, points_exchange, flash_sale, group_buy, lucky_draw, recommend_reward]
+        - name: status
+          in: query
+          description: 活动状态
+          schema:
+            type: string
+            enum: [draft, published, active, paused, expired, cancelled]
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMarketingActivitiesResponse'
+
+    post:
+      tags: [营销活动]
+      summary: 创建营销活动
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMarketingActivityRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketingActivity'
+
+  # 支付管理接口
+  /payment/configs:
+    get:
+      tags: [支付管理]
+      summary: 获取支付配置列表
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PaymentConfig'
+
+    post:
+      tags: [支付管理]
+      summary: 创建支付配置
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePaymentConfigRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentConfig'
+
+  /payment/transactions:
+    get:
+      tags: [支付管理]
+      summary: 获取交易记录列表
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Limit'
+        - name: paymentMethod
+          in: query
+          description: 支付方式
+          schema:
+            type: string
+            enum: [alipay, wechat, unionpay, cash, credit_card, member_balance]
+        - name: status
+          in: query
+          description: 交易状态
+          schema:
+            type: string
+            enum: [pending, processing, success, failed, cancelled, refunded]
+        - name: startDate
+          in: query
+          description: 开始日期
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          description: 结束日期
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedPaymentTransactionsResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer Token认证
+
+  parameters:
+    Page:
+      name: page
+      in: query
+      description: 页码，从1开始
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    Limit:
+      name: limit
+      in: query
+      description: 每页数量
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+    Search:
+      name: search
+      in: query
+      description: 搜索关键词
+      schema:
+        type: string
+        maxLength: 100
+
+    UserId:
+      name: id
+      in: path
+      description: 用户ID
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+
+    StoreId:
+      name: id
+      in: path
+      description: 门店ID
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+
+    OrderId:
+      name: id
+      in: path
+      description: 订单ID
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+
+    MemberId:
+      name: id
+      in: path
+      description: 会员ID
+      required: true
+      schema:
+        type: integer
+        minimum: 1
+
+  schemas:
+    # 通用响应格式
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "操作成功"
+        data:
+          type: object
+          description: 响应数据
+        timestamp:
+          type: string
+          format: date-time
+          description: 响应时间
+
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: 错误代码
+              example: "VALIDATION_ERROR"
+            message:
+              type: string
+              description: 错误信息
+              example: "请求参数验证失败"
+            statusCode:
+              type: integer
+              description: HTTP状态码
+              example: 400
+            details:
+              type: object
+              description: 错误详情
+            timestamp:
+              type: string
+              format: date-time
+              description: 错误时间
+
+    # 分页响应格式
+    Pagination:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: 当前页码
+          example: 1
+        limit:
+          type: integer
+          description: 每页数量
+          example: 20
+        total:
+          type: integer
+          description: 总记录数
+          example: 100
+        totalPages:
+          type: integer
+          description: 总页数
+          example: 5
+
+    # 认证相关
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          description: 用户名
+          example: "admin"
+          minLength: 3
+          maxLength: 50
+        password:
+          type: string
+          description: 密码
+          example: "password123"
+          minLength: 6
+          maxLength: 100
+        rememberMe:
+          type: boolean
+          description: 记住登录状态
+          default: false
+
+    LoginResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        data:
+          type: object
+          properties:
+            token:
+              type: string
+              description: JWT访问令牌
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            refreshToken:
+              type: string
+              description: 刷新令牌
+              example: "refresh_token_here"
+            user:
+              $ref: '#/components/schemas/User'
+            expiresIn:
+              type: integer
+              description: 令牌过期时间(秒)
+              example: 3600
+
+    # 用户相关
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 用户ID
+          example: 1
+        username:
+          type: string
+          description: 用户名
+          example: "admin"
+        email:
+          type: string
+          description: 邮箱
+          example: "admin@yyc3.com"
+        fullName:
+          type: string
+          description: 全名
+          example: "系统管理员"
+        phone:
+          type: string
+          description: 手机号
+          example: "13800138000"
+        avatar:
+          type: string
+          description: 头像URL
+          example: "https://example.com/avatar.jpg"
+        role:
+          type: string
+          enum: [super_admin, admin, manager, staff]
+          description: 用户角色
+          example: "admin"
+        status:
+          type: string
+          enum: [active, inactive, locked]
+          description: 用户状态
+          example: "active"
+        lastLoginAt:
+          type: string
+          format: date-time
+          description: 最后登录时间
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreateUserRequest:
+      type: object
+      required: [username, email, password, role]
+      properties:
+        username:
+          type: string
+          minLength: 3
+          maxLength: 50
+          description: 用户名
+        email:
+          type: string
+          format: email
+          description: 邮箱
+        password:
+          type: string
+          minLength: 6
+          maxLength: 100
+          description: 密码
+        fullName:
+          type: string
+          maxLength: 100
+          description: 全名
+        phone:
+          type: string
+          description: 手机号
+        role:
+          type: string
+          enum: [super_admin, admin, manager, staff]
+          description: 用户角色
+        status:
+          type: string
+          enum: [active, inactive]
+          default: "active"
+          description: 用户状态
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          description: 邮箱
+        fullName:
+          type: string
+          maxLength: 100
+          description: 全名
+        phone:
+          type: string
+          description: 手机号
+        avatar:
+          type: string
+          description: 头像URL
+        role:
+          type: string
+          enum: [super_admin, admin, manager, staff]
+          description: 用户角色
+        status:
+          type: string
+          enum: [active, inactive, locked]
+          description: 用户状态
+
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/User'
+
+    PaginatedUsersResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/User'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 门店相关
+    Store:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 门店ID
+          example: 1
+        storeCode:
+          type: string
+          description: 门店编码
+          example: "STORE001"
+        name:
+          type: string
+          description: 门店名称
+          example: "YYC³旗舰店"
+        description:
+          type: string
+          description: 门店描述
+        address:
+          type: string
+          description: 门店地址
+          example: "北京市朝阳区三里屯路19号"
+        longitude:
+          type: number
+          description: 经度
+          example: 116.447728
+        latitude:
+          type: number
+          description: 纬度
+          example: 39.937576
+        phone:
+          type: string
+          description: 门店电话
+          example: "010-12345678"
+        businessHours:
+          type: object
+          description: 营业时间
+          example:
+            monday: "09:00-22:00"
+            tuesday: "09:00-22:00"
+        managerId:
+          type: integer
+          description: 店长ID
+          example: 1
+        status:
+          type: string
+          enum: [active, inactive, maintenance]
+          description: 门店状态
+          example: "active"
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreateStoreRequest:
+      type: object
+      required: [storeCode, name, address, phone]
+      properties:
+        storeCode:
+          type: string
+          description: 门店编码
+          example: "STORE001"
+        name:
+          type: string
+          description: 门店名称
+          example: "YYC³旗舰店"
+        description:
+          type: string
+          description: 门店描述
+        address:
+          type: string
+          description: 门店地址
+          example: "北京市朝阳区三里屯路19号"
+        longitude:
+          type: number
+          description: 经度
+        latitude:
+          type: number
+          description: 纬度
+        phone:
+          type: string
+          description: 门店电话
+        businessHours:
+          type: object
+          description: 营业时间
+        managerId:
+          type: integer
+          description: 店长ID
+
+    UpdateStoreRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 门店名称
+        description:
+          type: string
+          description: 门店描述
+        address:
+          type: string
+          description: 门店地址
+        longitude:
+          type: number
+          description: 经度
+        latitude:
+          type: number
+          description: 纬度
+        phone:
+          type: string
+          description: 门店电话
+        businessHours:
+          type: object
+          description: 营业时间
+        managerId:
+          type: integer
+          description: 店长ID
+        status:
+          type: string
+          enum: [active, inactive, maintenance]
+          description: 门店状态
+
+    StoreResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Store'
+
+    PaginatedStoresResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Store'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 菜单相关
+    MenuCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 分类ID
+          example: 1
+        name:
+          type: string
+          description: 分类名称
+          example: "热销菜品"
+        description:
+          type: string
+          description: 分类描述
+        image:
+          type: string
+          description: 分类图片
+          example: "https://example.com/category.jpg"
+        sortOrder:
+          type: integer
+          description: 排序
+          example: 1
+        isActive:
+          type: boolean
+          description: 是否启用
+          example: true
+        storeId:
+          type: integer
+          description: 门店ID
+          example: 1
+
+    CreateMenuCategoryRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: 分类名称
+          example: "热销菜品"
+        description:
+          type: string
+          description: 分类描述
+        image:
+          type: string
+          description: 分类图片
+        sortOrder:
+          type: integer
+          description: 排序
+          default: 0
+        isActive:
+          type: boolean
+          description: 是否启用
+          default: true
+        storeId:
+          type: integer
+          description: 门店ID
+
+    MenuItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 菜品ID
+          example: 1
+        itemCode:
+          type: string
+          description: 菜品编码
+          example: "ITEM001"
+        name:
+          type: string
+          description: 菜品名称
+          example: "宫保鸡丁"
+        description:
+          type: string
+          description: 菜品描述
+          example: "经典川菜，鸡肉嫩滑，花生香脆"
+        categoryId:
+          type: integer
+          description: 分类ID
+          example: 1
+        price:
+          type: number
+          description: 价格
+          example: 38.00
+        originalPrice:
+          type: number
+          description: 原价
+          example: 45.00
+        image:
+          type: string
+          description: 菜品图片
+          example: "https://example.com/item.jpg"
+        isRecommended:
+          type: boolean
+          description: 是否推荐
+          example: true
+        isAvailable:
+          type: boolean
+          description: 是否可售
+          example: true
+        sortOrder:
+          type: integer
+          description: 排序
+          example: 1
+        storeId:
+          type: integer
+          description: 门店ID
+          example: 1
+        createdBy:
+          type: integer
+          description: 创建人ID
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreateMenuItemRequest:
+      type: object
+      required: [name, categoryId, price]
+      properties:
+        name:
+          type: string
+          description: 菜品名称
+          example: "宫保鸡丁"
+        description:
+          type: string
+          description: 菜品描述
+        categoryId:
+          type: integer
+          description: 分类ID
+          example: 1
+        price:
+          type: number
+          description: 价格
+          example: 38.00
+        originalPrice:
+          type: number
+          description: 原价
+        image:
+          type: string
+          description: 菜品图片
+        isRecommended:
+          type: boolean
+          description: 是否推荐
+          default: false
+        isAvailable:
+          type: boolean
+          description: 是否可售
+          default: true
+        sortOrder:
+          type: integer
+          description: 排序
+          default: 0
+        storeId:
+          type: integer
+          description: 门店ID
+
+    PaginatedMenuItemsResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MenuItem'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 订单相关
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 订单ID
+          example: 1
+        orderNo:
+          type: string
+          description: 订单号
+          example: "ORD202401010001"
+        storeId:
+          type: integer
+          description: 门店ID
+          example: 1
+        memberId:
+          type: integer
+          description: 会员ID
+          example: 1
+        tableNumber:
+          type: string
+          description: 桌号
+          example: "A01"
+        orderType:
+          type: string
+          enum: [dine_in, takeaway, delivery]
+          description: 订单类型
+          example: "dine_in"
+        subtotal:
+          type: number
+          description: 小计
+          example: 156.00
+        totalAmount:
+          type: number
+          description: 总金额
+          example: 156.00
+        status:
+          type: string
+          enum: [pending, confirmed, preparing, ready, serving, completed, cancelled, refunded]
+          description: 订单状态
+          example: "confirmed"
+        paymentStatus:
+          type: string
+          enum: [unpaid, paid, refunded, partial_refunded]
+          description: 支付状态
+          example: "unpaid"
+        items:
+          type: array
+          description: 订单明细
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 明细ID
+          example: 1
+        itemId:
+          type: integer
+          description: 菜品ID
+          example: 1
+        itemName:
+          type: string
+          description: 菜品名称
+          example: "宫保鸡丁"
+        quantity:
+          type: integer
+          description: 数量
+          example: 2
+        unitPrice:
+          type: number
+          description: 单价
+          example: 38.00
+        totalPrice:
+          type: number
+          description: 小计
+          example: 76.00
+        specialRequests:
+          type: string
+          description: 特殊要求
+          example: "不要辣"
+
+    CreateOrderRequest:
+      type: object
+      required: [storeId, items]
+      properties:
+        storeId:
+          type: integer
+          description: 门店ID
+          example: 1
+        memberId:
+          type: integer
+          description: 会员ID
+          example: 1
+        tableNumber:
+          type: string
+          description: 桌号
+          example: "A01"
+        orderType:
+          type: string
+          enum: [dine_in, takeaway, delivery]
+          description: 订单类型
+          default: "dine_in"
+        peopleCount:
+          type: integer
+          description: 用餐人数
+          example: 2
+        items:
+          type: array
+          description: 订单明细
+          items:
+            type: object
+            required: [itemId, quantity]
+            properties:
+              itemId:
+                type: integer
+                description: 菜品ID
+                example: 1
+              quantity:
+                type: integer
+                description: 数量
+                example: 2
+              specId:
+                type: integer
+                description: 规格ID
+              options:
+                type: array
+                description: 选项
+                items:
+                  type: object
+                  properties:
+                    optionId:
+                      type: integer
+                      description: 选项ID
+                    quantity:
+                      type: integer
+                      description: 数量
+        specialRequests:
+          type: string
+          description: 特殊要求
+          example: "不要辣"
+
+    PaginatedOrdersResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Order'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 会员相关
+    Member:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 会员ID
+          example: 1
+        memberNo:
+          type: string
+          description: 会员号
+          example: "M202401010001"
+        userId:
+          type: integer
+          description: 关联用户ID
+          example: 1
+        phone:
+          type: string
+          description: 手机号
+          example: "13800138000"
+        email:
+          type: string
+          description: 邮箱
+          example: "member@example.com"
+        nickname:
+          type: string
+          description: 昵称
+          example: "美食达人"
+        realName:
+          type: string
+          description: 真实姓名
+          example: "张三"
+        avatar:
+          type: string
+          description: 头像
+          example: "https://example.com/avatar.jpg"
+        levelId:
+          type: integer
+          description: 等级ID
+          example: 1
+        points:
+          type: integer
+          description: 当前积分
+          example: 1580
+        totalPoints:
+          type: integer
+          description: 总积分
+          example: 2580
+        balance:
+          type: number
+          description: 账户余额
+          example: 128.50
+        totalSpent:
+          type: number
+          description: 累计消费
+          example: 2580.00
+        orderCount:
+          type: integer
+          description: 订单数量
+          example: 15
+        status:
+          type: string
+          enum: [active, inactive, blacklisted]
+          description: 会员状态
+          example: "active"
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreateMemberRequest:
+      type: object
+      required: [phone]
+      properties:
+        phone:
+          type: string
+          description: 手机号
+          example: "13800138000"
+        email:
+          type: string
+          description: 邮箱
+          example: "member@example.com"
+        nickname:
+          type: string
+          description: 昵称
+          example: "美食达人"
+        realName:
+          type: string
+          description: 真实姓名
+          example: "张三"
+        gender:
+          type: string
+          enum: [male, female, unknown]
+          description: 性别
+          default: "unknown"
+        birthday:
+          type: string
+          format: date
+          description: 生日
+          example: "1990-01-01"
+        source:
+          type: string
+          enum: [register, import, staff_add]
+          description: 来源
+          default: "register"
+        status:
+          type: string
+          enum: [active, inactive]
+          description: 会员状态
+          default: "active"
+
+    AdjustPointsRequest:
+      type: object
+      required: [points, reason]
+      properties:
+        points:
+          type: integer
+          description: 积分变动数量（正为增加，负为扣减）
+          example: 100
+        reason:
+          type: string
+          description: 变动原因
+          example: "消费奖励"
+        type:
+          type: string
+          enum: [earn, redeem, expire, adjust, gift]
+          description: 积分类型
+          default: "adjust"
+
+    PaginatedMembersResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Member'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 营销活动相关
+    MarketingActivity:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 活动ID
+          example: 1
+        activityId:
+          type: string
+          description: 活动编号
+          example: "ACT202401010001"
+        name:
+          type: string
+          description: 活动名称
+          example: "春节优惠活动"
+        description:
+          type: string
+          description: 活动描述
+        type:
+          type: string
+          enum: [coupon, discount, points_exchange, flash_sale, group_buy, lucky_draw, recommend_reward]
+          description: 活动类型
+          example: "discount"
+        status:
+          type: string
+          enum: [draft, published, active, paused, expired, cancelled]
+          description: 活动状态
+          example: "active"
+        banner:
+          type: string
+          description: 活动横幅
+          example: "https://example.com/banner.jpg"
+        startTime:
+          type: string
+          format: date-time
+          description: 开始时间
+        endTime:
+          type: string
+          format: date-time
+          description: 结束时间
+        maxParticipants:
+          type: integer
+          description: 最大参与人数
+          example: 1000
+        currentParticipants:
+          type: integer
+          description: 当前参与人数
+          example: 256
+        conditions:
+          type: object
+          description: 参与条件
+        rewards:
+          type: object
+          description: 奖励设置
+        createdBy:
+          type: integer
+          description: 创建人ID
+          example: 1
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreateMarketingActivityRequest:
+      type: object
+      required: [name, type, startTime, endTime, conditions, rewards]
+      properties:
+        name:
+          type: string
+          description: 活动名称
+          example: "春节优惠活动"
+        description:
+          type: string
+          description: 活动描述
+        type:
+          type: string
+          enum: [coupon, discount, points_exchange, flash_sale, group_buy, lucky_draw, recommend_reward]
+          description: 活动类型
+          example: "discount"
+        banner:
+          type: string
+          description: 活动横幅
+        startTime:
+          type: string
+          format: date-time
+          description: 开始时间
+        endTime:
+          type: string
+          format: date-time
+          description: 结束时间
+        maxParticipants:
+          type: integer
+          description: 最大参与人数
+        targetAudience:
+          type: array
+          description: 目标人群
+          items:
+            type: string
+        conditions:
+          type: object
+          description: 参与条件
+        rewards:
+          type: object
+          description: 奖励设置
+
+    PaginatedMarketingActivitiesResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/MarketingActivity'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+    # 支付相关
+    PaymentConfig:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 配置ID
+          example: 1
+        method:
+          type: string
+          enum: [alipay, wechat, unionpay, cash, credit_card, debit_card, digital_wallet, member_balance]
+          description: 支付方式
+          example: "alipay"
+        name:
+          type: string
+          description: 配置名称
+          example: "支付宝配置"
+        displayName:
+          type: string
+          description: 显示名称
+          example: "支付宝"
+        description:
+          type: string
+          description: 描述
+        enabled:
+          type: boolean
+          description: 是否启用
+          example: true
+        config:
+          type: object
+          description: 配置信息
+          properties:
+            appId:
+              type: string
+              description: 应用ID
+            merchantId:
+              type: string
+              description: 商户ID
+            apiKey:
+              type: string
+              description: API密钥
+            notifyUrl:
+              type: string
+              description: 回调地址
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    CreatePaymentConfigRequest:
+      type: object
+      required: [method, name, displayName, config]
+      properties:
+        method:
+          type: string
+          enum: [alipay, wechat, unionpay, cash, credit_card, debit_card, digital_wallet, member_balance]
+          description: 支付方式
+          example: "alipay"
+        name:
+          type: string
+          description: 配置名称
+          example: "支付宝配置"
+        displayName:
+          type: string
+          description: 显示名称
+          example: "支付宝"
+        description:
+          type: string
+          description: 描述
+        enabled:
+          type: boolean
+          description: 是否启用
+          default: true
+        config:
+          type: object
+          required: [appId, merchantId]
+          properties:
+            appId:
+              type: string
+              description: 应用ID
+            merchantId:
+              type: string
+              description: 商户ID
+            apiKey:
+              type: string
+              description: API密钥
+            notifyUrl:
+              type: string
+              description: 回调地址
+
+    PaymentTransaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 交易ID
+          example: 1
+        transactionId:
+          type: string
+          description: 交易号
+          example: "TXN202401010001"
+        orderId:
+          type: string
+          description: 关联订单号
+          example: "ORD202401010001"
+        paymentMethod:
+          type: string
+          enum: [alipay, wechat, unionpay, cash, credit_card, member_balance]
+          description: 支付方式
+          example: "alipay"
+        amount:
+          type: number
+          description: 金额
+          example: 156.00
+        status:
+          type: string
+          enum: [pending, processing, success, failed, cancelled, refunded]
+          description: 交易状态
+          example: "success"
+        paymentTime:
+          type: string
+          format: date-time
+          description: 支付时间
+        createdAt:
+          type: string
+          format: date-time
+          description: 创建时间
+
+    PaginatedPaymentTransactionsResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/PaymentTransaction'
+                pagination:
+                  $ref: '#/components/schemas/Pagination'
+
+  responses:
+    Unauthorized:
+      description: 未授权访问
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "AUTHENTICATION_ERROR"
+                    message: "认证失败，请重新登录"
+                    statusCode: 401
+                    timestamp: "2024-01-01T12:00:00.000Z"
+
+    Forbidden:
+      description: 权限不足
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "AUTHORIZATION_ERROR"
+                    message: "权限不足，无法访问该资源"
+                    statusCode: 403
+                    timestamp: "2024-01-01T12:00:00.000Z"
+
+    NotFound:
+      description: 资源未找到
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "NOT_FOUND_ERROR"
+                    message: "请求的资源未找到"
+                    statusCode: 404
+                    timestamp: "2024-01-01T12:00:00.000Z"
+
+    ValidationError:
+      description: 请求参数验证失败
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "VALIDATION_ERROR"
+                    message: "请求参数验证失败"
+                    statusCode: 422
+                    details:
+                      - field: "email"
+                        message: "邮箱格式不正确"
+                        value: "invalid-email"
+                    timestamp: "2024-01-01T12:00:00.000Z"
+
+    TooManyRequests:
+      description: 请求过于频繁
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "RATE_LIMIT_ERROR"
+                    message: "请求过于频繁，请稍后再试"
+                    statusCode: 429
+                    details:
+                      retryAfter: 60
+                    timestamp: "2024-01-01T12:00:00.000Z"
+      headers:
+        Retry-After:
+          description: 重试等待时间（秒）
+          schema:
+            type: integer
+            example: 60
+
+    InternalServerError:
+      description: 服务器内部错误
+      content:
+        application/json:
+          schema:
+            allOf:
+              - $ref: '#/components/schemas/ErrorResponse'
+              - type: object
+                example:
+                  success: false
+                  error:
+                    code: "INTERNAL_ERROR"
+                    message: "服务器内部错误，请稍后重试"
+                    statusCode: 500
+                    timestamp: "2024-01-01T12:00:00.000Z"
+
+# 示例文档和使用说明
+x-tag-groups:
+  - name: 核心功能
+    tags:
+      - 认证
+      - 用户管理
+      - 门店管理
+  - name: 业务功能
+    tags:
+      - 菜单管理
+      - 订单管理
+      - 会员管理
+  - name: 营销功能
+    tags:
+      - 营销活动
+      - 支付管理
+  - name: 管理功能
+    tags:
+      - 报表分析
+      - 系统管理
+
+# 额外的说明
+x-apisguru-categories:
+  - restaurant
+  - management
+  - crm
+  - pos
+
+# 联系信息
+x-logo:
+  url: https://www.yyc3.com/logo.png
+  backgroundColor: "#FFFFFF"
+  altText: "YYC³餐饮行业智能化平台"
+
+# 外部文档
+x-externalDocs:
+  description: YYC³平台详细文档
+  url: https://docs.yyc3.com
+
+# 服务器信息扩展
+x-servers:
+  - url: https://api.yyc3.com/v1
+    description: 生产环境
+    variables:
+      protocol:
+        enum: [https]
+        default: https
+      version:
+        enum: [v1, v2]
+        default: v1
+
+# 全局安全配置
+security:
+  - bearerAuth: []

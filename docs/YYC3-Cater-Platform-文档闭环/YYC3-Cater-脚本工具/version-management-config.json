@@ -1,0 +1,100 @@
+{
+  "version_management": {
+    "enabled": true,
+    "auto_versioning": true,
+    "version_prefix": "v",
+    "version_format": "semantic"
+  },
+  "versioning_strategy": {
+    "type": "semantic",
+    "major_increment": [
+      "breaking_change",
+      "架构重构",
+      "重大变更"
+    ],
+    "minor_increment": [
+      "new_feature",
+      "功能新增",
+      "新增功能"
+    ],
+    "patch_increment": [
+      "bug_fix",
+      "修复",
+      "优化"
+    ]
+  },
+  "status_workflow": [
+    {
+      "from": "draft",
+      "to": "review",
+      "require_approval": false,
+      "auto_transition": true
+    },
+    {
+      "from": "review",
+      "to": "approved",
+      "require_approval": true,
+      "auto_transition": false
+    },
+    {
+      "from": "approved",
+      "to": "published",
+      "require_approval": true,
+      "auto_transition": false
+    },
+    {
+      "from": "published",
+      "to": "deprecated",
+      "require_approval": true,
+      "auto_transition": false
+    },
+    {
+      "from": "deprecated",
+      "to": "archived",
+      "require_approval": false,
+      "auto_transition": true
+    }
+  ],
+  "retention_policy": {
+    "max_versions_per_document": 50,
+    "archive_after_days": 365,
+    "cleanup_old_versions": true
+  },
+  "backup_policy": {
+    "enabled": true,
+    "backup_interval_days": 7,
+    "backup_location": "./backups",
+    "max_backups": 10
+  },
+  "notification": {
+    "enabled": true,
+    "on_version_create": true,
+    "on_status_change": true,
+    "on_rollback": true
+  },
+  "git_integration": {
+    "enabled": true,
+    "auto_commit": true,
+    "commit_message_template": "docs: {doc_name} v{version} - {message}",
+    "auto_tag": true,
+    "tag_template": "{doc_name}-v{version}"
+  },
+  "document_categories": {
+    "architecture": {
+      "version_prefix": "arch",
+      "require_review": true
+    },
+    "api": {
+      "version_prefix": "api",
+      "require_review": true
+    },
+    "guide": {
+      "version_prefix": "guide",
+      "require_review": false
+    },
+    "technique": {
+      "version_prefix": "tech",
+      "require_review": false
+    }
+  }
+}

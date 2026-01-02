@@ -1,0 +1,255 @@
+/**
+ * @file 按钮样式文件
+ * @description 统一化标准化按钮组件样式定义
+ * @module styles/button
+ * @author YYC
+ * @version 1.0.0
+ * @created 2024-12-17
+ * @updated 2024-12-17
+ */
+
+@use './tokens.scss' as *;
+
+// 按钮尺寸变量
+$button-height-sm: var(--button-height-sm) !default;
+$button-height-base: var(--button-height-base) !default;
+$button-height-lg: var(--button-height-lg) !default;
+
+$button-padding-horizontal-sm: var(--button-padding-horizontal-sm) !default;
+$button-padding-horizontal-base: var(--button-padding-horizontal-base) !default;
+$button-padding-horizontal-lg: var(--button-padding-horizontal-lg) !default;
+
+$button-font-size-sm: var(--button-font-size-sm) !default;
+$button-font-size-base: var(--button-font-size-base) !default;
+$button-font-size-lg: var(--button-font-size-lg) !default;
+
+// 按钮圆角
+$button-border-radius: var(--button-border-radius) !default;
+
+// 按钮颜色映射
+$button-type-color-map: (
+  primary: (
+    color: var(--button-primary-color),
+    background-color: var(--button-primary-bg-color),
+    border-color: var(--button-primary-border-color),
+    hover-bg-color: var(--button-primary-hover-bg-color),
+    hover-border-color: var(--button-primary-hover-border-color),
+    active-bg-color: var(--button-primary-active-bg-color),
+    active-border-color: var(--button-primary-active-border-color),
+    disabled-color: var(--button-primary-disabled-color),
+    disabled-bg-color: var(--button-primary-disabled-bg-color),
+    disabled-border-color: var(--button-primary-disabled-border-color),
+  ),
+  success: (
+    color: var(--button-success-color),
+    background-color: var(--button-success-bg-color),
+    border-color: var(--button-success-border-color),
+    hover-bg-color: var(--button-success-hover-bg-color),
+    hover-border-color: var(--button-success-hover-border-color),
+    active-bg-color: var(--button-success-active-bg-color),
+    active-border-color: var(--button-success-active-border-color),
+    disabled-color: var(--button-success-disabled-color),
+    disabled-bg-color: var(--button-success-disabled-bg-color),
+    disabled-border-color: var(--button-success-disabled-border-color),
+  ),
+  warning: (
+    color: var(--button-warning-color),
+    background-color: var(--button-warning-bg-color),
+    border-color: var(--button-warning-border-color),
+    hover-bg-color: var(--button-warning-hover-bg-color),
+    hover-border-color: var(--button-warning-hover-border-color),
+    active-bg-color: var(--button-warning-active-bg-color),
+    active-border-color: var(--button-warning-active-border-color),
+    disabled-color: var(--button-warning-disabled-color),
+    disabled-bg-color: var(--button-warning-disabled-bg-color),
+    disabled-border-color: var(--button-warning-disabled-border-color),
+  ),
+  danger: (
+    color: var(--button-danger-color),
+    background-color: var(--button-danger-bg-color),
+    border-color: var(--button-danger-border-color),
+    hover-bg-color: var(--button-danger-hover-bg-color),
+    hover-border-color: var(--button-danger-hover-border-color),
+    active-bg-color: var(--button-danger-active-bg-color),
+    active-border-color: var(--button-danger-active-border-color),
+    disabled-color: var(--button-danger-disabled-color),
+    disabled-bg-color: var(--button-danger-disabled-bg-color),
+    disabled-border-color: var(--button-danger-disabled-border-color),
+  ),
+  info: (
+    color: var(--button-info-color),
+    background-color: var(--button-info-bg-color),
+    border-color: var(--button-info-border-color),
+    hover-bg-color: var(--button-info-hover-bg-color),
+    hover-border-color: var(--button-info-hover-border-color),
+    active-bg-color: var(--button-info-active-bg-color),
+    active-border-color: var(--button-info-active-border-color),
+    disabled-color: var(--button-info-disabled-color),
+    disabled-bg-color: var(--button-info-disabled-bg-color),
+    disabled-border-color: var(--button-info-disabled-border-color),
+  ),
+  default: (
+    color: var(--button-default-color),
+    background-color: var(--button-default-bg-color),
+    border-color: var(--button-default-border-color),
+    hover-bg-color: var(--button-default-hover-bg-color),
+    hover-border-color: var(--button-default-hover-border-color),
+    active-bg-color: var(--button-default-active-bg-color),
+    active-border-color: var(--button-default-active-border-color),
+    disabled-color: var(--button-default-disabled-color),
+    disabled-bg-color: var(--button-default-disabled-bg-color),
+    disabled-border-color: var(--button-default-disabled-border-color),
+  ),
+);
+
+// 统一按钮样式
+.el-button {
+  border-radius: $button-border-radius !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+
+  &:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.2) !important;
+  }
+
+  &.is-disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+  }
+
+  // 尺寸样式
+  &.el-button--small {
+    height: $button-height-sm !important;
+    padding: 0 $button-padding-horizontal-sm !important;
+    font-size: $button-font-size-sm !important;
+  }
+
+  &.el-button--medium {
+    height: $button-height-base !important;
+    padding: 0 $button-padding-horizontal-base !important;
+    font-size: $button-font-size-base !important;
+  }
+
+  &.el-button--large {
+    height: $button-height-lg !important;
+    padding: 0 $button-padding-horizontal-lg !important;
+    font-size: $button-font-size-lg !important;
+  }
+
+  // 类型样式
+  @each $type, $colors in $button-type-color-map {
+    &.el-button--#{$type} {
+      color: map-get($colors, color) !important;
+      background-color: map-get($colors, background-color) !important;
+      border-color: map-get($colors, border-color) !important;
+
+      &:hover:not(.is-disabled) {
+        background-color: map-get($colors, hover-bg-color) !important;
+        border-color: map-get($colors, hover-border-color) !important;
+      }
+
+      &:active:not(.is-disabled) {
+        background-color: map-get($colors, active-bg-color) !important;
+        border-color: map-get($colors, active-border-color) !important;
+      }
+
+      &.is-disabled {
+        color: map-get($colors, disabled-color) !important;
+        background-color: map-get($colors, disabled-bg-color) !important;
+        border-color: map-get($colors, disabled-border-color) !important;
+      }
+
+      // 文本按钮样式
+      &.is-text {
+        background-color: transparent !important;
+        border-color: transparent !important;
+
+        &:hover:not(.is-disabled) {
+          background-color: rgba(var(--color-#{$type}-rgb), 0.1) !important;
+          border-color: transparent !important;
+        }
+
+        &:active:not(.is-disabled) {
+          background-color: rgba(var(--color-#{$type}-rgb), 0.2) !important;
+          border-color: transparent !important;
+        }
+      }
+
+      // 描边按钮样式
+      &.is-outline {
+        background-color: transparent !important;
+
+        &:hover:not(.is-disabled) {
+          color: map-get($colors, color) !important;
+        }
+
+        &:active:not(.is-disabled) {
+          color: map-get($colors, color) !important;
+        }
+      }
+    }
+  }
+
+  // 朴素按钮样式
+  &.is-plain {
+    &.el-button--primary {
+      color: var(--button-primary-color) !important;
+      background-color: rgba(var(--color-primary-rgb), 0.1) !important;
+      border-color: rgba(var(--color-primary-rgb), 0.2) !important;
+
+      &:hover:not(.is-disabled) {
+        color: var(--button-primary-hover-color) !important;
+        background-color: rgba(var(--color-primary-rgb), 0.2) !important;
+        border-color: var(--button-primary-hover-border-color) !important;
+      }
+
+      &:active:not(.is-disabled) {
+        color: var(--button-primary-active-color) !important;
+        background-color: rgba(var(--color-primary-rgb), 0.3) !important;
+        border-color: var(--button-primary-active-border-color) !important;
+      }
+    }
+
+    // 其他类型的朴素按钮样式可以类似地扩展
+  }
+
+  // 带图标的按钮
+  & .el-icon {
+    font-size: inherit !important;
+    margin-right: 4px !important;
+    line-height: 1 !important;
+  }
+
+  &--icon-only .el-icon {
+    margin-right: 0 !important;
+  }
+}
+
+// 与现有.btn-enhanced类兼容
+.btn-enhanced {
+  @extend .el-button;
+
+  &.btn-icon-only {
+    padding: 0 !important;
+    width: $button-height-base !important;
+    text-align: center !important;
+
+    .el-icon {
+      margin-right: 0 !important;
+    }
+  }
+
+  // 加载状态
+  &.is-loading {
+    .el-icon-loading {
+      animation: rotate 1s linear infinite;
+    }
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

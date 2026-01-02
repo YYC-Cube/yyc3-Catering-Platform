@@ -1,0 +1,3303 @@
+{
+  "timestamp": "2025-12-28T04:47:45.876223",
+  "summary": {
+    "total_documents": 125,
+    "avg_score": 85.01270588235293,
+    "grade_distribution": {
+      "A": 51,
+      "B": 31,
+      "C": 42,
+      "D": 1,
+      "F": 0
+    }
+  },
+  "reports": [
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档标准化最终报告.md",
+      "file_name": "YYC3-文档标准化最终报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6694117647058824,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 0.8,
+        "overall_score": 89.38823529411766
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少作者信息",
+          "suggestion": "添加 @author 或作者章节"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施路线图.md",
+      "file_name": "YYC3-Cater-开发实施路线图.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6458823529411766,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 0.8,
+        "overall_score": 88.91764705882355
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少作者信息",
+          "suggestion": "添加 @author 或作者章节"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档闭环系统改进计划.md",
+      "file_name": "YYC3-文档闭环系统改进计划.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.8,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 90.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档索引.md",
+      "file_name": "YYC3-文档索引.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/04-YYC3-技术评审文档模版.md",
+      "file_name": "04-YYC3-技术评审文档模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 91.44117647058823
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/01-YYC3-分析建议文档模版.md",
+      "file_name": "01-YYC3-分析建议文档模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7764705882352942,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 91.79411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/05-YYC3-文档全生命周期管理架构.md",
+      "file_name": "05-YYC3-文档全生命周期管理架构.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/06-YYC3-智能编程基础标准模版.md",
+      "file_name": "06-YYC3-智能编程基础标准模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 91.08823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/07-YYC3-智能编程文档要求规范.md",
+      "file_name": "07-YYC3-智能编程文档要求规范.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.82352941176472
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/08-YYC3-智能编程文档规范索引模版.md",
+      "file_name": "08-YYC3-智能编程文档规范索引模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7764705882352942,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 91.79411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/02-YYC3-多维度审核执行要求规范.md",
+      "file_name": "02-YYC3-多维度审核执行要求规范.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/09-YYC3-项目验收文档模版.md",
+      "file_name": "09-YYC3-项目验收文档模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 91.44117647058823
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/03-YYC3-实施总结文档模版.md",
+      "file_name": "03-YYC3-实施总结文档模版.md",
+      "doc_type": "template",
+      "metrics": {
+        "completeness": 0.7882352941176471,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.14705882352942
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档编号审核报告.md",
+      "file_name": "YYC3-文档编号审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.5258823529411765,
+        "accuracy": 0.7,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 0.8,
+        "overall_score": 76.51764705882354
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少描述信息",
+          "suggestion": "添加 @description 或描述章节"
+        },
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少作者信息",
+          "suggestion": "添加 @author 或作者章节"
+        },
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少版本信息",
+          "suggestion": "添加 @version 或版本章节"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档内容审核报告.md",
+      "file_name": "YYC3-文档内容审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档统一化审核报告.md",
+      "file_name": "YYC3-文档统一化审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/文档整理完成报告.md",
+      "file_name": "文档整理完成报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7047058823529412,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 0.8,
+        "overall_score": 90.09411764705884
+      },
+      "grade": "A",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少作者信息",
+          "suggestion": "添加 @author 或作者章节"
+        }
+      ],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档审核报告.md",
+      "file_name": "YYC3-文档审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7764705882352942,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.5294117647059
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-Cater-文档对齐与全链路闭环审核报告.md",
+      "file_name": "YYC3-Cater-文档对齐与全链路闭环审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文件命名审核报告.md",
+      "file_name": "YYC3-文件命名审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-Cater-全链路闭环补全总结报告.md",
+      "file_name": "YYC3-Cater-全链路闭环补全总结报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档格式审核报告.md",
+      "file_name": "YYC3-文档格式审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.5258823529411765,
+        "accuracy": 0.7,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 0.8,
+        "overall_score": 76.51764705882354
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少描述信息",
+          "suggestion": "添加 @description 或描述章节"
+        },
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少作者信息",
+          "suggestion": "添加 @author 或作者章节"
+        },
+        {
+          "severity": "major",
+          "category": "completeness",
+          "message": "文档缺少版本信息",
+          "suggestion": "添加 @version 或版本章节"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档闭环系统第二阶段-p1-实施报告.md",
+      "file_name": "YYC3-文档闭环系统第二阶段-p1-实施报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.44705882352941173,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.15,
+        "consistency": 1.0,
+        "overall_score": 61.441176470588246
+      },
+      "grade": "D",
+      "issues": [
+        {
+          "severity": "major",
+          "category": "practicality",
+          "message": "文档缺少最佳实践",
+          "suggestion": "添加最佳实践章节，分享经验总结"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档名称内容对应关系审核报告.md",
+      "file_name": "YYC3-文档名称内容对应关系审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.05882352941177
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档重复处理报告.md",
+      "file_name": "YYC3-文档重复处理报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6458823529411766,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 86.91764705882353
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档手动修复报告.md",
+      "file_name": "YYC3-文档手动修复报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6458823529411766,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 86.91764705882353
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档上下文审核报告.md",
+      "file_name": "YYC3-文档上下文审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档命名规范化报告.md",
+      "file_name": "YYC3-文档命名规范化报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档闭环系统第一阶段-p0-实施报告.md",
+      "file_name": "YYC3-文档闭环系统第一阶段-p0-实施报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档上下文衔接审核报告.md",
+      "file_name": "YYC3-文档上下文衔接审核报告.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.05882352941175
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/05-YYC3-Cater--技巧类-AI测试数据准备与标注技巧.md",
+      "file_name": "05-YYC3-Cater--技巧类-AI测试数据准备与标注技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/03-YYC3-Cater--技巧类-性能测试调优技巧.md",
+      "file_name": "03-YYC3-Cater--技巧类-性能测试调优技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.82352941176472
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/04-YYC3-Cater--技巧类-测试缺陷管理规范与技巧.md",
+      "file_name": "04-YYC3-Cater--技巧类-测试缺陷管理规范与技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.05882352941177
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/01-YYC3-Cater--技巧类-测试用例设计技巧手册.md",
+      "file_name": "01-YYC3-Cater--技巧类-测试用例设计技巧手册.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7529411764705882,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.05882352941177
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/02-YYC3-Cater--技巧类-自动化测试脚本编写指南.md",
+      "file_name": "02-YYC3-Cater--技巧类-自动化测试脚本编写指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.82352941176472
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/04-YYC3-Cater--架构类-AI专项测试架构文档.md",
+      "file_name": "04-YYC3-Cater--架构类-AI专项测试架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/03-YYC3-Cater--架构类-安全测试架构文档.md",
+      "file_name": "03-YYC3-Cater--架构类-安全测试架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/02-YYC3-Cater--架构类-性能测试架构文档.md",
+      "file_name": "02-YYC3-Cater--架构类-性能测试架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/01-YYC3-Cater--架构类-测试架构设计文档.md",
+      "file_name": "01-YYC3-Cater--架构类-测试架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/01-YYC3-Cater--架构类-项目深度审核报告.md",
+      "file_name": "01-YYC3-Cater--架构类-项目深度审核报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.8529411764706
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/04-YYC3-Cater--架构类-转型文档评估报告.md",
+      "file_name": "04-YYC3-Cater--架构类-转型文档评估报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5470588235294117,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 79.17647058823529
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/05-YYC3-Cater--架构类-全局深度审核分析报告.md",
+      "file_name": "05-YYC3-Cater--架构类-全局深度审核分析报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.35294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/03-YYC3-Cater--架构类-审核分析清单.md",
+      "file_name": "03-YYC3-Cater--架构类-审核分析清单.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.55882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/02-YYC3-Cater--架构类-多维度审核分析报告.md",
+      "file_name": "02-YYC3-Cater--架构类-多维度审核分析报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.6470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/技巧类/01-YYC3-Cater--技巧类-用户常见问题解答.md",
+      "file_name": "01-YYC3-Cater--技巧类-用户常见问题解答.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7176470588235294,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.35294117647058
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/架构类/02-YYC3-Cater--架构类-用户操作手册.md",
+      "file_name": "02-YYC3-Cater--架构类-用户操作手册.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6676470588235294,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 81.69117647058823
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/架构类/01-YYC3-Cater--架构类-用户快速入门指南.md",
+      "file_name": "01-YYC3-Cater--架构类-用户快速入门指南.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6676470588235294,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 86.19117647058823
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/06-YYC3-Cater--技巧类-系统性能优化运维技巧.md",
+      "file_name": "06-YYC3-Cater--技巧类-系统性能优化运维技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/03-YYC3-Cater--技巧类-日志分析与问题定位技巧.md",
+      "file_name": "03-YYC3-Cater--技巧类-日志分析与问题定位技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7176470588235294,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.35294117647058
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/04-YYC3-Cater--技巧类-智能运维平台操作指南.md",
+      "file_name": "04-YYC3-Cater--技巧类-智能运维平台操作指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/01-YYC3-Cater--技巧类-运维手册.md",
+      "file_name": "01-YYC3-Cater--技巧类-运维手册.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/05-YYC3-Cater--技巧类-灾备演练与恢复技巧.md",
+      "file_name": "05-YYC3-Cater--技巧类-灾备演练与恢复技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/02-YYC3-Cater--技巧类-监控告警配置技巧.md",
+      "file_name": "02-YYC3-Cater--技巧类-监控告警配置技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.82352941176471
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/05-YYC3-Cater--架构类-节点执行计划.md",
+      "file_name": "05-YYC3-Cater--架构类-节点执行计划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.55882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/04-YYC3-Cater--架构类-系统扩容架构文档.md",
+      "file_name": "04-YYC3-Cater--架构类-系统扩容架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/01-YYC3-Cater--架构类-运维架构设计文档.md",
+      "file_name": "01-YYC3-Cater--架构类-运维架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.05882352941175
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/07-YYC3-Cater--架构类-节点执行总结.md",
+      "file_name": "07-YYC3-Cater--架构类-节点执行总结.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.1470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/02-YYC3-Cater--架构类-智能运维架构文档.md",
+      "file_name": "02-YYC3-Cater--架构类-智能运维架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.48705882352941177,
+        "accuracy": 0.85,
+        "readability": 0.8,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 71.67647058823529
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/08-YYC3-Cater--架构类-真实进度追踪系统.md",
+      "file_name": "08-YYC3-Cater--架构类-真实进度追踪系统.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.8529411764706
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/06-YYC3-Cater--架构类-节点控制推进路线图.md",
+      "file_name": "06-YYC3-Cater--架构类-节点控制推进路线图.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.6470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/03-YYC3-Cater--架构类-灾备架构运维文档.md",
+      "file_name": "03-YYC3-Cater--架构类-灾备架构运维文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6294117647058823,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 78.23529411764706
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/02-YYC3-Cater--技巧类-微服务拆分避坑指南.md",
+      "file_name": "02-YYC3-Cater--技巧类-微服务拆分避坑指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6576470588235295,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 87.15294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/01-YYC3-Cater--技巧类-架构设计绘图规范与工具指南.md",
+      "file_name": "01-YYC3-Cater--技巧类-架构设计绘图规范与工具指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6576470588235295,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 87.15294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/03-YYC3-Cater--技巧类-AI架构集成性能优化技巧.md",
+      "file_name": "03-YYC3-Cater--技巧类-AI架构集成性能优化技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6576470588235295,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 87.15294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/04-YYC3-Cater--技巧类-架构评审-checklist.md",
+      "file_name": "04-YYC3-Cater--技巧类-架构评审-checklist.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.6576470588235295,
+        "accuracy": 1.0,
+        "readability": 0.7,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 87.15294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "completeness",
+          "message": "文档缺少目录",
+          "suggestion": "添加目录章节，提升文档可导航性"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/02-YYC3-Cater--架构类-数据库架构详细设计文档.md",
+      "file_name": "02-YYC3-Cater--架构类-数据库架构详细设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/18-YYC3-Cater--架构类-错误处理架构设计文档.md",
+      "file_name": "18-YYC3-Cater--架构类-错误处理架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.85294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/12-YYC3-Cater--架构类-全链路智能化转型执行方案.md",
+      "file_name": "12-YYC3-Cater--架构类-全链路智能化转型执行方案.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.55882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/14-YYC3-Cater--架构类-分层闭环开发模型设计.md",
+      "file_name": "14-YYC3-Cater--架构类-分层闭环开发模型设计.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.3529411764706
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/06-YYC3-Cater--架构类-接口架构设计文档.md",
+      "file_name": "06-YYC3-Cater--架构类-接口架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.05882352941175
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/10-YYC3-Cater--架构类-全链路智能化转型总体架构设计.md",
+      "file_name": "10-YYC3-Cater--架构类-全链路智能化转型总体架构设计.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/05-YYC3-Cater--架构类-API接口设计文档.md",
+      "file_name": "05-YYC3-Cater--架构类-API接口设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 79.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/13-YYC3-Cater--架构类-全链路智能化转型最终执行方案.md",
+      "file_name": "13-YYC3-Cater--架构类-全链路智能化转型最终执行方案.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6176470588235294,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.94117647058823
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/17-YYC3-Cater--架构类-可访问性标准.md",
+      "file_name": "17-YYC3-Cater--架构类-可访问性标准.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 79.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/08-YYC3-Cater--架构类-智能架构设计文档.md",
+      "file_name": "08-YYC3-Cater--架构类-智能架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/07-YYC3-Cater--架构类-部署架构设计文档.md",
+      "file_name": "07-YYC3-Cater--架构类-部署架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 82.1470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/01-YYC3-Cater--架构类-总体架构设计文档.md",
+      "file_name": "01-YYC3-Cater--架构类-总体架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/16-YYC3-Cater--架构类-系统色设计规范.md",
+      "file_name": "16-YYC3-Cater--架构类-系统色设计规范.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.85294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/15-YYC3-Cater--架构类-多维度闭环监控与优化机制设计.md",
+      "file_name": "15-YYC3-Cater--架构类-多维度闭环监控与优化机制设计.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.3529411764706
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/11-YYC3-Cater--架构类-全链路智能化转型技术实现计划.md",
+      "file_name": "11-YYC3-Cater--架构类-全链路智能化转型技术实现计划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.6470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/04-YYC3-Cater--架构类-数据架构详细设计文档.md",
+      "file_name": "04-YYC3-Cater--架构类-数据架构详细设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 75.55882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/09-YYC3-Cater--架构类-监控架构设计文档.md",
+      "file_name": "09-YYC3-Cater--架构类-监控架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/03-YYC3-Cater--架构类-微服务架构设计文档.md",
+      "file_name": "03-YYC3-Cater--架构类-微服务架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 80.35294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/02-YYC3-Cater--技巧类-架构评审与迭代规划技巧.md",
+      "file_name": "02-YYC3-Cater--技巧类-架构评审与迭代规划技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/03-YYC3-Cater--技巧类-知识复用与沉淀技巧.md",
+      "file_name": "03-YYC3-Cater--技巧类-知识复用与沉淀技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/01-YYC3-Cater--技巧类-文档归档规范与技巧.md",
+      "file_name": "01-YYC3-Cater--技巧类-文档归档规范与技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7647058823529411,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 95.29411764705883
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/03-YYC3-Cater--架构类-架构资产沉淀文档.md",
+      "file_name": "03-YYC3-Cater--架构类-架构资产沉淀文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.55882352941177
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/02-YYC3-Cater--架构类-系统迭代架构规划文档.md",
+      "file_name": "02-YYC3-Cater--架构类-系统迭代架构规划文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/01-YYC3-Cater--架构类-项目文档归档架构说明.md",
+      "file_name": "01-YYC3-Cater--架构类-项目文档归档架构说明.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5705882352941177,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.76470588235294
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/01-YYC3-Cater--技巧类-编码规范手册.md",
+      "file_name": "01-YYC3-Cater--技巧类-编码规范手册.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/03-YYC3-Cater--技巧类-开发效率提升技巧集.md",
+      "file_name": "03-YYC3-Cater--技巧类-开发效率提升技巧集.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/05-YYC3-Cater--技巧类-AI模型开发调优技巧.md",
+      "file_name": "05-YYC3-Cater--技巧类-AI模型开发调优技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7176470588235294,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.35294117647058
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/04-YYC3-Cater--技巧类-常见开发架构问题解决方案.md",
+      "file_name": "04-YYC3-Cater--技巧类-常见开发架构问题解决方案.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/02-YYC3-Cater--技巧类-版本控制最佳实践.md",
+      "file_name": "02-YYC3-Cater--技巧类-版本控制最佳实践.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 0.8,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 90.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/05-YYC3-Cater--架构类-AI模型开发与集成文档.md",
+      "file_name": "05-YYC3-Cater--架构类-AI模型开发与集成文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5470588235294117,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.17647058823529
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/09-YYC3-Cater--架构类-自动迭代实施计划.md",
+      "file_name": "09-YYC3-Cater--架构类-自动迭代实施计划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6205882352941177,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 80.51470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/11-YYC3-Cater--架构类-自动迭代实施计划资源准备清单.md",
+      "file_name": "11-YYC3-Cater--架构类-自动迭代实施计划资源准备清单.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6088235294117648,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 80.22058823529412
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/02-YYC3-Cater--架构类-API接口实现文档.md",
+      "file_name": "02-YYC3-Cater--架构类-API接口实现文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5588235294117647,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.47058823529412
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/04-YYC3-Cater--架构类-中间件集成架构文档.md",
+      "file_name": "04-YYC3-Cater--架构类-中间件集成架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5470588235294117,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.17647058823529
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/01-YYC3-Cater--架构类-代码架构实现说明书.md",
+      "file_name": "01-YYC3-Cater--架构类-代码架构实现说明书.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5588235294117647,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.47058823529412
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/08-YYC3-Cater--架构类-技术实现指南.md",
+      "file_name": "08-YYC3-Cater--架构类-技术实现指南.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6323529411764706,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 85.30882352941175
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/07-YYC3-Cater--架构类-开发闭环规划.md",
+      "file_name": "07-YYC3-Cater--架构类-开发闭环规划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6441176470588235,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 82.6029411764706
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/03-YYC3-Cater--架构类-数据访问层架构实现文档.md",
+      "file_name": "03-YYC3-Cater--架构类-数据访问层架构实现文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5588235294117647,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 76.47058823529412
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/10-YYC3-Cater--架构类-自动迭代实施计划审批请求.md",
+      "file_name": "10-YYC3-Cater--架构类-自动迭代实施计划审批请求.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6205882352941177,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 80.51470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/06-YYC3-Cater--架构类-第一阶段实施报告.md",
+      "file_name": "06-YYC3-Cater--架构类-第一阶段实施报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6441176470588235,
+        "accuracy": 0.85,
+        "readability": 0.9,
+        "practicality": 0.8,
+        "consistency": 1.0,
+        "overall_score": 81.1029411764706
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/04-YYC3-Cater--技巧类-部署问题排查指南.md",
+      "file_name": "04-YYC3-Cater--技巧类-部署问题排查指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.82352941176471
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/02-YYC3-Cater--技巧类-K8s部署运维技巧.md",
+      "file_name": "02-YYC3-Cater--技巧类-K8s部署运维技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7176470588235294,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.35294117647058
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/01-YYC3-Cater--技巧类-Docker容器化部署技巧.md",
+      "file_name": "01-YYC3-Cater--技巧类-Docker容器化部署技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 92.82352941176471
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/05-YYC3-Cater--技巧类-灰度发布风险控制技巧.md",
+      "file_name": "05-YYC3-Cater--技巧类-灰度发布风险控制技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/03-YYC3-Cater--技巧类-ci-cd流水线搭建与优化技巧.md",
+      "file_name": "03-YYC3-Cater--技巧类-ci-cd流水线搭建与优化技巧.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7176470588235294,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.35294117647058
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/02-YYC3-Cater--架构类-ci-cd流水线架构文档.md",
+      "file_name": "02-YYC3-Cater--架构类-ci-cd流水线架构文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/01-YYC3-Cater--架构类-部署架构实施文档.md",
+      "file_name": "01-YYC3-Cater--架构类-部署架构实施文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5941176470588235,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.85294117647058
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/03-YYC3-Cater--架构类-多环境部署架构差异文档.md",
+      "file_name": "03-YYC3-Cater--架构类-多环境部署架构差异文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.55882352941177
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/04-YYC3-Cater--架构类-灰度发布架构设计文档.md",
+      "file_name": "04-YYC3-Cater--架构类-灰度发布架构设计文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 82.1470588235294
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/05-YYC3-Cater--架构类-风险管理与质量保障计划.md",
+      "file_name": "05-YYC3-Cater--架构类-风险管理与质量保障计划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.64705882352942
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/01-YYC3-Cater--技巧类-需求文档标准化编写指南.md",
+      "file_name": "01-YYC3-Cater--技巧类-需求文档标准化编写指南.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7764705882352942,
+        "accuracy": 1.0,
+        "readability": 0.9,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 93.5294117647059
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/03-YYC3-Cater--技巧类-智能化需求优先级排序方法.md",
+      "file_name": "03-YYC3-Cater--技巧类-智能化需求优先级排序方法.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7294117647058823,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.58823529411765
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/02-YYC3-Cater--技巧类-跨部门需求协同沟通技巧手册.md",
+      "file_name": "02-YYC3-Cater--技巧类-跨部门需求协同沟通技巧手册.md",
+      "doc_type": "technique",
+      "metrics": {
+        "completeness": 0.7411764705882353,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 1.0,
+        "consistency": 1.0,
+        "overall_score": 94.82352941176472
+      },
+      "grade": "A",
+      "issues": [],
+      "suggestions": []
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/02-YYC3-Cater--架构类-需求阶段架构可行性分析报告.md",
+      "file_name": "02-YYC3-Cater--架构类-需求阶段架构可行性分析报告.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6176470588235294,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.94117647058823
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/07-YYC3-Cater--架构类-可执行阶段节点文档.md",
+      "file_name": "07-YYC3-Cater--架构类-可执行阶段节点文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/06-YYC3-Cater--架构类-阶段目标与验收标准.md",
+      "file_name": "06-YYC3-Cater--架构类-阶段目标与验收标准.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.64705882352942
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/04-YYC3-Cater--架构类-智能化能力需求规格说明书.md",
+      "file_name": "04-YYC3-Cater--架构类-智能化能力需求规格说明书.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/03-YYC3-Cater--架构类-数据架构需求规划文档.md",
+      "file_name": "03-YYC3-Cater--架构类-数据架构需求规划文档.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 1.0,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 81.55882352941177
+      },
+      "grade": "B",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/05-YYC3-Cater--架构类-阶段规划与节点实施计划.md",
+      "file_name": "05-YYC3-Cater--架构类-阶段规划与节点实施计划.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.6058823529411764,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.64705882352942
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/01-YYC3-Cater--架构类-智能化应用业务架构说明书.md",
+      "file_name": "01-YYC3-Cater--架构类-智能化应用业务架构说明书.md",
+      "doc_type": "architecture",
+      "metrics": {
+        "completeness": 0.5823529411764706,
+        "accuracy": 0.85,
+        "readability": 1.0,
+        "practicality": 0.6,
+        "consistency": 1.0,
+        "overall_score": 77.05882352941177
+      },
+      "grade": "C",
+      "issues": [
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少案例分析",
+          "suggestion": "添加案例分析章节，提供实际应用场景"
+        },
+        {
+          "severity": "minor",
+          "category": "practicality",
+          "message": "文档缺少常见问题",
+          "suggestion": "添加常见问题章节，解答用户疑问"
+        }
+      ],
+      "suggestions": [
+        "完善文档元数据，添加标题、描述、作者、版本等信息",
+        "增加标准章节：概述、核心概念、实施步骤、代码示例等",
+        "添加最佳实践章节，分享经验总结",
+        "增加案例分析，提供实际应用场景",
+        "补充常见问题，解答用户疑问"
+      ]
+    }
+  ]
+}

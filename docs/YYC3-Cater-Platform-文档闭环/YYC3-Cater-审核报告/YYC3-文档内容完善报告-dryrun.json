@@ -1,0 +1,3564 @@
+{
+  "timestamp": "2025-12-28T04:32:18.089468",
+  "dry_run": true,
+  "statistics": {
+    "total_documents": 127,
+    "improved_documents": 127,
+    "total_suggestions": 1139,
+    "avg_completeness": 1.8799212598425197
+  },
+  "documents": [
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档标准化最终报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.25,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施路线图.md",
+      "doc_type": "technique",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档闭环系统改进计划.md",
+      "doc_type": "technique",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-文档索引.md",
+      "doc_type": "technique",
+      "completeness_score": 2.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-多维度审核执行要求规范.md",
+      "doc_type": "technique",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程文档要求规范.md",
+      "doc_type": "technique",
+      "completeness_score": 4.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-项目验收文档模版.md",
+      "doc_type": "technique",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/README.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-文档全生命周期管理架构.md",
+      "doc_type": "technique",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程基础标准模版.md",
+      "doc_type": "technique",
+      "completeness_score": 0.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-技术评审文档模版.md",
+      "doc_type": "technique",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程文档规范索引模版.md",
+      "doc_type": "technique",
+      "completeness_score": 4.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-实施总结文档模版.md",
+      "doc_type": "technique",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-分析建议文档模版.md",
+      "doc_type": "technique",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-脚本工具/README.md",
+      "doc_type": "technique",
+      "completeness_score": 0.875,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档编号审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 0.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档内容审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档统一化审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/文档整理完成报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-Cater-文档对齐与全链路闭环审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文件命名审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-Cater-全链路闭环补全总结报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档格式审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 0.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档名称内容对应关系审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.25,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/README.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档重复处理报告.md",
+      "doc_type": "technique",
+      "completeness_score": 0.125,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档闭环系统第一阶段（P0）实施报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档手动修复报告.md",
+      "doc_type": "technique",
+      "completeness_score": 0.25,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档上下文审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档命名规范化报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/YYC3-文档上下文衔接审核报告.md",
+      "doc_type": "technique",
+      "completeness_score": 1.0,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/05-YYC3-Cater--技巧类-AI测试数据准备与标注技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/03-YYC3-Cater--技巧类-性能测试调优技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.25,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/04-YYC3-Cater--技巧类-测试缺陷管理规范与技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/01-YYC3-Cater--技巧类-测试用例设计技巧手册.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/技巧类/02-YYC3-Cater--技巧类-自动化测试脚本编写指南.md",
+      "doc_type": "technique",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/04-YYC3-Cater--架构类-AI专项测试架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/03-YYC3-Cater--架构类-安全测试架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/02-YYC3-Cater--架构类-性能测试架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-测试验证/架构类/01-YYC3-Cater--架构类-测试架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/01-YYC3-Cater--架构类-项目深度审核报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/04-YYC3-Cater--架构类-转型文档评估报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 0.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/05-YYC3-Cater--架构类-全局深度审核分析报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/03-YYC3-Cater--架构类-审核分析清单.md",
+      "doc_type": "architecture",
+      "completeness_score": 0.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-审核报告/架构类/02-YYC3-Cater--架构类-多维度审核分析报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/技巧类/01-YYC3-Cater--技巧类-用户常见问题解答.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/架构类/02-YYC3-Cater--架构类-用户操作手册.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-用户指南/架构类/01-YYC3-Cater--架构类-用户快速入门指南.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/06-YYC3-Cater--技巧类-系统性能优化运维技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/03-YYC3-Cater--技巧类-日志分析与问题定位技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/04-YYC3-Cater--技巧类-智能运维平台操作指南.md",
+      "doc_type": "technique",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/01-YYC3-Cater--技巧类-运维手册.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/05-YYC3-Cater--技巧类-灾备演练与恢复技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/技巧类/02-YYC3-Cater--技巧类-监控告警配置技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/05-YYC3-Cater--架构类-节点执行计划.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/04-YYC3-Cater--架构类-系统扩容架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/01-YYC3-Cater--架构类-运维架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 3.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/07-YYC3-Cater--架构类-节点执行总结.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/02-YYC3-Cater--架构类-智能运维架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 0.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/08-YYC3-Cater--架构类-真实进度追踪系统.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/06-YYC3-Cater--架构类-节点控制推进路线图.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-运维运营/架构类/03-YYC3-Cater--架构类-灾备架构运维文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/04-YYC3-Cater--技巧类-架构评审 Checklist.md",
+      "doc_type": "technique",
+      "completeness_score": 0.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/02-YYC3-Cater--技巧类-微服务拆分避坑指南.md",
+      "doc_type": "technique",
+      "completeness_score": 0.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/01-YYC3-Cater--技巧类-架构设计绘图规范与工具指南.md",
+      "doc_type": "technique",
+      "completeness_score": 0.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/技巧类/03-YYC3-Cater--技巧类-AI架构集成性能优化技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 0.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加代码示例",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/02-YYC3-Cater--架构类-数据库架构详细设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/18-YYC3-Cater--架构类-错误处理架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/12-YYC3-Cater--架构类-全链路智能化转型执行方案.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/14-YYC3-Cater--架构类-分层闭环开发模型设计.md",
+      "doc_type": "architecture",
+      "completeness_score": 3.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/06-YYC3-Cater--架构类-接口架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/10-YYC3-Cater--架构类-全链路智能化转型总体架构设计.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/05-YYC3-Cater--架构类-API接口设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/13-YYC3-Cater--架构类-全链路智能化转型最终执行方案.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/17-YYC3-Cater--架构类-可访问性标准.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/08-YYC3-Cater--架构类-智能架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/07-YYC3-Cater--架构类-部署架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/01-YYC3-Cater--架构类-总体架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/16-YYC3-Cater--架构类-系统色设计规范.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/15-YYC3-Cater--架构类-多维度闭环监控与优化机制设计.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/11-YYC3-Cater--架构类-全链路智能化转型技术实现计划.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/04-YYC3-Cater--架构类-数据架构详细设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/09-YYC3-Cater--架构类-监控架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-架构设计/架构类/03-YYC3-Cater--架构类-微服务架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/02-YYC3-Cater--技巧类-架构评审与迭代规划技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/03-YYC3-Cater--技巧类-知识复用与沉淀技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/技巧类/01-YYC3-Cater--技巧类-文档归档规范与技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.375,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/03-YYC3-Cater--架构类-架构资产沉淀文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/02-YYC3-Cater--架构类-系统迭代架构规划文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-归类迭代/架构类/01-YYC3-Cater--架构类-项目文档归档架构说明.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/01-YYC3-Cater--技巧类-编码规范手册.md",
+      "doc_type": "technique",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/03-YYC3-Cater--技巧类-开发效率提升技巧集.md",
+      "doc_type": "technique",
+      "completeness_score": 2.625,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/05-YYC3-Cater--技巧类-AI模型开发调优技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/04-YYC3-Cater--技巧类-常见开发架构问题解决方案.md",
+      "doc_type": "technique",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/技巧类/02-YYC3-Cater--技巧类-版本控制最佳实践.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/05-YYC3-Cater--架构类-AI模型开发与集成文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/09-YYC3-Cater--架构类-自动迭代实施计划.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/11-YYC3-Cater--架构类-自动迭代实施计划资源准备清单.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/02-YYC3-Cater--架构类-API接口实现文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/04-YYC3-Cater--架构类-中间件集成架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/01-YYC3-Cater--架构类-代码架构实现说明书.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/08-YYC3-Cater--架构类-技术实现指南.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/07-YYC3-Cater--架构类-开发闭环规划.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.375,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/03-YYC3-Cater--架构类-数据访问层架构实现文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/10-YYC3-Cater--架构类-自动迭代实施计划审批请求.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.0,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-开发实施/架构类/06-YYC3-Cater--架构类-第一阶段实施报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/04-YYC3-Cater--技巧类-部署问题排查指南.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加最佳实践章节",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/02-YYC3-Cater--技巧类-K8s部署运维技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/03-YYC3-Cater--技巧类-CI_CD流水线搭建与优化技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/01-YYC3-Cater--技巧类-Docker容器化部署技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/技巧类/05-YYC3-Cater--技巧类-灰度发布风险控制技巧.md",
+      "doc_type": "technique",
+      "completeness_score": 2.875,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/01-YYC3-Cater--架构类-部署架构实施文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/02-YYC3-Cater--架构类-CI_CD流水线架构文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/03-YYC3-Cater--架构类-多环境部署架构差异文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.25,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/04-YYC3-Cater--架构类-灰度发布架构设计文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-部署发布/架构类/05-YYC3-Cater--架构类-风险管理与质量保障计划.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.625,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/01-YYC3-Cater--技巧类-需求文档标准化编写指南.md",
+      "doc_type": "technique",
+      "completeness_score": 5.125,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/03-YYC3-Cater--技巧类-智能化需求优先级排序方法.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析",
+        "添加案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/技巧类/02-YYC3-Cater--技巧类-跨部门需求协同沟通技巧手册.md",
+      "doc_type": "technique",
+      "completeness_score": 2.5,
+      "missing_sections": [
+        "概述",
+        "核心概念",
+        "实施步骤",
+        "代码示例",
+        "注意事项",
+        "最佳实践",
+        "常见问题",
+        "案例分析"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 核心概念",
+        "添加缺失章节: 实施步骤",
+        "添加缺失章节: 代码示例",
+        "添加缺失章节: 注意事项",
+        "添加缺失章节: 最佳实践",
+        "添加缺失章节: 常见问题",
+        "添加缺失章节: 案例分析"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/02-YYC3-Cater--架构类-需求阶段架构可行性分析报告.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/07-YYC3-Cater--架构类-可执行阶段节点文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/06-YYC3-Cater--架构类-阶段目标与验收标准.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/04-YYC3-Cater--架构类-智能化能力需求规格说明书.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/03-YYC3-Cater--架构类-数据架构需求规划文档.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.875,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/05-YYC3-Cater--架构类-阶段规划与节点实施计划.md",
+      "doc_type": "architecture",
+      "completeness_score": 1.75,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": false,
+      "has_best_practices": true,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践"
+      ]
+    },
+    {
+      "file_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-需求规划/架构类/01-YYC3-Cater--架构类-智能化应用业务架构说明书.md",
+      "doc_type": "architecture",
+      "completeness_score": 2.125,
+      "missing_sections": [
+        "概述",
+        "架构设计",
+        "技术实现",
+        "部署方案",
+        "性能优化",
+        "安全考虑",
+        "监控告警",
+        "最佳实践"
+      ],
+      "has_code_examples": true,
+      "has_best_practices": false,
+      "improvement_suggestions": [
+        "添加缺失章节: 概述",
+        "添加缺失章节: 架构设计",
+        "添加缺失章节: 技术实现",
+        "添加缺失章节: 部署方案",
+        "添加缺失章节: 性能优化",
+        "添加缺失章节: 安全考虑",
+        "添加缺失章节: 监控告警",
+        "添加缺失章节: 最佳实践",
+        "添加最佳实践章节"
+      ]
+    }
+  ]
+}

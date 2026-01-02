@@ -1,0 +1,405 @@
+name: YYC3 智枢服务化平台 CI/CD 流水线
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  # 代码质量检查
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 代码格式检查
+        run: pnpm run format
+      
+      - name: 代码质量检查
+        run: pnpm run lint
+      
+      - name: TypeScript 类型检查
+        run: pnpm run type-check
+
+  # SonarQube 代码质量分析
+  sonarqube-analysis:
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 运行测试获取覆盖率报告
+        run: pnpm run test:coverage
+      
+      - name: SonarQube 扫描
+        uses: SonarSource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      
+      - name: 等待质量门结果
+        uses: SonarSource/sonarqube-quality-gate-action@master
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  
+  # 单元测试
+  test:
+    runs-on: ubuntu-latest
+    needs: sonarqube-analysis
+    steps:
+      - uses: actions/checkout@v4
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 运行单元测试
+        run: pnpm run test:unit
+      
+      - name: 生成测试覆盖率报告
+        run: pnpm run test:coverage
+      
+      - name: 上传测试覆盖率报告
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-coverage
+          path: coverage/
+  
+  # 构建后端
+  build-backend:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 构建后端
+        run: pnpm run build:backend
+      
+      - name: 上传后端构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-build
+          path: dist/backend/
+  
+  # 构建前端
+  build-frontend:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 构建前端
+        run: pnpm run build:frontend
+      
+      - name: 上传前端构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/dist/
+
+  # 安全扫描
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: [ build-backend, build-frontend ]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'pnpm'
+      
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      # 代码安全扫描
+      - name: 安装依赖
+        run: npm install -g pnpm && pnpm install
+      
+      - name: 安装安全扫描工具
+        run: pnpm add -D eslint-plugin-security
+      
+      - name: 运行代码安全扫描
+        run: pnpm run lint:security
+      
+      # 容器镜像扫描（如果有Dockerfile的话）
+      - name: 设置 Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
+      - name: 构建后端Docker镜像
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          push: false
+          load: true
+          tags: yyc3-backend:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      
+      - name: 运行Trivy漏洞扫描
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'yyc3-backend:latest'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+      
+      - name: 上传Trivy扫描结果到GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+        if: always()
+  
+  # 部署到开发环境
+  deploy-dev:
+    name: Deploy to Development Environment
+    runs-on: ubuntu-latest
+    needs: [security-scan]
+    if: github.ref == 'refs/heads/develop'
+    environment:
+      name: development
+      url: https://dev.yyc3-catering.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.9.0
+
+      - name: Set up Kubernetes context
+        uses: azure/k8s-set-context@v3
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_DEV }}
+
+      - name: Configure environment variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST_DEV }}" >> $GITHUB_ENV
+          echo "DB_PORT=${{ secrets.DB_PORT_DEV }}" >> $GITHUB_ENV
+          echo "DB_NAME=${{ secrets.DB_NAME_DEV }}" >> $GITHUB_ENV
+          echo "DB_USER=${{ secrets.DB_USER_DEV }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD_DEV }}" >> $GITHUB_ENV
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST_DEV }}" >> $GITHUB_ENV
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT_DEV }}" >> $GITHUB_ENV
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET_DEV }}" >> $GITHUB_ENV
+
+      - name: Run database migrations
+        run: |
+          kubectl run migration-job --rm -i --restart=Never \
+            --image=yyc3-backend:${{ github.sha }} \
+            --namespace=yyc3-dev \
+            --env="DB_HOST=$DB_HOST" \
+            --env="DB_PORT=$DB_PORT" \
+            --env="DB_NAME=$DB_NAME" \
+            --env="DB_USER=$DB_USER" \
+            --env="DB_PASSWORD=$DB_PASSWORD" \
+            -- npm run migrate
+
+      - name: Deploy API Gateway with Helm
+        run: |
+          helm upgrade --install yyc3-api-gateway ./helm \
+            --namespace yyc3-dev \
+            --create-namespace \
+            --set gateway.image.tag=${{ github.sha }} \
+            --set gateway.replicaCount=2 \
+            --set environment=development \
+            --set database.host=$DB_HOST \
+            --set database.port=$DB_PORT \
+            --set database.name=$DB_NAME \
+            --set database.user=$DB_USER \
+            --set database.password=$DB_PASSWORD \
+            --set redis.host=$REDIS_HOST \
+            --set redis.port=$REDIS_PORT \
+            --set jwt.secret=$JWT_SECRET
+
+      - name: Verify deployment
+        run: |
+          kubectl rollout status deployment/yyc3-api-gateway -n yyc3-dev --timeout=120s
+          kubectl get pods -n yyc3-dev
+
+      - name: Health check
+        run: |
+          kubectl run health-check --rm -i --restart=Never \
+            --image=curlimages/curl:latest \
+            --namespace=yyc3-dev \
+            -- curl -f http://yyc3-api-gateway.yyc3-dev.svc.cluster.local/health || exit 1
+
+      - name: Notify deployment success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Development deployment succeeded! 🚀'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Notify deployment failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Development deployment failed! ❌'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+  deploy-prod:
+    name: Deploy to Production Environment
+    runs-on: ubuntu-latest
+    needs: [security-scan]
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: production
+      url: https://api.yyc3-catering.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: v3.9.0
+
+      - name: Set up Kubernetes context
+        uses: azure/k8s-set-context@v3
+        with:
+          kubeconfig: ${{ secrets.KUBE_CONFIG_PROD }}
+
+      - name: Configure environment variables
+        run: |
+          echo "DB_HOST=${{ secrets.DB_HOST_PROD }}" >> $GITHUB_ENV
+          echo "DB_PORT=${{ secrets.DB_PORT_PROD }}" >> $GITHUB_ENV
+          echo "DB_NAME=${{ secrets.DB_NAME_PROD }}" >> $GITHUB_ENV
+          echo "DB_USER=${{ secrets.DB_USER_PROD }}" >> $GITHUB_ENV
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD_PROD }}" >> $GITHUB_ENV
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST_PROD }}" >> $GITHUB_ENV
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT_PROD }}" >> $GITHUB_ENV
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET_PROD }}" >> $GITHUB_ENV
+
+      - name: Backup database before migration
+        run: |
+          kubectl run backup-job --rm -i --restart=Never \
+            --image=yyc3-backend:${{ github.sha }} \
+            --namespace=yyc3-prod \
+            --env="DB_HOST=$DB_HOST" \
+            --env="DB_PORT=$DB_PORT" \
+            --env="DB_NAME=$DB_NAME" \
+            --env="DB_USER=$DB_USER" \
+            --env="DB_PASSWORD=$DB_PASSWORD" \
+            -- npm run backup
+
+      - name: Run database migrations
+        run: |
+          kubectl run migration-job --rm -i --restart=Never \
+            --image=yyc3-backend:${{ github.sha }} \
+            --namespace=yyc3-prod \
+            --env="DB_HOST=$DB_HOST" \
+            --env="DB_PORT=$DB_PORT" \
+            --env="DB_NAME=$DB_NAME" \
+            --env="DB_USER=$DB_USER" \
+            --env="DB_PASSWORD=$DB_PASSWORD" \
+            -- npm run migrate
+
+      - name: Deploy API Gateway with Helm
+        run: |
+          helm upgrade --install yyc3-api-gateway ./helm \
+            --namespace yyc3-prod \
+            --create-namespace \
+            --set gateway.image.tag=${{ github.sha }} \
+            --set gateway.replicaCount=3 \
+            --set environment=production \
+            --set database.host=$DB_HOST \
+            --set database.port=$DB_PORT \
+            --set database.name=$DB_NAME \
+            --set database.user=$DB_USER \
+            --set database.password=$DB_PASSWORD \
+            --set redis.host=$REDIS_HOST \
+            --set redis.port=$REDIS_PORT \
+            --set jwt.secret=$JWT_SECRET \
+            --set resources.requests.cpu=500m \
+            --set resources.requests.memory=512Mi \
+            --set resources.limits.cpu=1000m \
+            --set resources.limits.memory=1Gi \
+            --set autoscaling.enabled=true \
+            --set autoscaling.minReplicas=3 \
+            --set autoscaling.maxReplicas=10
+
+      - name: Verify deployment
+        run: |
+          kubectl rollout status deployment/yyc3-api-gateway -n yyc3-prod --timeout=180s
+          kubectl get pods -n yyc3-prod
+
+      - name: Health check
+        run: |
+          kubectl run health-check --rm -i --restart=Never \
+            --image=curlimages/curl:latest \
+            --namespace=yyc3-prod \
+            -- curl -f https://api.yyc3-catering.com/health || exit 1
+
+      - name: Run smoke tests
+        run: |
+          kubectl run smoke-test --rm -i --restart=Never \
+            --image=yyc3-backend:${{ github.sha }} \
+            --namespace=yyc3-prod \
+            -- npm run test:smoke
+
+      - name: Notify deployment success
+        if: success()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Production deployment succeeded! 🚀'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Notify deployment failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Production deployment failed! ❌'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          helm rollback yyc3-api-gateway -n yyc3-prod

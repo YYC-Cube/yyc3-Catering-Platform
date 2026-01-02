@@ -1,0 +1,87 @@
+{
+  "YYC3-Cater-架构类-微服务架构设计规范": [
+    {
+      "doc_name": "YYC3-Cater-架构类-微服务架构设计规范",
+      "version": "1.0.0",
+      "status": "已发布",
+      "created_at": "2025-12-28T04:57:23.897389",
+      "author": "YYC³",
+      "commit_hash": "1954bf8b7deba81647fc0447f76ddd0c8a65b70d",
+      "message": "初始版本创建",
+      "changes": [
+        "创建微服务架构设计规范文档",
+        "定义核心架构原则",
+        "设计服务拆分策略"
+      ],
+      "metadata": {}
+    }
+  ],
+  "YYC3-Cater-技巧类-React性能优化技巧": [
+    {
+      "doc_name": "YYC3-Cater-技巧类-React性能优化技巧",
+      "version": "1.0.0",
+      "status": "草稿",
+      "created_at": "2025-12-28T04:57:28.303560",
+      "author": "YYC³",
+      "commit_hash": "1954bf8b7deba81647fc0447f76ddd0c8a65b70d",
+      "message": "初始版本创建",
+      "changes": [
+        "创建React性能优化技巧文档",
+        "介绍性能优化最佳实践",
+        "提供代码示例"
+      ],
+      "metadata": {}
+    }
+  ],
+  "YYC3-Cater-架构类-数据库分库分表设计": [
+    {
+      "doc_name": "YYC3-Cater-架构类-数据库分库分表设计",
+      "version": "1.0.0",
+      "status": "草稿",
+      "created_at": "2025-12-28T04:57:32.745446",
+      "author": "YYC³",
+      "commit_hash": "1954bf8b7deba81647fc0447f76ddd0c8a65b70d",
+      "message": "初始版本创建",
+      "changes": [
+        "创建数据库分库分表设计文档",
+        "设计分库分表策略",
+        "定义数据路由规则"
+      ],
+      "metadata": {}
+    }
+  ],
+  "YYC3-Cater-架构类-消息队列架构设计": [
+    {
+      "doc_name": "YYC3-Cater-架构类-消息队列架构设计",
+      "version": "1.0.0",
+      "status": "草稿",
+      "created_at": "2025-12-28T04:57:37.531094",
+      "author": "YYC³",
+      "commit_hash": "1954bf8b7deba81647fc0447f76ddd0c8a65b70d",
+      "message": "初始版本创建",
+      "changes": [
+        "创建消息队列架构设计文档",
+        "设计消息队列拓扑",
+        "定义消息处理流程"
+      ],
+      "metadata": {}
+    }
+  ],
+  "YYC3-Cater-技巧类-TypeScript类型定义最佳实践": [
+    {
+      "doc_name": "YYC3-Cater-技巧类-TypeScript类型定义最佳实践",
+      "version": "1.0.0",
+      "status": "草稿",
+      "created_at": "2025-12-28T04:57:41.202662",
+      "author": "YYC³",
+      "commit_hash": "1954bf8b7deba81647fc0447f76ddd0c8a65b70d",
+      "message": "初始版本创建",
+      "changes": [
+        "创建TypeScript类型定义最佳实践文档",
+        "介绍类型系统使用技巧",
+        "提供代码示例"
+      ],
+      "metadata": {}
+    }
+  ]
+}

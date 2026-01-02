@@ -1,0 +1,806 @@
+
+ RUN  v1.6.1 /Users/yanyu/yyc3-catering-platform/frontend/apps/admin-dashboard
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+
+More info: https://sass-lang.com/d/legacy-js-api
+
+ ❯ src/views/__tests__/Dashboard.test.ts  (14 tests | 7 failed) 105ms
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染数据卡片组件
+     → expected false to be true // Object.is equality
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染图表组件
+     → expected false to be true // Object.is equality
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染最近订单组件
+     → expected false to be true // Object.is equality
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该显示刷新按钮
+     → expected false to be true // Object.is equality
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该通过刷新按钮重新加载数据
+     → Cannot call trigger on an empty DOMWrapper.
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该处理数据加载失败
+     → pinia is not defined
+   ❯ src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该正确传递数据给子组件
+     → expected false to be true // Object.is equality
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该正确渲染仪表盘页面
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该显示页面标题
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染数据卡片组件
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染图表组件
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染最近订单组件
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该显示刷新按钮
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该在组件挂载时获取仪表盘数据
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该通过刷新按钮重新加载数据
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该处理数据加载失败
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该正确传递数据给子组件
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 用户信息 > 应该从authStore获取当前登录用户信息
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > 用户信息 > 应该根据用户角色显示不同的用户名
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > UI交互 > 应该支持卡片悬停效果
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts > Dashboard > UI交互 > 应该支持响应式布局
+[Vue warn]: injection "Symbol(router)" not found. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Failed to resolve component: el-date-picker
+If this is a native custom element, make sure to exclude it from component resolution via compilerOptions.isCustomElement. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "orderDistributionData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "topDishesData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+[Vue warn]: Property "customerFlowData" was accessed during render but is not defined on instance. 
+  at <Dashboard ref="VTU_COMPONENT" > 
+  at <VTUROOT>
+
+stderr | src/views/__tests__/Dashboard.test.ts
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+WebSocket error: Event { isTrusted: [Getter] }
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染数据卡片组件
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/views/__tests__/Dashboard.test.ts:293:76
+    291| 
+    292|     it('应该渲染数据卡片组件', () => {
+    293|       expect(wrapper.findComponent({ name: 'YTDashboardCards' }).exist…
+       |                                                                            ^
+    294|     })
+    295| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染图表组件
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/views/__tests__/Dashboard.test.ts:297:72
+    295| 
+    296|     it('应该渲染图表组件', () => {
+    297|       expect(wrapper.findComponent({ name: 'YTOrderChart' }).exists())…
+       |                                                                        ^
+    298|       expect(wrapper.findComponent({ name: 'YTRevenueChart' }).exists(…
+    299|       expect(wrapper.findComponent({ name: 'YTTopProductsChart' }).exi…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该渲染最近订单组件
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/views/__tests__/Dashboard.test.ts:303:74
+    301| 
+    302|     it('应该渲染最近订单组件', () => {
+    303|       expect(wrapper.findComponent({ name: 'YTRecentOrders' }).exists(…
+       |                                                                          ^
+    304|     })
+    305| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 基础渲染 > 应该显示刷新按钮
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/views/__tests__/Dashboard.test.ts:308:38
+    306|     it('应该显示刷新按钮', () => {
+    307|       const refreshButton = wrapper.find('.refresh-button')
+    308|       expect(refreshButton.exists()).toBe(true)
+       |                                      ^
+    309|     })
+    310|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该通过刷新按钮重新加载数据
+Error: Cannot call trigger on an empty DOMWrapper.
+ ❯ Object.get node_modules/.pnpm/@vue+test-utils@2.4.6/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:1574:27
+    1572|                     return function () { return false; };
+    1573|                 default:
+    1574|                     throw new Error("Cannot call ".concat(String(prop)…
+       |                           ^
+    1575|             }
+    1576|         }
+ ❯ src/views/__tests__/Dashboard.test.ts:322:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该处理数据加载失败
+ReferenceError: pinia is not defined
+ ❯ src/views/__tests__/Dashboard.test.ts:344:21
+    342|         global: {
+    343|           stubs: commonStubs,
+    344|           plugins: [pinia]
+       |                     ^
+    345|         }
+    346|       });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/views/__tests__/Dashboard.test.ts > Dashboard > 数据加载 > 应该正确传递数据给子组件
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/views/__tests__/Dashboard.test.ts:357:70
+    355|     it('应该正确传递数据给子组件', () => {
+    356|       // 验证组件已加载
+    357|       expect(wrapper.findComponent({ name: 'MetricCard' }).exists()).t…
+       |                                                                      ^
+    358|       expect(wrapper.findComponent({ name: 'RevenueChart' }).exists())…
+    359|       expect(wrapper.findComponent({ name: 'OrderStatusChart' }).exist…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 7 passed (14)
+   Start at  04:53:04
+   Duration  1.03s (transform 230ms, setup 102ms, collect 485ms, tests 105ms, environment 221ms, prepare 30ms)
+

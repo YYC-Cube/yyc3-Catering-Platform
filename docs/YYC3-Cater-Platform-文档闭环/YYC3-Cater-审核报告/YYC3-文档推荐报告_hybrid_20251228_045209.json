@@ -1,0 +1,187 @@
+{
+  "timestamp": "2025-12-28T04:52:09.391157",
+  "query": "API",
+  "total_results": 15,
+  "results": [
+    {
+      "document_name": "01-YYC3-Cater--架构类-智能化应用业务架构说明书.md",
+      "title": "🔖 YYC³ 智能化应用业务架构说明书",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 77.05882352941177,
+      "importance": 0.4463796247691262,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "07-YYC3-智能编程文档要求规范.md",
+      "title": "YYC³ YYC3智能编程文档管理标准要求规范",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 94.82352941176472,
+      "importance": 0.4826987071060562,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "01-YYC3-Cater--架构类-总体架构设计文档.md",
+      "title": "🔖 YYC³ 总体架构设计文档",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 77.05882352941177,
+      "importance": 0.38258119957227577,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "01-YYC3-Cater--架构类-部署架构实施文档.md",
+      "title": "🔖 YYC³ 部署架构实施文档",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 81.85294117647058,
+      "importance": 0.42982906581121805,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "YYC3-文档索引.md",
+      "title": "🔖 YYC³ 文档索引",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 93.05882352941175,
+      "importance": 0.45614169339943617,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "YYC3-文档名称内容对应关系审核报告.md",
+      "title": "YYC³ 文档名称与内容对应关系审核报告",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 95.05882352941177,
+      "importance": 0.7765619519782251,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "06-YYC3-Cater--架构类-接口架构设计文档.md",
+      "title": "🔖 YYC³ 接口架构设计文档",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 80.05882352941175,
+      "importance": 0.42707300476329346,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "03-YYC3-Cater--架构类-微服务架构设计文档.md",
+      "title": "🔖 YYC³ 微服务架构设计文档",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 80.35294117647058,
+      "importance": 0.4203327695149217,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "05-YYC3-Cater--架构类-API接口设计文档.md",
+      "title": "🔖 YYC³ API 接口设计文档",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 79.76470588235294,
+      "importance": 0.4098888305628463,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "08-YYC3-智能编程文档规范索引模版.md",
+      "title": "YYC³ 智能编程文档要求规范",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 91.79411764705883,
+      "importance": 0.4220330514241276,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "11-YYC3-Cater--架构类-自动迭代实施计划资源准备清单.md",
+      "title": "YYC3 智枢服务化平台 - 自动迭代实施计划资源准备清单",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 80.22058823529412,
+      "importance": 0.46762603285700394,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "01-YYC3-Cater--技巧类-运维手册.md",
+      "title": "🔖 YYC³ 运维手册",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 93.29411764705883,
+      "importance": 0.49060336346845534,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "05-YYC3-Cater--架构类-全局深度审核分析报告.md",
+      "title": "YYC³餐饮行业智能化平台 - 全局深度审核分析报告",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 80.35294117647058,
+      "importance": 0.36120836006610285,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "02-YYC3-Cater--技巧类-版本控制最佳实践.md",
+      "title": "🔖 YYC³ 版本控制最佳实践",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 90.58823529411765,
+      "importance": 0.4664957324778848,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    },
+    {
+      "document_name": "04-YYC3-Cater--技巧类-智能运维平台操作指南.md",
+      "title": "🔖 YYC³ 智能运维平台操作指南",
+      "category": "架构设计",
+      "relevance_score": 0.4,
+      "quality_score": 92.58823529411765,
+      "importance": 0.4876404005054924,
+      "match_reasons": [
+        "匹配关键词: API"
+      ],
+      "preview": ""
+    }
+  ]
+}

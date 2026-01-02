@@ -1,0 +1,114 @@
+/*
+ * @file 全局样式文件
+ * @description 包含全局重置样式、基础样式和组件共享样式
+ * @author YYC
+ * @version 1.0.0
+ * @created 2024-10-15
+ */
+
+// 引入统一的设计令牌系统
+@import '@yyc3/ui-system/src/styles/design-tokens.scss';
+
+// 引入统一的全局样式
+@import '@yyc3/ui-system/src/styles/global.scss';
+
+// 特定于customer-app的样式
+body {
+  background-color: #f5f7fa;
+  color: var(--color-text-primary);
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+/* AI助手共享样式 */
+.ai-widget {
+  font-family: inherit;
+}
+
+.ai-widget-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.ai-widget-btn:hover {
+  opacity: 0.9;
+}
+
+.ai-widget-btn:active {
+  transform: scale(0.95);
+}
+
+/* 加载动画 */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 呼吸动画 */
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(64, 158, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(64, 158, 255, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(64, 158, 255, 0.5);
+  }
+}
+
+.breathing-animation {
+  animation: breathing 2s ease-in-out infinite;
+}

@@ -1,0 +1,149 @@
+{
+  "timestamp": "2025-12-28T04:47:45.876223",
+  "total_documents": 125,
+  "avg_score": 85.01270588235293,
+  "grade_distribution": {
+    "A": 51,
+    "B": 31,
+    "C": 42,
+    "D": 1,
+    "F": 0
+  },
+  "findings": [
+    {
+      "category": "完整性",
+      "severity": "critical",
+      "description": "74个文档完整性不足（平均65.6%）",
+      "affected_docs": [
+        "YYC3-文档标准化最终报告.md",
+        "YYC3-Cater-开发实施路线图.md",
+        "YYC3-文档编号审核报告.md",
+        "YYC3-文档格式审核报告.md",
+        "YYC3-文档闭环系统第二阶段-p1-实施报告.md",
+        "YYC3-文档重复处理报告.md",
+        "YYC3-文档手动修复报告.md",
+        "04-YYC3-Cater--架构类-AI专项测试架构文档.md",
+        "03-YYC3-Cater--架构类-安全测试架构文档.md",
+        "02-YYC3-Cater--架构类-性能测试架构文档.md"
+      ],
+      "recommendation": "完善文档元数据，添加标题、描述、作者、版本等信息；增加标准章节：概述、核心概念、实施步骤、代码示例等",
+      "priority": 1
+    },
+    {
+      "category": "实用性",
+      "severity": "major",
+      "description": "56个文档实用性不足（平均80.4%）",
+      "affected_docs": [
+        "YYC3-文档闭环系统第二阶段-p1-实施报告.md",
+        "04-YYC3-Cater--架构类-AI专项测试架构文档.md",
+        "03-YYC3-Cater--架构类-安全测试架构文档.md",
+        "02-YYC3-Cater--架构类-性能测试架构文档.md",
+        "01-YYC3-Cater--架构类-测试架构设计文档.md",
+        "01-YYC3-Cater--架构类-项目深度审核报告.md",
+        "04-YYC3-Cater--架构类-转型文档评估报告.md",
+        "05-YYC3-Cater--架构类-全局深度审核分析报告.md",
+        "03-YYC3-Cater--架构类-审核分析清单.md",
+        "02-YYC3-Cater--架构类-多维度审核分析报告.md"
+      ],
+      "recommendation": "添加最佳实践章节，分享经验总结；增加案例分析，提供实际应用场景；补充常见问题，解答用户疑问",
+      "priority": 2
+    }
+  ],
+  "trends": [
+    {
+      "dimension": "完整性",
+      "avg_score": 65.6084705882353,
+      "score_distribution": {
+        "A": 0,
+        "B": 0,
+        "C": 51,
+        "D": 28,
+        "F": 46
+      },
+      "common_issues": [
+        "文档缺少作者信息",
+        "文档缺少描述信息",
+        "文档缺少版本信息",
+        "文档缺少目录"
+      ],
+      "improvement_potential": 34.39152941176469
+    },
+    {
+      "dimension": "准确性",
+      "avg_score": 94.35999999999987,
+      "score_distribution": {
+        "A": 80,
+        "B": 43,
+        "C": 2,
+        "D": 0,
+        "F": 0
+      },
+      "common_issues": [],
+      "improvement_potential": 5.640000000000123
+    },
+    {
+      "dimension": "可读性",
+      "avg_score": 93.04000000000003,
+      "score_distribution": {
+        "A": 114,
+        "B": 3,
+        "C": 8,
+        "D": 0,
+        "F": 0
+      },
+      "common_issues": [],
+      "improvement_potential": 6.959999999999966
+    },
+    {
+      "dimension": "实用性",
+      "avg_score": 80.4399999999999,
+      "score_distribution": {
+        "A": 61,
+        "B": 8,
+        "C": 0,
+        "D": 55,
+        "F": 1
+      },
+      "common_issues": [
+        "文档缺少最佳实践",
+        "文档缺少案例分析",
+        "文档缺少常见问题"
+      ],
+      "improvement_potential": 19.560000000000098
+    },
+    {
+      "dimension": "一致性",
+      "avg_score": 99.2,
+      "score_distribution": {
+        "A": 120,
+        "B": 5,
+        "C": 0,
+        "D": 0,
+        "F": 0
+      },
+      "common_issues": [],
+      "improvement_potential": 0.8000000000000007
+    }
+  ],
+  "improvement_plan": {
+    "immediate": [
+      "完善文档元数据，添加标题、描述、作者、版本等信息；增加标准章节：概述、核心概念、实施步骤、代码示例等"
+    ],
+    "short_term": [
+      "添加最佳实践章节，分享经验总结；增加案例分析，提供实际应用场景；补充常见问题，解答用户疑问",
+      "建立文档质量检查清单，在文档创建时使用",
+      "定期进行文档质量评审，每月至少一次",
+      "建立文档质量奖励机制，鼓励高质量文档"
+    ],
+    "medium_term": [
+      "开发文档质量自动化检查工具",
+      "建立文档质量监控仪表板",
+      "开展文档质量培训课程"
+    ],
+    "long_term": [
+      "建立文档质量持续改进机制",
+      "建立文档质量知识库",
+      "定期发布文档质量报告"
+    ]
+  }
+}

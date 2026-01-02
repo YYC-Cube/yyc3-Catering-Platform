@@ -1,0 +1,70 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# 警报管理器配置
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - localhost:9093
+
+# 规则文件
+rule_files:
+  - "rules/alerts.yml"
+
+# 抓取配置
+scrape_configs:
+  # Prometheus自身监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # API网关监控
+  - job_name: 'yyc3-gateway'
+    static_configs:
+      - targets: ['gateway:3200']
+
+  # 服务注册中心监控
+  - job_name: 'consul'
+    static_configs:
+      - targets: ['consul:8500']
+
+  # Redis监控
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+
+  # MySQL监控
+  - job_name: 'mysql'
+    static_configs:
+      - targets: ['mysql:9104']
+
+  # RabbitMQ监控
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
+
+  # Nacos监控
+  - job_name: 'nacos'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['nacos:8848']
+
+  # 微服务通用配置
+  - job_name: 'yyc3-microservices'
+    consul_sd_configs:
+      - server: 'consul:8500'
+        services: []
+    relabel_configs:
+      - source_labels: [__meta_consul_service]
+        regex: yyc3-.*
+        action: keep
+      - source_labels: [__meta_consul_service]
+        target_label: service
+      - source_labels: [__meta_consul_service_id]
+        target_label: service_id
+      - source_labels: [__meta_consul_tags]
+        target_label: tags
+      - source_labels: [__meta_consul_node]
+        target_label: node

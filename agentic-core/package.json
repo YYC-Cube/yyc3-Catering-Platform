@@ -1,0 +1,56 @@
+{
+  "name": "@yyc3/agentic-core",
+  "version": "1.0.0",
+  "description": "YYC³餐饮行业智能化平台 - 智能代理核心系统",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc --project tsconfig.json",
+    "build:types": "tsc --emitDeclarationOnly",
+    "start": "node dist/index.js",
+    "test": "echo 'No tests configured yet'",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.6.0",
+    "joi": "^17.9.2",
+    "lodash": "^4.17.21",
+    "node-cron": "^3.0.2",
+    "openai": "^4.0.0",
+    "redis": "^4.6.7",
+    "uuid": "^9.0.0",
+    "winston": "^3.10.0",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.195",
+    "@types/node": "^20.19.25",
+    "@types/node-cron": "^3.0.8",
+    "@types/uuid": "^9.0.2",
+    "@types/ws": "^8.5.5",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
+    "eslint": "^8.46.0",
+    "typescript": "^5.1.6"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "intelligent-system",
+    "goal-management",
+    "action-planning",
+    "yyc3",
+    "restaurant-ai"
+  ],
+  "author": "YYC³ Team",
+  "license": "MIT",
+  "engines": {
+    "pnpm": ">=8.0.0",
+    "node": ">=18.0.0"
+  }
+}

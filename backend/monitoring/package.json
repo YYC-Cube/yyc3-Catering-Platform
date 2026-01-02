@@ -1,0 +1,56 @@
+{
+  "name": "@yyc3/monitoring",
+  "version": "1.0.0",
+  "description": "YYC³ 监控告警模块 - 基于Prometheus和Grafana的监控系统",
+  "author": "YYC³ <admin@0379.email>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YYC-Cube/yyc3-catering-platform.git",
+    "directory": "backend/monitoring"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "export:alerts": "ts-node src/alert-rules.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "monitoring",
+    "prometheus",
+    "grafana",
+    "metrics",
+    "alerts",
+    "observability",
+    "yyc3"
+  ],
+  "dependencies": {
+    "prom-client": "^15.0.0",
+    "express": "^4.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

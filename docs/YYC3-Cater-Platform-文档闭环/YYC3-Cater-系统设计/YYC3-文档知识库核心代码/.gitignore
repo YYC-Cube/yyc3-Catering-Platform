@@ -1,0 +1,56 @@
+# 依赖
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# 构建输出
+dist/
+build/
+*.tsbuildinfo
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 日志
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 测试
+coverage/
+.nyc_output/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 数据
+*.db
+*.sqlite
+data/
+documents.json
+knowledge-graph.json
+version-db.json
+quality-reports.json
+
+# 缓存
+.cache/
+.parcel-cache/
+.eslintcache

@@ -1,0 +1,55 @@
+{
+  "name": "@yyc3/service-registry",
+  "version": "1.0.0",
+  "description": "YYC³ 服务注册与发现模块 - 基于Consul的微服务注册中心",
+  "author": "YYC³ <admin@0379.email>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YYC-Cube/yyc3-catering-platform.git",
+    "directory": "backend/services/service-registry"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "example": "ts-node examples/usage-example.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "service-registry",
+    "service-discovery",
+    "consul",
+    "microservices",
+    "load-balancing",
+    "yyc3"
+  ],
+  "dependencies": {
+    "axios": "^1.6.0",
+    "consul": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/consul": "^0.40.0",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

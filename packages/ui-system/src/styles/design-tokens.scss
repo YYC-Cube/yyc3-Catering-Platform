@@ -1,0 +1,417 @@
+/**
+ * YYC³餐饮行业智能化平台 - 统一设计令牌系统
+ * 基于4色体系的完整设计规范
+ * 作者: YYC³团队
+ * 版本: 1.0.0
+ */
+
+// ================================
+// 核心色彩系统 (4色体系)
+// ================================
+
+:root {
+  // 4色体系核心色彩系统
+  --color-primary: #2C5FAC;         // 主色：品牌蓝
+  --color-primary-light: #4F7DBF;   // 主色-浅
+  --color-primary-dark: #1F2937;    // 主色-深 / 深灰 - 主背景色
+  
+  --color-secondary: #FF6B35;       // 辅助色：活力橙
+  --color-secondary-light: #FF875A; // 辅助色-浅
+  --color-secondary-dark: #E05522;  // 辅助色-深
+  
+  --color-accent: #F7931E;          // 点缀色：温暖黄
+  --color-accent-light: #F9B14E;    // 点缀色-浅
+  --color-accent-dark: #E67E19;     // 点缀色-深
+  
+  --color-neutral: #95E1D3;         // 中性色：清新青
+  --color-neutral-light: #AEE4D9;   // 中性色-浅
+  --color-neutral-dark: #7EC7BD;    // 中性色-深
+
+  // 功能色彩
+  --color-success: #67C23A;         // 成功色：绿色
+  --color-success-light: #95d475;   // 成功色-浅
+  --color-success-dark: #529b2e;    // 成功色-深
+
+  --color-warning: #E6A23C;         // 警告色：黄色
+  --color-warning-light: #ebb563;   // 警告色-浅
+  --color-warning-dark: #b88230;    // 警告色-深
+
+  --color-danger: #F56C6C;          // 危险色：红色
+  --color-danger-light: #f78989;    // 危险色-浅
+  --color-danger-dark: #c45656;     // 危险色-深
+
+  --color-info: #909399;            // 信息色：灰色
+  --color-info-light: #a6a9ad;      // 信息色-浅
+  --color-info-dark: #73767a;       // 信息色-深
+
+  // 极深灰 - 卡片背景
+  --color-darker: #111827;
+
+  // 中性色阶
+  --color-neutral-50: #FAFAFA;
+  --color-neutral-100: #F5F5F5;
+  --color-neutral-200: #E0E0E0;
+  --color-neutral-300: #BDBDBD;
+  --color-neutral-400: #9E9E9E;
+  --color-neutral-500: #757575;
+  --color-neutral-600: #616161;
+  --color-neutral-700: #424242;
+  --color-neutral-800: #212121;
+  --color-neutral-900: #000000;
+
+  // 文本颜色
+  --color-text-primary: #FFFFFF;    // 纯白 - 主文本（深色背景）
+  --color-text-regular: #E0E0E0;    // 常规文本色
+  --color-text-secondary: #D1D5DB;  // 浅灰 - 副文本
+  --color-text-placeholder: #9CA3AF; // 占位符色
+  --color-text-disabled: #6B7280;   // 禁用文本色
+
+  // 背景颜色
+  --color-bg-primary: var(--color-primary-dark);   // 主背景色
+  --color-bg-secondary: #374151;                  // 次要背景色
+  --color-bg-tertiary: #4B5563;                   // 第三背景色
+
+  // 边框颜色
+  --color-border-primary: rgba(255, 255, 255, 0.1); // 主边框色
+  --color-border-secondary: rgba(255, 255, 255, 0.15); // 次边框色
+  --color-border-light: rgba(255, 255, 255, 0.08); // 浅色边框
+
+  // 渐变色
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-success: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  --gradient-danger: linear-gradient(135deg, var(--color-danger) 0%, #DC2626 100%);
+  --gradient-warning: linear-gradient(135deg, var(--color-warning) 0%, #D97706 100%);
+
+  // 语义色彩规则
+  --color-growth: var(--color-success);    // 增长/正向 → 翡翠绿
+  --color-decline: var(--color-danger);    // 下降/负向 → 警告红
+  --color-stable: var(--color-neutral);    // 中性/平稳 → 中灰
+  --color-alert: var(--color-warning);     // 未达标/预警 → 琥珀黄
+
+  // ================================
+  // 菜单项主题色彩系统 (每个菜单独特的颜色)
+  // ================================
+
+  // 工作台 - 蓝紫色系
+  --color-theme-dashboard: #6366F1;  // 靛蓝紫
+
+  // 订单管理 - 橙色系
+  --color-theme-orders: #F97316;      // 亮橙色
+
+  // 菜单管理 - 绿色系
+  --color-theme-menu: #22C55E;        // 翠绿色
+
+  // 厨房管理 - 红色系
+  --color-theme-kitchen: #EF4444;     // 鲜红色
+
+  // 数据分析 - 紫色系
+  --color-theme-analytics: #A855F7;   // 紫罗兰
+
+  // 客户管理 - 青色系
+  --color-theme-customer: #06B6D4;    // 天青色
+
+  // 连锁管理 - 黄色系
+  --color-theme-chain: #EAB308;       // 金黄色
+
+  // 食品安全 - 粉色系
+  --color-theme-safety: #EC4899;      // 粉红色
+
+  // 报表分析 - 深蓝色系
+  --color-theme-reports: #1E40AF;     // 深蓝色
+
+  // 支付管理 - 绿松石色
+  --color-theme-payment: #0891B2;     // 绿松石
+
+  // 系统管理 - 灰蓝色系
+  --color-theme-system: #475569;      // 灰蓝色
+
+  // 默认菜单边框颜色 (非选中状态)
+  --color-menu-border-default: rgba(255, 255, 255, 0.1);
+
+  // 菜单边框阴影效果
+  --color-menu-shadow: rgba(0, 0, 0, 0.3);
+
+  // 页面主题色系统 (动态设置)
+  --page-theme-color: var(--color-primary);
+  --page-theme-shadow: rgba(79, 70, 229, 0.25);
+  --page-theme-light: rgba(79, 70, 229, 0.1);
+  --page-theme-medium: rgba(79, 70, 229, 0.2);
+  --page-theme-heavy: rgba(79, 70, 229, 0.3);
+
+  // ================================
+  // 字体系统
+  // ================================
+
+  // 字体族
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  --font-family-base: var(--font-family-sans);
+
+  // 字体大小
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+
+  // 字体权重
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // 行高
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  // ================================
+  // 间距系统
+  // ================================
+
+  // 间距单位 (基于 4px 网格)
+  --spacing-0: 0;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+
+  // 语义化间距
+  --spacing-xs: var(--spacing-1);
+  --spacing-sm: var(--spacing-2);
+  --spacing-base: var(--spacing-4);
+  --spacing-lg: var(--spacing-6);
+  --spacing-xl: var(--spacing-8);
+  --spacing-2xl: var(--spacing-12);
+  --spacing-3xl: var(--spacing-16);
+
+  // ================================
+  // 圆角系统
+  // ================================
+
+  --border-radius-none: 0;
+  --border-radius-sm: 4px;
+  --border-radius-base: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-2xl: 20px;
+  --border-radius-full: 9999px;
+
+  // ================================
+  // 阴影系统
+  // ================================
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+  // ================================
+  // 过渡系统
+  // ================================
+
+  --transition-fast: 0.15s ease-in-out;
+  --transition-base: 0.2s ease-in-out;
+  --transition-slow: 0.3s ease-in-out;
+  --transition-all: all var(--transition-base);
+  --transition-colors: color var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  --transition-opacity: opacity var(--transition-base);
+  --transition-transform: transform var(--transition-base);
+
+  // ================================
+  // 断点系统
+  // ================================
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  // ================================
+  // 层级系统
+  // ================================
+
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  --z-index-toast: 1080;
+
+  // ================================
+  // 布局系统变量
+  // ================================
+  
+  // 容器最大宽度
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+
+  // 侧边栏
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 64px;
+
+  // 头部
+  --header-height: 60px;
+
+  // 表面色彩
+  --color-surface: var(--color-darker);
+  --color-surface-elevated: #374151;
+
+  // 图标尺寸系统
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+  --icon-size-2xl: 40px;
+
+  // ================================
+  // 按钮系统变量
+  // ================================
+
+  // 按钮尺寸
+  --button-height-sm: 32px;
+  --button-height-base: 40px;
+  --button-height-lg: 48px;
+  
+  --button-padding-horizontal-sm: 12px;
+  --button-padding-horizontal-base: 16px;
+  --button-padding-horizontal-lg: 24px;
+  
+  --button-font-size-sm: 13px;
+  --button-font-size-base: 14px;
+  --button-font-size-lg: 16px;
+  
+  // 按钮圆角
+  --button-border-radius: 8px;
+  
+  // 按钮颜色 - 主色
+  --button-primary-color: #ffffff;
+  --button-primary-bg-color: var(--color-primary);
+  --button-primary-border-color: var(--color-primary);
+  --button-primary-hover-bg-color: var(--color-primary-light);
+  --button-primary-hover-border-color: var(--color-primary-light);
+  --button-primary-active-bg-color: var(--color-primary-dark);
+  --button-primary-active-border-color: var(--color-primary-dark);
+  --button-primary-disabled-color: rgba(255, 255, 255, 0.6);
+  --button-primary-disabled-bg-color: rgba(44, 95, 172, 0.6);
+  --button-primary-disabled-border-color: rgba(44, 95, 172, 0.6);
+  
+  // 按钮颜色 - 成功
+  --button-success-color: #ffffff;
+  --button-success-bg-color: var(--color-success);
+  --button-success-border-color: var(--color-success);
+  --button-success-hover-bg-color: var(--color-success-light);
+  --button-success-hover-border-color: var(--color-success-light);
+  --button-success-active-bg-color: var(--color-success-dark);
+  --button-success-active-border-color: var(--color-success-dark);
+  --button-success-disabled-color: rgba(255, 255, 255, 0.6);
+  --button-success-disabled-bg-color: rgba(103, 194, 58, 0.6);
+  --button-success-disabled-border-color: rgba(103, 194, 58, 0.6);
+  
+  // 按钮颜色 - 警告
+  --button-warning-color: #ffffff;
+  --button-warning-bg-color: var(--color-warning);
+  --button-warning-border-color: var(--color-warning);
+  --button-warning-hover-bg-color: var(--color-warning-light);
+  --button-warning-hover-border-color: var(--color-warning-light);
+  --button-warning-active-bg-color: var(--color-warning-dark);
+  --button-warning-active-border-color: var(--color-warning-dark);
+  --button-warning-disabled-color: rgba(255, 255, 255, 0.6);
+  --button-warning-disabled-bg-color: rgba(230, 162, 60, 0.6);
+  --button-warning-disabled-border-color: rgba(230, 162, 60, 0.6);
+  
+  // 按钮颜色 - 危险
+  --button-danger-color: #ffffff;
+  --button-danger-bg-color: var(--color-danger);
+  --button-danger-border-color: var(--color-danger);
+  --button-danger-hover-bg-color: var(--color-danger-light);
+  --button-danger-hover-border-color: var(--color-danger-light);
+  --button-danger-active-bg-color: var(--color-danger-dark);
+  --button-danger-active-border-color: var(--color-danger-dark);
+  --button-danger-disabled-color: rgba(255, 255, 255, 0.6);
+  --button-danger-disabled-bg-color: rgba(245, 108, 108, 0.6);
+  --button-danger-disabled-border-color: rgba(245, 108, 108, 0.6);
+
+  // ================================
+  // 组件特定变量
+  // ================================
+
+  // 卡片
+  --card-padding: var(--spacing-6);
+  --card-border-radius: var(--border-radius-base);
+  --card-shadow: var(--shadow-base);
+  --card-hover-shadow: var(--shadow-lg);
+
+  // 输入框
+  --input-height-sm: 32px;
+  --input-height-base: 40px;
+  --input-height-lg: 48px;
+  --input-border-color: var(--color-border-secondary);
+  --input-focus-border-color: var(--color-primary);
+  --input-placeholder-color: var(--color-text-placeholder);
+
+  // 表格
+  --table-header-bg: var(--color-bg-secondary);
+  --table-row-hover-bg: var(--color-bg-tertiary);
+  --table-border-color: var(--color-border-primary);
+
+  // 模态框
+  --modal-backdrop-bg: rgba(0, 0, 0, 0.5);
+  --modal-content-bg: var(--color-bg-primary);
+  --modal-border-radius: var(--border-radius-lg);
+  --modal-shadow: var(--shadow-2xl);
+
+  // 通知
+  --toast-success-bg: var(--color-success);
+  --toast-warning-bg: var(--color-warning);
+  --toast-error-bg: var(--color-danger);
+  --toast-info-bg: var(--color-info);
+
+  // ================================
+  // Element Plus 兼容色彩变量  
+  // ================================
+
+  --el-bg-color: var(--color-bg-primary);
+  --el-bg-color-page: var(--color-darker);
+  --el-text-color-primary: var(--color-text-primary);
+  --el-text-color-secondary: var(--color-text-secondary);
+  --el-text-color-placeholder: var(--color-text-placeholder);
+  --el-text-color-disabled: var(--color-text-disabled);
+
+  --el-border-color: var(--color-border-primary);
+  --el-border-color-light: var(--color-border-secondary);
+  --el-border-color-lighter: rgba(255, 255, 255, 0.05);
+  --el-border-color-extra-light: rgba(255, 255, 255, 0.03);
+  --el-border-color-dark: rgba(255, 255, 255, 0.2);
+  --el-border-color-darker: rgba(255, 255, 255, 0.3);
+
+  --el-fill-color: var(--color-border-light);
+  --el-fill-color-light: rgba(255, 255, 255, 0.12);
+  --el-fill-color-lighter: rgba(255, 255, 255, 0.05);
+  --el-fill-color-extra-light: rgba(255, 255, 255, 0.02);
+  --el-fill-color-dark: rgba(255, 255, 255, 0.15);
+  --el-fill-color-darker: rgba(255, 255, 255, 0.2);
+  --el-fill-color-blank: transparent;
+}

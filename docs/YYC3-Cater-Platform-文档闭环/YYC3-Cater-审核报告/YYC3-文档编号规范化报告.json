@@ -1,0 +1,83 @@
+{
+  "timestamp": "2025-12-28T04:38:59.975606",
+  "dry_run": false,
+  "summary": {
+    "total_directories": 1,
+    "total_files": 9,
+    "total_renumbered": 9,
+    "total_failed": 0
+  },
+  "details": [
+    {
+      "directory": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范",
+      "total": 9,
+      "renumbered": 9,
+      "failed": 0,
+      "files": [
+        {
+          "old_name": "YYC3-分析建议文档模版.md",
+          "new_name": "01-YYC3-分析建议文档模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-分析建议文档模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/01-YYC3-分析建议文档模版.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-多维度审核执行要求规范.md",
+          "new_name": "02-YYC3-多维度审核执行要求规范.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-多维度审核执行要求规范.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/02-YYC3-多维度审核执行要求规范.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-实施总结文档模版.md",
+          "new_name": "03-YYC3-实施总结文档模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-实施总结文档模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/03-YYC3-实施总结文档模版.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-技术评审文档模版.md",
+          "new_name": "04-YYC3-技术评审文档模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-技术评审文档模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/04-YYC3-技术评审文档模版.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-文档全生命周期管理架构.md",
+          "new_name": "05-YYC3-文档全生命周期管理架构.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-文档全生命周期管理架构.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/05-YYC3-文档全生命周期管理架构.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-智能编程基础标准模版.md",
+          "new_name": "06-YYC3-智能编程基础标准模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程基础标准模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/06-YYC3-智能编程基础标准模版.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-智能编程文档要求规范.md",
+          "new_name": "07-YYC3-智能编程文档要求规范.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程文档要求规范.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/07-YYC3-智能编程文档要求规范.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-智能编程文档规范索引模版.md",
+          "new_name": "08-YYC3-智能编程文档规范索引模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-智能编程文档规范索引模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/08-YYC3-智能编程文档规范索引模版.md",
+          "status": "success"
+        },
+        {
+          "old_name": "YYC3-项目验收文档模版.md",
+          "new_name": "09-YYC3-项目验收文档模版.md",
+          "old_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/YYC3-项目验收文档模版.md",
+          "new_path": "/Users/yanyu/yyc3-catering-platform/docs/YYC3-Cater-Platform-文档闭环/YYC3-Cater-模版规范/09-YYC3-项目验收文档模版.md",
+          "status": "success"
+        }
+      ]
+    }
+  ]
+}
