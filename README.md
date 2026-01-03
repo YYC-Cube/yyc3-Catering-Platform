@@ -1,3 +1,11 @@
+<div align="center">
+
+<img src="pulibc/yyc3-article-cover-3.png" alt="YYC³ 餐饮行业智能化平台" width="100%">
+
+</div>
+
+---
+
 # 🚀 YYC³ - 餐饮行业智能化平台
 
 <div align="center">
@@ -11,6 +19,14 @@
 [![Vue](https://img.shields.io/badge/Vue-3.4+-green.svg)](https://vuejs.org)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-brightgreen.svg)](https://nodejs.org)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
+[![GitHub Stars](https://img.shields.io/github/stars/YYC-Cube/yyc3-catering-platform?style=social)](https://github.com/YYC-Cube/yyc3-catering-platform)
+[![GitHub Forks](https://img.shields.io/github/forks/YYC-Cube/yyc3-catering-platform?style=social)](https://github.com/YYC-Cube/yyc3-catering-platform/network/members)
+[![GitHub Issues](https://img.shields.io/github/issues/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform/pulls)
+[![Code Size](https://img.shields.io/github/languages/code-size/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform)
+[![Contributors](https://img.shields.io/github/contributors/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform/commits/main)
+[![Release](https://img.shields.io/github/release-date/YYC-Cube/yyc3-catering-platform)](https://github.com/YYC-Cube/yyc3-catering-platform/releases)
 
 ---
 
@@ -23,6 +39,7 @@
 ---
 
 ## 📋 目录
+
 - [🎯 项目概述](#-项目概述)
 - [⚡ 快速开始](#-快速开始)
 - [🚀 功能特色](#-功能特色)
@@ -208,44 +225,44 @@ bun run dev:backend   # 后端服务 (端口: 3000)
 
 ```
 yyc3-catering-platform/
-├── frontend/                    # 前端应用
+├── frontend/                      # 前端应用目录
 │   ├── apps/
-│   │   ├── admin-dashboard/   # 管理后台
-│   │   ├── staff-app/         # 员工端应用
-│   │   └── customer-app/      # 顾客端应用
+│   │   ├── admin-dashboard/     # 管理后台应用
+│   │   ├── staff-app/           # 员工端应用
+│   │   └── customer-app/        # 顾客端应用
 │   └── packages/
-│       └── ui-system/         # UI组件库
-├── backend/                    # 后端服务
-│   ├── api-gateway/           # API网关
-│   ├── services/              # 微服务集群
-│   │   ├── ai-assistant/      # AI助手服务
-│   │   ├── smart-kitchen/     # 智慧后厨服务
-│   │   ├── o2o-system/        # O2O系统服务
-│   │   ├── chain-ops/         # 连锁运营服务
-│   │   ├── food-safety/       # 食品安全服务
-│   │   └── knowledge-base/     # 文档知识库服务
-│   ├── libs/                  # 共享库
-│   │   ├── key-management/    # 密钥管理
-│   │   ├── logger/            # 日志系统
-│   │   └── rabbitmq/          # 消息队列
-│   └── database/              # 数据库管理
-├── agentic-core/              # 智能代理核心
+│       └── ui-system/           # UI组件库
+├── backend/                       # 后端服务目录
+│   ├── api-gateway/              # API网关服务
+│   ├── services/                 # 微服务集群
+│   │   ├── ai-assistant/         # AI助手服务
+│   │   ├── smart-kitchen/        # 智慧后厨服务
+│   │   ├── o2o-system/           # O2O系统服务
+│   │   ├── chain-ops/            # 连锁运营服务
+│   │   ├── food-safety/          # 食品安全服务
+│   │   └── knowledge-base/        # 文档知识库服务
+│   ├── libs/                     # 共享库目录
+│   │   ├── key-management/       # 密钥管理库
+│   │   ├── logger/               # 日志系统库
+│   │   └── rabbitmq/             # 消息队列库
+│   └── database/                 # 数据库管理
+├── agentic-core/                  # 智能代理核心
 │   ├── src/
-│   │   ├── models/            # AI模型
-│   │   ├── systems/           # 智能系统
-│   │   └── utils/             # 工具函数
-├── docs/                      # 文档
-│   ├── api/                   # API文档
+│   │   ├── models/               # AI模型目录
+│   │   ├── systems/              # 智能系统目录
+│   │   └── utils/                # 工具函数目录
+├── docs/                          # 文档目录
+│   ├── api/                       # API文档目录
 │   ├── YYC3-Cater-Platform-文档闭环/  # 项目文档
-│   └── 智枢服务化平台/        # 服务化平台文档
-├── tests/                     # 测试
-│   ├── api/                   # API测试
-│   └── e2e/                   # 端到端测试
-├── docker-compose.yaml        # Docker编排
-├── package.json              # 项目配置
-├── tsconfig.json              # TypeScript配置
-├── vitest.config.ts           # 测试配置
-└── README.md                  # 项目说明
+│   └── 智枢服务化平台/            # 服务化平台文档
+├── tests/                         # 测试目录
+│   ├── api/                       # API测试目录
+│   └── e2e/                       # 端到端测试目录
+├── docker-compose.yaml            # Docker编排文件
+├── package.json                   # 项目配置文件
+├── tsconfig.json                  # TypeScript配置文件
+├── vitest.config.ts               # 测试配置文件
+└── README.md                      # 项目说明文件
 ```
 
 ---

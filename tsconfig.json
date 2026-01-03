@@ -44,7 +44,7 @@
       "@ai/*": ["./ai/*"]
     },
     "typeRoots": ["./node_modules/@types", "./types"],
-    "types": ["vite/client", "node"]
+    "types": ["node"]
   },
   "include": [
     "**/*.ts",
@@ -59,17 +59,9 @@
     ".git",
     ".cache",
     "temp",
-    "tmp"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./frontend/tsconfig.json"
-    },
-    {
-      "path": "./backend/tsconfig.json"
-    }
+    "tmp",
+    "frontend",
+    "backend",
+    "agentic-core"
   ]
 }

@@ -627,8 +627,7 @@ function runTests(coverage: boolean = true): TestReport {
 
   const duration = Date.now() - startTime
 
-  // 生成测试报告
-  const report: TestReport = {
+  const reportData: Omit<TestReport, 'coverage'> = {
     summary: {
       total: totalTests,
       passed: totalPassed,
@@ -638,10 +637,13 @@ function runTests(coverage: boolean = true): TestReport {
       successRate: totalTests > 0 ? (totalPassed / totalTests) * 100 : 0
     },
     suites,
-    coverage: coverageReport || undefined,
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'test'
+    environment: process.env['NODE_ENV'] || 'test'
   }
+
+  const report: TestReport = coverageReport
+    ? { ...reportData, coverage: coverageReport }
+    : reportData
 
   // 生成报告文件
   generateHtmlReport(report)

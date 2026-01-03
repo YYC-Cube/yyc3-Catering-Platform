@@ -290,11 +290,11 @@ describe('订单API', () => {
       expect(response.data!.status).toBe('pending')
       expect(response.data!.paymentStatus).toBe('unpaid')
       expect(response.data!.items).toHaveLength(1)
-      expect(response.data!.items[0].itemName).toBe(testData.testMenuItem.name)
-      expect(response.data!.items[0].quantity).toBe(2)
-      expect(response.data!.items[0].unitPrice).toBe(28.00)
-      expect(response.data!.items[0].totalPrice).toBe(56.00)
-      expect(response.data!.items[0].specialRequests).toBe('不要辣')
+      expect(response.data!.items[0]!.itemName).toBe(testData.testMenuItem.name)
+      expect(response.data!.items[0]!.quantity).toBe(2)
+      expect(response.data!.items[0]!.unitPrice).toBe(28.00)
+      expect(response.data!.items[0]!.totalPrice).toBe(56.00)
+      expect(response.data!.items[0]!.specialRequests).toBe('不要辣')
     })
 
     it('应该创建带会员的订单', async () => {
@@ -484,7 +484,7 @@ describe('订单API', () => {
       expect(response.success).toBe(true)
       if (response.data.items.length > 0) {
         response.data.items.forEach(order => {
-          expect(order.status).toBe('pending')
+          expect(order!.status).toBe('pending')
         })
       }
     })
@@ -503,7 +503,7 @@ describe('订单API', () => {
       expect(response.success).toBe(true)
       if (response.data.items.length > 0) {
         response.data.items.forEach(order => {
-          expect(order.storeId).toBe(testData.testStore.id)
+          expect(order!.storeId).toBe(testData.testStore.id)
         })
       }
     })
@@ -559,7 +559,7 @@ describe('订单API', () => {
       expect(response.data!.subtotal).toBe(84.00) // 28.00 * 3
       expect(response.data!.totalAmount).toBe(84.00)
       expect(response.data!.items).toHaveLength(1)
-      expect(response.data!.items[0].quantity).toBe(3)
+      expect(response.data!.items[0]!.quantity).toBe(3)
     })
 
     it('应该返回404对于不存在的订单', async () => {

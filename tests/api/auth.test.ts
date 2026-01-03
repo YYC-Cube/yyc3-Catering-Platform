@@ -8,8 +8,8 @@ import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'bun:test'
 import { Database } from 'bun:sqlite'
 
 // 测试配置
-const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:3006/api/v1'
-const DB_PATH = process.env.DB_PATH || './database/data/test_yyc3_catering.db'
+const API_BASE_URL = process.env['API_BASE_URL'] || 'http://localhost:3006/api/v1'
+const DB_PATH = process.env['DB_PATH'] || './database/data/test_yyc3_catering.db'
 
 // 测试数据
 const testUser = {
