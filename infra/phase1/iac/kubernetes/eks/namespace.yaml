@@ -1,0 +1,239 @@
+---
+@file: namespace-eks.yaml
+@description: AWS EKS 命名空间配置
+@platform: AWS EKS
+@version: v1.28
+---
+
+# Namespace Configuration for AWS EKS
+
+---
+
+## 📋 Description
+
+本文件定义了YYC³餐饮平台在AWS EKS集群上的命名空间（Namespace）。
+
+---
+
+## 📁 Namespace List
+
+### 1. Namespace: `default`
+
+**描述**: Kubernetes默认命名空间
+
+---
+
+### 2. Namespace: `kube-system`
+
+**描述**: Kubernetes系统命名空间
+
+---
+
+### 3. Namespace: `kube-public`
+
+**描述**: Kubernetes公共命名空间
+
+---
+
+### 4. Namespace: `kube-node-lease`
+
+**描述**: Kubernetes节点租约命名空间
+
+---
+
+### 5. Namespace: `production`
+
+**描述**: YYC³餐饮平台 - 生产环境命名空间
+
+**Label**: `env=production`
+
+---
+
+### 6. Namespace: `staging`
+
+**描述**: YYC³餐饮平台 - 测试环境命名空间
+
+**Label**: `env=staging`
+
+---
+
+### 7. Namespace: `development`
+
+**描述**: YYC³餐饮平台 - 开发环境命名空间
+
+**Label**: `env=development`
+
+---
+
+### 8. Namespace: `monitoring`
+
+**描述**: 监控系统命名空间（Prometheus, Grafana等）
+
+**Label**: `app=monitoring`
+
+---
+
+### 9. Namespace: `logging`
+
+**描述**: 日志系统命名空间（ELK, Loki等）
+
+**Label**: `app=logging`
+
+---
+
+### 10. Namespace: `ingress-nginx`
+
+**描述**: Ingress Controller命名空间（NGINX）
+
+**Label**: `app=ingress-nginx`
+
+---
+
+### 11. Namespace: `cert-manager`
+
+**描述**: Certificate Manager命名空间（Cert Manager）
+
+**Label**: `app=cert-manager`
+
+---
+
+## 🚀 Kubernetes Manifests
+
+```yaml
+# production-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    name: production
+    env: production
+    project: yyc3-catering-platform
+---
+# staging-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+  labels:
+    name: staging
+    env: staging
+    project: yyc3-catering-platform
+---
+# development-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+  labels:
+    name: development
+    env: development
+    project: yyc3-catering-platform
+---
+# monitoring-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    name: monitoring
+    app: monitoring
+    project: yyc3-catering-platform
+---
+# logging-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: logging
+  labels:
+    name: logging
+    app: logging
+    project: yyc3-catering-platform
+---
+# ingress-nginx-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-nginx
+  labels:
+    name: ingress-nginx
+    app: ingress-nginx
+    project: yyc3-catering-platform
+---
+# cert-manager-namespace.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+  labels:
+    name: cert-manager
+    app: cert-manager
+    project: yyc3-catering-platform
+```
+
+---
+
+## 🛠️ 快速开始
+
+### 1. 应用命名空间配置
+
+```bash
+# 应用所有命名空间
+kubectl apply -f kubernetes/eks/namespace.yaml
+
+# 查看命名空间列表
+kubectl get namespaces
+```
+
+---
+
+### 2. 验证命名空间
+
+```bash
+# 查看生产环境命名空间
+kubectl describe namespace production
+
+# 查看监控系统命名空间
+kubectl describe namespace monitoring
+```
+
+---
+
+## 📊 输出与交付物
+
+| 交付物 | 内容 |
+|-------|------|
+| Kubernetes Manifest | `namespace-eks.yaml` |
+| 命名空间列表 | 7个命名空间 |
+
+---
+
+## 🔍 常见问题
+
+### Q1: 如何删除命名空间？
+
+**A**:
+```bash
+kubectl delete namespace <namespace-name>
+```
+
+**注意**: 删除命名空间会删除该命名空间下的所有资源。
+
+---
+
+### Q2: 如何查看命名空间下的资源？
+
+**A**:
+```bash
+# 查看所有命名空间下的Pod
+kubectl get pods --all-namespaces
+
+# 查看生产环境命名空间下的Pod
+kubectl get pods -n production
+```
+
+---
+
+**文档版本**: v1.0.0
+**最后更新**: 2026-01-04
+**维护人**: YYC³ Infrastructure Team

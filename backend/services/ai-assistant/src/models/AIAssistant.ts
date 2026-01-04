@@ -17,7 +17,7 @@ export interface AIRequest {
     language?: string;
     originalFormat?: 'text' | 'voice' | 'image';
     confidence?: number;
-    [key: string]: any;
+    [key: string]: unknown;
   };
 }
 

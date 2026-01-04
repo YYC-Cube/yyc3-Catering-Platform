@@ -14,9 +14,10 @@ import { AuthenticationConfig } from '../types/gateway';
 import { logger } from '../utils/logger';
 import { KeyManagerFactory } from '@yyc3/key-management';
 import path from 'path';
+import type { IKeyManager } from '../../../../types/services/key-manager';
 
 // 初始化密钥管理器（异步）
-let keyManager: any;
+let keyManager: IKeyManager | null = null;
 
 // 异步初始化密钥管理器
 (async () => {
@@ -452,7 +453,7 @@ export class JWTUtils {
     email: string;
     roles?: string[];
     permissions?: string[];
-    [key: string]: any;
+    [key: string]: unknown;
   }): Promise<string> {
     const now = Math.floor(Date.now() / 1000);
 

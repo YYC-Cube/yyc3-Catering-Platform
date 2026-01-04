@@ -1,0 +1,356 @@
+---
+@file: ingress-controller-eks.yaml
+@description: AWS EKS NGINX Ingress Controller配置
+@platform: AWS EKS
+@version: v1.28
+@ingress-controller: NGINX
+---
+
+# NGINX Ingress Controller Configuration for AWS EKS
+
+---
+
+## 📋 Description
+
+本文件定义了YYC³餐饮平台在AWS EKS集群上的NGINX Ingress Controller配置。
+
+NGINX Ingress Controller是一个Kubernetes Ingress Controller，用于将外部流量路由到Kubernetes集群内部的服务。
+
+---
+
+## 📁 NGINX Ingress Controller Features
+
+### 1. 路由功能
+
+- **基于路径的路由**
+- **基于主机名的路由**
+- **TLS终止（HTTPS）**
+- **URL重写**
+
+### 2. 负载均衡功能
+
+- **轮询（Round Robin）**
+- **最少连接（Least Connections）**
+- **会话保持（Session Affinity）**
+
+### 3. 可观测性功能
+
+- **Prometheus集成**
+- **Grafana Dashboard**
+- **访问日志**
+- **错误日志**
+
+---
+
+## 🚀 Kubernetes Manifests
+
+```yaml
+# ingress-controller-eks.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-nginx
+  labels:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  chart: ingress-nginx
+  repo: https://kubernetes.github.io/ingress-nginx
+  version: 4.9.0
+  targetNamespace: ingress-nginx
+  set:
+    - name: controller.replicaCount
+      value: 2
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-type
+      value: "nlb"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-cross-zone-load-balancing-enabled
+      value: "true"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-scheme
+      value: "internet-facing"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-healthy-threshold
+      value: "2"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-unhealthy-threshold
+      value: "2"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-interval
+      value: "10"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-timeout
+      value: "5"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-path
+      value: "/healthz"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-protocol
+      value: "HTTP"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-port
+      value: "10254"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-ports
+      value: "443"
+    - name: controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-backend-protocol
+      value: "http"
+    - name: controller.configMap
+      value: "false"
+    - name: controller.admissionWebhooks.enabled
+      value: "false"
+    - name: controller.metrics.enabled
+      value: "true"
+    - name: controller.metrics.serviceMonitor.enabled
+      value: "true"
+    - name: controller.metrics.serviceMonitor.namespaceSelector
+      value: "monitoring"
+    - name: controller.metrics.serviceMonitor.additionalLabels
+      value: "app=ingress-nginx"
+    - name: controller.publishService.enabled
+      value: "true"
+    - name: controller.publishService.pathOverride
+      value: "/api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller"
+    - name: controller.kubernetesResources.configMaps
+      value: "true"
+    - name: controller.kubernetesResources.ingressClass
+      value: "nginx"
+    - name: controller.ingressClassResource.name
+      value: "nginx"
+    - name: controller.ingressClassResource.enabled
+      value: "true"
+    - name: controller.ingressClassResource.default
+      value: "true"
+    - name: controller.ingressClassResource.controllerValue
+      value: "k8s.io/ingress-nginx"
+    - name: controller.ingressClass.parameters
+      value: "\"ingressclass.kubernetes.io/is-default-class\"=\"true\""
+    - name: controller.ingressClassByDefault
+      value: "true"
+    - name: controller.ingressClassByName
+      value: "true"
+```
+
+---
+
+## 🛠️ 快速开始
+
+### 1. 使用Helm安装NGINX Ingress Controller
+
+```bash
+# 添加NGINX Ingress Controller Helm仓库
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+# 安装NGINX Ingress Controller
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --set controller.replicaCount=2 \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-type="nlb" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-cross-zone-load-balancing-enabled="true" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-scheme="internet-facing" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-healthy-threshold="2" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-unhealthy-threshold="2" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-interval="10" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-timeout="5" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-path="/healthz" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-protocol="HTTP" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-healthcheck-port="10254" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-ssl-ports="443" \
+  --set controller.service.annotations.service\.beta\.kubernetes\.io/aws-load-balancer-backend-protocol="http" \
+  --set controller.configMap="false" \
+  --set controller.admissionWebhooks.enabled="false" \
+  --set controller.metrics.enabled="true" \
+  --set controller.metrics.serviceMonitor.enabled="true" \
+  --set controller.metrics.serviceMonitor.namespaceSelector="monitoring" \
+  --set controller.metrics.serviceMonitor.additionalLabels="app=ingress-nginx" \
+  --set controller.publishService.enabled="true" \
+  --set controller.publishService.pathOverride="/api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller" \
+  --set controller.kubernetesResources.configMaps="true" \
+  --set controller.kubernetesResources.ingressClass="nginx" \
+  --set controller.ingressClassResource.name="nginx" \
+  --set controller.ingressClassResource.enabled="true" \
+  --set controller.ingressClassResource.default="true" \
+  --set controller.ingressClassResource.controllerValue="k8s.io/ingress-nginx" \
+  --set controller.ingressClass.parameters="\"ingressclass.kubernetes.io/is-default-class\"=\"true\"" \
+  --set controller.ingressClassByDefault="true" \
+  --set controller.ingressClassByName="true"
+```
+
+---
+
+### 2. 验证NGINX Ingress Controller安装
+
+```bash
+# 查看NGINX Ingress Controller Pod
+kubectl get pods -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
+
+# 查看NGINX Ingress Controller Service
+kubectl get svc -n ingress-nginx ingress-nginx-controller
+
+# 查看NLB (Network Load Balancer)
+kubectl get svc -n ingress-nginx ingress-nginx-controller -o json | jq '.status.loadBalancer.ingress'
+```
+
+---
+
+### 3. 获取NLB (Network Load Balancer) DNS名称
+
+```bash
+# 获取NLB DNS名称
+kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
+```
+
+**预期输出**：
+```
+yyc3-ingress-1234567890.elb.us-east-1.amazonaws.com
+```
+
+---
+
+### 4. 创建Ingress资源示例
+
+**步骤**：
+1. 创建Ingress资源：
+   ```yaml
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: yyc3-api-ingress
+     namespace: production
+     annotations:
+       kubernetes.io/ingress.class: nginx
+       cert-manager.io/cluster-issuer: letsencrypt-prod
+   spec:
+     tls:
+     - hosts:
+       - api.yyc3.com
+       secretName: yyc3-api-tls
+     rules:
+     - host: api.yyc3.com
+       http:
+         paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: api-gateway
+               port:
+                 number: 8080
+   ```
+
+2. 应用Ingress资源：
+   ```bash
+   kubectl apply -f ingress.yaml
+   ```
+
+3. 验证Ingress资源：
+   ```bash
+   kubectl get ingress yyc3-api-ingress -n production
+   ```
+
+---
+
+## 📊 输出与交付物
+
+| 交付物 | 内容 |
+|-------|------|
+| Kubernetes Manifest | `ingress-controller-eks.yaml` |
+| Helm Chart | `ingress-nginx/ingress-nginx` (v4.9.0) |
+| NLB (Network Load Balancer) | `yyc3-ingress-1234567890.elb.us-east-1.amazonaws.com` |
+
+---
+
+## 🔍 常见问题
+
+### Q1: NGINX Ingress Controller Pod一直处于 `Pending` 状态怎么办？
+
+**A**:
+1. 检查Pod事件：
+   ```bash
+   kubectl describe pod -n ingress-nginx -l app.kubernetes.io/name=ingress-nginx
+   ```
+2. 检查Node状态：
+   ```bash
+   kubectl get nodes
+   ```
+3. 检查NLB状态：
+   ```bash
+   kubectl get svc -n ingress-nginx ingress-nginx-controller
+   ```
+
+---
+
+### Q2: 如何配置TLS终止？
+
+**A**:
+1. 安装Cert Manager（详见 `cert-manager-eks.yaml`）
+2. 创建Ingress资源，指定 `cert-manager.io/cluster-issuer` 和 `tls` 字段：
+   ```yaml
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: yyc3-api-ingress
+     namespace: production
+     annotations:
+       kubernetes.io/ingress.class: nginx
+       cert-manager.io/cluster-issuer: letsencrypt-prod
+   spec:
+     tls:
+     - hosts:
+       - api.yyc3.com
+       secretName: yyc3-api-tls
+     rules:
+     - host: api.yyc3.com
+       http:
+         paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: api-gateway
+               port:
+                 number: 8080
+   ```
+
+---
+
+### Q3: 如何配置Grafana Dashboard？
+
+**A**:
+1. 配置Prometheus Service Monitor：
+   ```yaml
+   apiVersion: monitoring.coreos.com/v1
+   kind: ServiceMonitor
+   metadata:
+     name: ingress-nginx
+     namespace: monitoring
+     labels:
+       app: ingress-nginx
+   spec:
+     namespaceSelector:
+       matchNames:
+       - ingress-nginx
+     selector:
+       matchLabels:
+         app.kubernetes.io/name: ingress-nginx
+     endpoints:
+     - port: metrics
+   ```
+
+2. 应用Service Monitor：
+   ```bash
+   kubectl apply -f servicemonitor.yaml
+   ```
+
+3. 在Grafana中导入NGINX Ingress Controller Dashboard（ID：9614）
+
+---
+
+## 📚 参考文档
+
+- [NGINX Ingress Controller官方文档](https://kubernetes.github.io/ingress-nginx/)
+- [AWS NLB文档](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/)
+- [Helm Chart文档](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx)
+
+---
+
+**文档版本**: v1.0.0
+**最后更新**: 2026-01-04
+**维护人**: YYC³ Infrastructure Team

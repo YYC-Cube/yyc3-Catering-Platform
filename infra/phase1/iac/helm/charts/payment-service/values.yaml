@@ -1,0 +1,68 @@
+# Global Configuration
+global:
+  imageRegistry: "registry.yyc3.com"
+  namespace: "production"
+  domain: "yyc3.com"
+
+# Image Configuration
+image:
+  repository: "yyc3/payment-service"
+  tag: "v1.0.0"
+  pullPolicy: "Always"
+
+# Deployment Configuration
+replicaCount: 2
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+# Service Configuration (Internal)
+service:
+  type: "ClusterIP"
+  port: 8080
+
+# Ingress Configuration (Disabled)
+ingress:
+  enabled: false
+  className: "nginx"
+  annotations: {}
+  hosts: []
+  tls: []
+
+# Autoscaling Configuration
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+# Resource Configuration
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+# Node Selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity: {}

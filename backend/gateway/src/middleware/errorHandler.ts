@@ -37,7 +37,7 @@ export class AppError extends Error {
 /**
  * 全局错误处理中间件
  */
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction): void => {
+export const errorHandler = (err: Error | unknown, req: Request, res: Response, next: NextFunction): void => {
   // 默认错误配置
   let errorResponse: ErrorResponse = {
     success: false,
@@ -47,21 +47,22 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
   };
 
   let statusCode = 500;
+  let error = err instanceof Error ? err : new Error(String(err));
 
   // 处理应用错误
-  if (err instanceof AppError) {
-    statusCode = err.status;
+  if (error instanceof AppError) {
+    statusCode = error.status;
     errorResponse = {
       ...errorResponse,
-      message: err.message,
-      code: err.code
+      message: error.message,
+      code: error.code
     };
-  } else if (err instanceof Error) {
+  } else if (error instanceof Error) {
     // 处理原生错误
     statusCode = 500;
     errorResponse = {
       ...errorResponse,
-      message: err.message || 'Internal Server Error',
+      message: error.message || 'Internal Server Error',
       code: 'INTERNAL_SERVER_ERROR'
     };
   } else {
@@ -76,12 +77,12 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
 
   // 开发环境显示堆栈信息
   if (process.env.NODE_ENV === 'development') {
-    errorResponse.stack = err.stack;
+    errorResponse.stack = error.stack;
   }
 
   // 记录错误日志
   logger.error('Error occurred', {
-    error: err.message,
+    error: error.message,
     code: errorResponse.code,
     status: statusCode,
     path: req.path,
@@ -91,7 +92,7 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     email: req.user?.email,
     roles: req.user?.roles,
     context: req.context,
-    stack: err.stack
+    stack: error.stack
   });
 
   // 发送错误响应

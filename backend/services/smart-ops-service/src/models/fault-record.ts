@@ -32,7 +32,7 @@ export interface FaultRecord {
   details: {
     responseTime: number;
     errorRate: number;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   
   /**

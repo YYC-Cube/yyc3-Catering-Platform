@@ -1,0 +1,533 @@
+# API Gateway Helm Chart
+
+这是API Gateway的Helm Chart。
+
+---
+
+## Chart.yaml
+
+```yaml
+apiVersion: v2
+name: api-gateway
+description: YYC³餐饮平台 - API Gateway
+type: application
+version: 2.0.0
+appVersion: "2.0.0"
+
+keywords:
+  - gateway
+  - api
+  - routing
+
+maintainers:
+  - name: YYC³ Team
+    email: team@yyc3.com
+```
+
+---
+
+## values.yaml
+
+```yaml
+# 基础配置
+replicaCount: 3
+
+# 镜像配置
+image:
+  repository: yyc3-catering-platform/api-gateway
+  tag: "2.0.0"
+  pullPolicy: Always
+
+# 镜像拉取凭证
+imagePullSecrets:
+  - name: regcred
+
+# Service配置
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3200
+
+# Ingress配置
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "1000"
+  hosts:
+    - host: api.yyc3.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: api-gateway-tls
+      hosts:
+        - api.yyc3.com
+
+# 资源限制
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Auto Scaling配置
+autoScaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilization: 70
+  targetMemoryUtilization: 80
+
+# 环境变量
+env:
+  - name: NODE_ENV
+    value: "production"
+  - name: PORT
+    value: "3200"
+  - name: LOG_LEVEL
+    value: "info"
+  - name: RATE_LIMIT_ENABLED
+    value: "true"
+  - name: RATE_LIMIT_RPM
+    value: "1000"
+
+# Secrets（从外部引用）
+secrets:
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: api-gateway-secrets
+        key: jwt-secret
+  - name: REDIS_HOST
+    valueFrom:
+      secretKeyRef:
+        name: redis-credentials
+        key: host
+  - name: REDIS_PORT
+    valueFrom:
+      secretKeyRef:
+        name: redis-credentials
+        key: port
+  - name: REDIS_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: redis-credentials
+        key: password
+
+# ConfigMaps
+configMaps:
+  - name: CONFIG_FILE
+    value: |-
+      {
+        "port": 3200,
+        "cors": {
+          "origin": "*"
+        }
+      }
+
+# Health Checks
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 3200
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 3200
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+# Pod Security Context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+
+# Container Security Context
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 1000
+
+# Node Selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - api-gateway
+          topologyKey: kubernetes.io/hostname
+
+# Service Account
+serviceAccount:
+  create: true
+  name: api-gateway
+  annotations: {}
+  labels: {}
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+
+# Metrics Service
+metricsService:
+  enabled: true
+  port: 9090
+
+# Prometheus Monitor
+prometheusMonitor:
+  enabled: true
+  interval: 15s
+  scrapeTimeout: 10s
+
+# Pod Annotations
+podAnnotations: {}
+
+# Pod Labels
+podLabels: {}
+```
+
+---
+
+## deployment.yaml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "api-gateway.fullname" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "api-gateway.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "api-gateway.selectorLabels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "api-gateway.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: api-gateway
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+            {{- if .Values.metricsService.enabled }}
+            - name: metrics
+              containerPort: {{ .Values.metricsService.port }}
+              protocol: TCP
+            {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- range .Values.secrets }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .valueFrom.secretKeyRef.name }}
+                  key: {{ .valueFrom.secretKeyRef.key }}
+            {{- end }}
+            {{- range .Values.configMaps }}
+            - name: {{ .name }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "api-gateway.fullname" . }}-config
+                  key: {{ .name }}
+            {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "api-gateway.fullname" . }}-config
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+```
+
+---
+
+## service.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "api-gateway.fullname" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+    {{- if .Values.metricsService.enabled }}
+    - port: {{ .Values.metricsService.port }}
+      targetPort: {{ .Values.metricsService.port }}
+      protocol: TCP
+      name: metrics
+    {{- end }}
+  selector:
+    {{- include "api-gateway.selectorLabels" . | nindent 4 }}
+```
+
+---
+
+## ingress.yaml
+
+```yaml
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "api-gateway.fullname" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  {{- if .Values.ingress.tls }}
+  tls:
+    {{- range .Values.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ include "api-gateway.fullname" $ }}
+                port:
+                  number: {{ $.Values.service.port }}
+          {{- end }}
+    {{- end }}
+{{- end }}
+```
+
+---
+
+## hpa.yaml
+
+```yaml
+{{- if .Values.autoscaling.enabled }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "api-gateway.fullname" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "api-gateway.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics:
+    {{- if .Values.autoscaling.targetCPUUtilization }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetCPUUtilization }}
+    {{- end }}
+    {{- if .Values.autoscaling.targetMemoryUtilization }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilization }}
+    {{- end }}
+{{- end }}
+```
+
+---
+
+## pdb.yaml
+
+```yaml
+{{- if .Values.podDisruptionBudget.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "api-gateway.fullname" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
+  selector:
+    matchLabels:
+      {{- include "api-gateway.selectorLabels" . | nindent 6 }}
+{{- end }}
+```
+
+---
+
+## serviceaccount.yaml
+
+```yaml
+{{- if .Values.serviceAccount.create -}}
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ include "api-gateway.serviceAccountName" . }}
+  labels:
+    {{- include "api-gateway.labels" . | nindent 4 }}
+  {{- with .Values.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
+```
+
+---
+
+## 使用说明
+
+### 安装
+
+```bash
+# 添加Helm仓库
+helm repo add yyc3 https://charts.yyc3.com
+
+# 更新仓库
+helm repo update
+
+# 安装API Gateway
+helm install api-gateway yyc3/api-gateway -n production
+```
+
+### 使用values文件
+
+```bash
+# 安装到开发环境
+helm install api-gateway . -n dev -f values-dev.yaml
+
+# 安装到生产环境
+helm install api-gateway . -n prod -f values-prod.yaml
+```
+
+### 升级
+
+```bash
+# 升级
+helm upgrade api-gateway . -n production
+
+# 升级时使用新镜像
+helm upgrade api-gateway . -n production --set image.tag="2.0.1"
+
+# 升级时修改副本数
+helm upgrade api-gateway . -n production --set replicaCount=5
+```
+
+### 回滚
+
+```bash
+# 查看历史
+helm history api-gateway -n production
+
+# 回滚到上一个版本
+helm rollback api-gateway -n production
+
+# 回滚到指定版本
+helm rollback api-gateway 2 -n production
+```
+
+### 卸载
+
+```bash
+# 卸载
+helm uninstall api-gateway -n production
+```
+
+---
+
+**文档版本**: v2.0.0
+**最后更新**: 2026-01-03
+**维护人**: YYC³ Deployment Team

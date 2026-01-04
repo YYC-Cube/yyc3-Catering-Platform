@@ -33,8 +33,9 @@ app.get('/health', (req, res) => {
 app.use('/api/orders', orderRoutes);
 
 // 错误处理中间件
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('Unexpected error:', err);
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  logger.error('Unexpected error:', error);
   res.status(500).json({ success: false, error: 'Internal Server Error' });
 });
 

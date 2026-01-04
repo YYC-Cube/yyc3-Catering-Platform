@@ -52,15 +52,16 @@ export const isPublicRoute = (req: Request): boolean => {
 /**
  * 认证错误处理中间件
  */
-export const authErrorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  if (err.name === 'UnauthorizedError') {
-    logger.warn('认证失败: %s', err.message);
+export const authErrorHandler = (err: Error | unknown, req: Request, res: Response, next: NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  if (error.name === 'UnauthorizedError') {
+    logger.warn('认证失败: %s', error.message);
     return res.status(401).json({
       success: false,
       error: '无效的令牌',
     });
   }
-  next(err);
+  next(error);
 };
 
 /**

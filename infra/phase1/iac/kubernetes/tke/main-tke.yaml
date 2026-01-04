@@ -1,0 +1,432 @@
+---
+@file: main-tke.yaml
+@description: 腾讯云TKE Kubernetes配置（Namespace, Cilium, Ingress Controller, Cert Manager）
+@platform: 腾讯云TKE
+@version: v1.28
+---
+
+# 腾讯云TKE Kubernetes配置
+
+---
+
+## 📋 Description
+
+本文件定义了YYC³餐饮平台在腾讯云TKE集群上的Kubernetes配置，包括：
+1. 命名空间（Namespace）
+2. Cilium网络插件
+3. NGINX Ingress Controller
+4. Cert Manager证书管理工具
+
+---
+
+## 🚀 Kubernetes Manifests
+
+```yaml
+# Namespace Configuration
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    name: production
+    env: production
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+  labels:
+    name: staging
+    env: staging
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: development
+  labels:
+    name: development
+    env: development
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
+  labels:
+    name: monitoring
+    app: monitoring
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: logging
+  labels:
+    name: logging
+    app: logging
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ingress-nginx
+  labels:
+    name: ingress-nginx
+    app: ingress-nginx
+    project: yyc3-catering-platform
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+  labels:
+    name: cert-manager
+    app: cert-manager
+    project: yyc3-catering-platform
+
+---
+
+# Cilium Network Plugin
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  chart: cilium
+  repo: https://helm.cilium.io/
+  version: 1.15.0
+  targetNamespace: kube-system
+  set:
+    - name: cluster.name
+      value: yyc3-production-tke
+    - name: cluster.id
+      value: 3
+    - name: cluster.region
+      value: ap-guangzhou
+    - name: kubeProxyReplacement
+      value: "strict"
+    - name: ipam.mode
+      value: "kubernetes"
+    - name: tunnel
+      value: "vxlan"
+    - name: ipv4.enabled
+      value: "true"
+    - name: ipv6.enabled
+      value: "false"
+    - name: hostServices.enabled
+      value: "false"
+    - name: routingMode
+      value: "native"
+    - name: masquerade
+      value: "true"
+    - name: hubble.enabled
+      value: "true"
+    - name: hubble.listenAddress
+      value: ":4244"
+    - name: hubble.relay.enabled
+      value: "true"
+    - name: hubble.ui.enabled
+      value: "true"
+    - name: hubble.ui.standalone.enabled
+      value: "true"
+    - name: hubble.ui.ingress.enabled
+      value: "true"
+    - name: prometheus.enabled
+      value: "true"
+    - name: operator.replicas
+      value: 2
+    - name: tencentcloud.enabled
+      value: "true"
+    - name: nodePort.enabled
+      value: "false"
+
+---
+
+# NGINX Ingress Controller
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  chart: ingress-nginx
+  repo: https://kubernetes.github.io/ingress-nginx
+  version: 4.9.0
+  targetNamespace: ingress-nginx
+  set:
+    - name: controller.replicaCount
+      value: 2
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-type
+      value: "PUBLIC"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-internal-subnetid
+      value: "<腾讯云VPC子网ID>"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-protocol-port
+      value: "http:80,https:443"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-interval
+      value: "10"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-timeout
+      value: "5"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-path
+      value: "/healthz"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-protocol
+      value: "HTTP"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-port
+      value: "10254"
+    - name: controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-ssl-cert
+      value: "<腾讯云SSL证书ID>"
+    - name: controller.configMap
+      value: "false"
+    - name: controller.admissionWebhooks.enabled
+      value: "false"
+    - name: controller.metrics.enabled
+      value: "true"
+    - name: controller.metrics.serviceMonitor.enabled
+      value: "true"
+    - name: controller.metrics.serviceMonitor.namespaceSelector
+      value: "monitoring"
+    - name: controller.metrics.serviceMonitor.additionalLabels
+      value: "app=ingress-nginx"
+    - name: controller.publishService.enabled
+      value: "true"
+    - name: controller.publishService.pathOverride
+      value: "/api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller"
+    - name: controller.kubernetesResources.configMaps
+      value: "true"
+    - name: controller.kubernetesResources.ingressClass
+      value: "nginx"
+    - name: controller.ingressClassResource.name
+      value: "nginx"
+    - name: controller.ingressClassResource.enabled
+      value: "true"
+    - name: controller.ingressClassResource.default
+      value: "true"
+    - name: controller.ingressClassResource.controllerValue
+      value: "k8s.io/ingress-nginx"
+    - name: controller.ingressClass.parameters
+      value: "\"ingressclass.kubernetes.io/is-default-class\"=\"true\""
+    - name: controller.ingressClassByDefault
+      value: "true"
+    - name: controller.ingressClassByName
+      value: "true"
+
+---
+
+# Cert Manager
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  chart: cert-manager
+  repo: https://charts.jetstack.io/
+  version: v1.14.0
+  targetNamespace: cert-manager
+  set:
+    - name: installCRDs
+      value: "true"
+    - name: replicaCount
+      value: 2
+    - name: extraArgs[0]
+      value: "--leader-elect"
+    - name: extraArgs[1]
+      value: "--dns01-recursive-nameservers-only"
+    - name: extraArgs[2]
+      value: "--dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53"
+    - name: prometheus.enabled
+      value: "true"
+    - name: prometheus.servicemonitor.enabled
+      value: "true"
+    - name: prometheus.servicemonitor.namespace
+      value: "monitoring"
+    - name: prometheus.servicemonitor.labels
+      value: "app=cert-manager"
+    - name: resources.requests.cpu
+      value: "100m"
+    - name: resources.requests.memory
+      value: "100Mi"
+    - name: resources.limits.cpu
+      value: "500m"
+    - name: resources.limits.memory
+      value: "500Mi"
+    - name: podDnsPolicy
+      value: "None"
+    - name: podDnsConfig.nameservers[0]
+      value: "8.8.8.8"
+    - name: podDnsConfig.nameservers[1]
+      value: "1.1.1.1"
+```
+
+---
+
+## 🛠️ 快速开始
+
+### 1. 应用命名空间配置
+
+```bash
+# 应用所有命名空间
+kubectl apply -f kubernetes/tke/main-tke.yaml --selector=name
+```
+
+---
+
+### 2. 使用Helm安装Cilium
+
+```bash
+# 添加Cilium Helm仓库
+helm repo add cilium https://helm.cilium.io/
+helm repo update
+
+# 安装Cilium
+helm install cilium cilium/cilium \
+  --namespace kube-system \
+  --set cluster.name=yyc3-production-tke \
+  --set cluster.id=3 \
+  --set cluster.region=ap-guangzhou \
+  --set kubeProxyReplacement=strict \
+  --set ipam.mode=kubernetes \
+  --set tunnel=vxlan \
+  --set ipv4.enabled=true \
+  --set ipv6.enabled=false \
+  --set hostServices.enabled=false \
+  --set routingMode=native \
+  --set masquerade=true \
+  --set hubble.enabled=true \
+  --set hubble.relay.enabled=true \
+  --set hubble.ui.enabled=true \
+  --set hubble.ui.standalone.enabled=true \
+  --set hubble.ui.ingress.enabled=true \
+  --set prometheus.enabled=true \
+  --set operator.replicas=2 \
+  --set tencentcloud.enabled=true \
+  --set nodePort.enabled=false
+```
+
+---
+
+### 3. 使用Helm安装NGINX Ingress Controller
+
+```bash
+# 添加NGINX Ingress Controller Helm仓库
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+# 安装NGINX Ingress Controller
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --set controller.replicaCount=2 \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-type="PUBLIC" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-internal-subnetid="<腾讯云VPC子网ID>" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-protocol-port="http:80,https:443" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-interval="10" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-timeout="5" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-path="/healthz" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-protocol="HTTP" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-health-check-port="10254" \
+  --set controller.service.annotations.service\.kubernetes\.io/qcloud-loadbalancer-ssl-cert="<腾讯云SSL证书ID>" \
+  --set controller.configMap="false" \
+  --set controller.admissionWebhooks.enabled="false" \
+  --set controller.metrics.enabled="true" \
+  --set controller.metrics.serviceMonitor.enabled="true" \
+  --set controller.metrics.serviceMonitor.namespaceSelector="monitoring" \
+  --set controller.metrics.serviceMonitor.additionalLabels="app=ingress-nginx" \
+  --set controller.publishService.enabled="true" \
+  --set controller.publishService.pathOverride="/api/v1/namespaces/ingress-nginx/services/ingress-nginx-controller" \
+  --set controller.kubernetesResources.configMaps="true" \
+  --set controller.kubernetesResources.ingressClass="nginx" \
+  --set controller.ingressClassResource.name="nginx" \
+  --set controller.ingressClassResource.enabled="true" \
+  --set controller.ingressClassResource.default="true" \
+  --set controller.ingressClassResource.controllerValue="k8s.io/ingress-nginx" \
+  --set controller.ingressClass.parameters="\"ingressclass.kubernetes.io/is-default-class\"=\"true\"" \
+  --set controller.ingressClassByDefault="true" \
+  --set controller.ingressClassByName="true"
+```
+
+---
+
+### 4. 使用Helm安装Cert Manager
+
+```bash
+# 添加Cert Manager Helm仓库
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+# 安装Cert Manager
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v1.14.0 \
+  --create-namespace \
+  --set installCRDs=true \
+  --set replicaCount=2 \
+  --set extraArgs[0]="--leader-elect" \
+  --set extraArgs[1]="--dns01-recursive-nameservers-only" \
+  --set extraArgs[2]="--dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53" \
+  --set prometheus.enabled=true \
+  --set prometheus.servicemonitor.enabled=true \
+  --set prometheus.servicemonitor.namespace=monitoring \
+  --set prometheus.servicemonitor.labels."app"=cert-manager \
+  --set resources.requests.cpu=100m \
+  --set resources.requests.memory=100Mi \
+  --set resources.limits.cpu=500m \
+  --set resources.limits.memory=500Mi \
+  --set podDnsPolicy=None \
+  --set podDnsConfig.nameservers[0]=8.8.8.8 \
+  --set podDnsConfig.nameservers[1]=1.1.1.1
+```
+
+---
+
+## 📊 输出与交付物
+
+| 交付物 | 内容 |
+|-------|------|
+| Kubernetes Manifest | `main-tke.yaml` |
+| 命名空间列表 | 7个命名空间 |
+| Cilium Helm Chart | `cilium/cilium` (v1.15.0) |
+| NGINX Ingress Controller Helm Chart | `ingress-nginx/ingress-nginx` (v4.9.0) |
+| Cert Manager Helm Chart | `jetstack/cert-manager` (v1.14.0) |
+
+---
+
+## 🔍 常见问题
+
+### Q1: 如何删除命名空间？
+
+**A**:
+```bash
+kubectl delete namespace <namespace-name>
+```
+
+**注意**: 删除命名空间会删除该命名空间下的所有资源。
+
+---
+
+### Q2: 如何查看命名空间下的资源？
+
+**A**:
+```bash
+# 查看所有命名空间下的Pod
+kubectl get pods --all-namespaces
+
+# 查看生产环境命名空间下的Pod
+kubectl get pods -n production
+```
+
+---
+
+## 📚 参考文档
+
+- [Cilium官方文档](https://docs.cilium.io/)
+- [NGINX Ingress Controller官方文档](https://kubernetes.github.io/ingress-nginx/)
+- [Cert Manager官方文档](https://cert-manager.io/)
+- [腾讯云TKE文档](https://cloud.tencent.com/document/product/457)
+
+---
+
+**文档版本**: v1.0.0
+**最后更新**: 2026-01-04
+**维护人**: YYC³ Infrastructure Team

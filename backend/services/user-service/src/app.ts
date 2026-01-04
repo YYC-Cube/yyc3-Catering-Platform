@@ -63,11 +63,12 @@ app.use('*', (req, res) => {
 });
 
 // 全局错误处理
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('全局错误:', err);
-  res.status(err.status || 500).json({
-    code: err.status || 500,
-    message: err.message || '内部服务器错误',
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  logger.error('全局错误:', error);
+  res.status((error as any).status || 500).json({
+    code: (error as any).status || 500,
+    message: error.message || '内部服务器错误',
   });
 });
 

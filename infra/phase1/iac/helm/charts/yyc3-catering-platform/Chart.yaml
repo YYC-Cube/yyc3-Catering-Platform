@@ -1,0 +1,135 @@
+apiVersion: v2
+name: yyc3-catering-platform
+description: YYC³餐饮平台 - Parent Helm Chart
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - yyc3
+  - catering
+  - platform
+  - food
+  - restaurant
+
+maintainers:
+  - name: YYC³ Infrastructure Team
+    email: infra@yyc3.com
+
+home: https://github.com/yyc3/yyc3-catering-platform
+
+# Dependencies (子Charts)
+# 注意：这里定义了YYC³餐饮平台的所有服务Charts。
+# 在部署时，Helm会自动拉取这些Charts并部署到Kubernetes集群。
+dependencies:
+  # API Gateway
+  - name: api-gateway
+    version: 0.1.0
+    repository: "file://./charts/api-gateway"
+    alias: api-gateway
+    condition: api-gateway.enabled
+
+  # Business Gateway
+  - name: business-gateway
+    version: 0.1.0
+    repository: "file://./charts/business-gateway"
+    alias: business-gateway
+    condition: business-gateway.enabled
+
+  # User Service
+  - name: user-service
+    version: 0.1.0
+    repository: "file://./charts/user-service"
+    alias: user-service
+    condition: user-service.enabled
+
+  # Order Service
+  - name: order-service
+    version: 0.1.0
+    repository: "file://./charts/order-service"
+    alias: order-service
+    condition: order-service.enabled
+
+  # Menu Service
+  - name: menu-service
+    version: 0.1.0
+    repository: "file://./charts/menu-service"
+    alias: menu-service
+    condition: menu-service.enabled
+
+  # Payment Service
+  - name: payment-service
+    version: 0.1.0
+    repository: "file://./charts/payment-service"
+    alias: payment-service
+    condition: payment-service.enabled
+
+  # Delivery Service
+  - name: delivery-service
+    version: 0.1.0
+    repository: "file://./charts/delivery-service"
+    alias: delivery-service
+    condition: delivery-service.enabled
+
+  # Notification Service
+  - name: notification-service
+    version: 0.1.0
+    repository: "file://./charts/notification-service"
+    alias: notification-service
+    condition: notification-service.enabled
+
+  # Analytics Service
+  - name: analytics-service
+    version: 0.1.0
+    repository: "file://./charts/analytics-service"
+    alias: analytics-service
+    condition: analytics-service.enabled
+
+  # Smart Kitchen
+  - name: smart-kitchen
+    version: 0.1.0
+    repository: "file://./charts/smart-kitchen"
+    alias: smart-kitchen
+    condition: smart-kitchen.enabled
+
+  # Smart Ops Service
+  - name: smart-ops-service
+    version: 0.1.0
+    repository: "file://./charts/smart-ops-service"
+    alias: smart-ops-service
+    condition: smart-ops-service.enabled
+
+  # AI Assistant
+  - name: ai-assistant
+    version: 0.1.0
+    repository: "file://./charts/ai-assistant"
+    alias: ai-assistant
+    condition: ai-assistant.enabled
+
+  # Food Safety
+  - name: food-safety
+    version: 0.1.0
+    repository: "file://./charts/food-safety"
+    alias: food-safety
+    condition: food-safety.enabled
+
+  # O2O System
+  - name: o2o-system
+    version: 0.1.0
+    repository: "file://./charts/o2o-system"
+    alias: o2o-system
+    condition: o2o-system.enabled
+
+  # Chain Operation
+  - name: chain-operation
+    version: 0.1.0
+    repository: "file://./charts/chain-operation"
+    alias: chain-operation
+    condition: chain-operation.enabled
+
+  # Redis Cache
+  - name: redis-cache
+    version: 0.1.0
+    repository: "file://./charts/redis-cache"
+    alias: redis-cache
+    condition: redis-cache.enabled

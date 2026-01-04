@@ -11,6 +11,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { createCacheClient, createCacheKeyGenerator, CacheKeyGenerator } from '@yyc3/redis-cache';
 import { logger } from '../config/logger';
+import type { ICacheClient } from '../../../../types/services/cache';
 
 /**
  * 缓存配置接口
@@ -51,7 +52,7 @@ export interface CacheOptions {
  * 缓存中间件类
  */
 export class CacheMiddleware {
-  private cacheClient: any;
+  private cacheClient: ICacheClient;
   private keyGenerator: CacheKeyGenerator;
   private config: Required<CacheMiddlewareConfig>;
 

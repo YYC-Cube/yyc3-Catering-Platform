@@ -113,5 +113,5 @@ export interface FilterParams {
   /**
    * 过滤条件
    */
-  [key: string]: any;
+  [key: string]: unknown;
 }

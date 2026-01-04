@@ -196,10 +196,11 @@ app.use((req, res) => {
 });
 
 // 错误处理中间件
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  console.error('服务器错误:', err);
-  res.status(err.status || 500).json({
-    error: process.env['NODE_ENV'] === 'production' ? '服务器内部错误' : err.message,
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  console.error('服务器错误:', error);
+  res.status((error as any).status || 500).json({
+    error: process.env['NODE_ENV'] === 'production' ? '服务器内部错误' : error.message,
   });
 });
 

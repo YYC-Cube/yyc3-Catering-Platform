@@ -67,13 +67,14 @@ app.get('/version', (req, res) => {
 app.use('/api/analytics', analyticsRouter);
 
 // 全局错误处理
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('全局错误处理', { error: err, url: req.url, method: req.method });
-  
-  res.status(err.status || 500).json({
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  logger.error('全局错误处理', { error, url: req.url, method: req.method });
+
+  res.status((error as any).status || 500).json({
     success: false,
-    message: err.message || '服务器内部错误',
-    error: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    message: error.message || '服务器内部错误',
+    error: process.env.NODE_ENV === 'development' ? error.stack : undefined,
   });
 });
 

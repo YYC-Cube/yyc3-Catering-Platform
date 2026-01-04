@@ -1,0 +1,26 @@
+{
+  "name": "@yyc3/types",
+  "version": "1.0.0",
+  "description": "YYC³ 统一类型定义库",
+  "type": "module",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./entities/*": "./entities/*.d.ts",
+    "./services/*": "./services/*.d.ts",
+    "./common/*": "./common/*.d.ts",
+    "./config/*": "./config/*.d.ts",
+    "./utils/*": "./utils/*.ts"
+  },
+  "keywords": [
+    "yyc3",
+    "types",
+    "typescript"
+  ],
+  "author": "YYC³ <admin@0379.email>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

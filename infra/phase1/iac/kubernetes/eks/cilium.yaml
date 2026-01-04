@@ -1,0 +1,283 @@
+---
+@file: cilium-eks.yaml
+@description: AWS EKS Cilium 网络插件配置
+@platform: AWS EKS
+@version: v1.28
+@network-plugin: Cilium
+---
+
+# Cilium Configuration for AWS EKS
+
+---
+
+## 📋 Description
+
+本文件定义了YYC³餐饮平台在AWS EKS集群上的Cilium网络插件配置。
+
+Cilium是一个开源的网络、可观测性和安全解决方案，具有eBPF（extended Berkeley Packet Filter）技术，适用于Kubernetes环境。
+
+---
+
+## 📁 Cilium Features
+
+### 1. 网络功能
+
+- **IPv4/IPv6双栈支持**
+- **Kubernetes原生网络策略**
+- **透明代理（Service Mesh）**
+- **网络加密（IPsec、WireGuard）**
+
+### 2. 可观测性功能
+
+- **Hubble（网络可观测性）**
+- **Prometheus集成**
+- **Grafana Dashboard**
+- **流量追踪**
+
+### 3. 安全功能
+
+- **网络策略（Network Policy）**
+- **端口映射控制**
+- **Pod安全策略（PSP）**
+
+---
+
+## 🚀 Kubernetes Manifests
+
+```yaml
+# cilium-eks.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kube-system
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: cilium
+  namespace: kube-system
+spec:
+  chart: cilium
+  repo: https://helm.cilium.io/
+  version: 1.15.0
+  targetNamespace: kube-system
+  set:
+    - name: cluster.name
+      value: yyc3-production-eks
+    - name: cluster.id
+      value: 1
+    - name: cluster.region
+      value: us-east-1
+    - name: kubeProxyReplacement
+      value: "strict"
+    - name: ipam.mode
+      value: "kubernetes"
+    - name: tunnel
+      value: "vxlan"
+    - name: ipv4.enabled
+      value: "true"
+    - name: ipv6.enabled
+      value: "false"
+    - name: hostServices.enabled
+      value: "false"
+    - name: routingMode
+      value: "native"
+    - name: masquerade
+      value: "true"
+    - name: hubble.enabled
+      value: "true"
+    - name: hubble.listenAddress
+      value: ":4244"
+    - name: hubble.relay.enabled
+      value: "true"
+    - name: hubble.ui.enabled
+      value: "true"
+    - name: hubble.ui.standalone.enabled
+      value: "true"
+    - name: hubble.ui.ingress.enabled
+      value: "true"
+    - name: prometheus.enabled
+      value: "true"
+    - name: operator.replicas
+      value: 2
+    - name: aws.enabled
+      value: "true"
+    - name: nodePort.enabled
+      value: "false"
+```
+
+---
+
+## 🛠️ 快速开始
+
+### 1. 使用Helm安装Cilium
+
+```bash
+# 添加Cilium Helm仓库
+helm repo add cilium https://helm.cilium.io/
+helm repo update
+
+# 安装Cilium
+helm install cilium cilium/cilium \
+  --namespace kube-system \
+  --set cluster.name=yyc3-production-eks \
+  --set cluster.id=1 \
+  --set cluster.region=us-east-1 \
+  --set kubeProxyReplacement=strict \
+  --set ipam.mode=kubernetes \
+  --set tunnel=vxlan \
+  --set ipv4.enabled=true \
+  --set ipv6.enabled=false \
+  --set hostServices.enabled=false \
+  --set routingMode=native \
+  --set masquerade=true \
+  --set hubble.enabled=true \
+  --set hubble.relay.enabled=true \
+  --set hubble.ui.enabled=true \
+  --set hubble.ui.standalone.enabled=true \
+  --set hubble.ui.ingress.enabled=true \
+  --set prometheus.enabled=true \
+  --set operator.replicas=2 \
+  --set aws.enabled=true \
+  --set nodePort.enabled=false
+```
+
+---
+
+### 2. 验证Cilium安装
+
+```bash
+# 查看Cilium Pod
+kubectl get pods -n kube-system -l app.kubernetes.io/name=cilium
+
+# 查看Cilium状态
+cilium status
+
+# 查看Hubble UI
+cilium hubble ui
+```
+
+---
+
+### 3. 访问Hubble UI
+
+**步骤**：
+1. 启动Hubble UI：
+   ```bash
+   cilium hubble ui
+   ```
+
+2. 打开浏览器，访问 `http://localhost:12000`
+
+---
+
+### 4. 配置Hubble Relay（可选）
+
+**目的**：允许远程客户端访问Hubble API。
+
+**步骤**：
+1. 启用Hubble Relay：
+   ```bash
+   kubectl port-forward -n kube-system svc/hubble-relay --address 0.0.0.0 4245:80
+   ```
+
+2. 使用Hubble CLI连接：
+   ```bash
+   hubble observe --server localhost:4245
+   ```
+
+---
+
+## 📊 输出与交付物
+
+| 交付物 | 内容 |
+|-------|------|
+| Kubernetes Manifest | `cilium-eks.yaml` |
+| Helm Chart | `cilium/cilium` (v1.15.0) |
+| Hubble UI | `http://localhost:12000` |
+
+---
+
+## 🔍 常见问题
+
+### Q1: Cilium Pod一直处于 `Pending` 或 `CrashLoopBackOff` 状态怎么办？
+
+**A**:
+1. 检查Pod日志：
+   ```bash
+   kubectl logs -n kube-system -l app.kubernetes.io/name=cilium
+   ```
+2. 检查Node状态：
+   ```bash
+   kubectl get nodes
+   ```
+3. 检查Kernel版本：
+   ```bash
+   uname -r
+   ```
+   **要求**: Kernel >= 4.9
+
+---
+
+### Q2: 如何配置网络策略？
+
+**A**:
+1. 创建NetworkPolicy对象：
+   ```yaml
+   apiVersion: networking.k8s.io/v1
+   kind: NetworkPolicy
+   metadata:
+     name: allow-frontend-to-backend
+     namespace: production
+   spec:
+     podSelector:
+       matchLabels:
+         app: backend
+     policyTypes:
+     - Ingress
+     ingress:
+     - from:
+       - podSelector:
+           matchLabels:
+             app: frontend
+       ports:
+       - protocol: TCP
+         port: 8080
+   ```
+
+2. 应用NetworkPolicy：
+   ```bash
+   kubectl apply -f networkpolicy.yaml
+   ```
+
+---
+
+### Q3: 如何启用网络加密？
+
+**A**:
+1. 修改Helm Chart配置：
+   ```bash
+   helm upgrade cilium cilium/cilium \
+     --namespace kube-system \
+     --set encryption.enabled=true \
+     --set encryption.type=wireguard
+   ```
+
+2. 验证加密：
+   ```bash
+   cilium status
+   ```
+
+---
+
+## 📚 参考文档
+
+- [Cilium官方文档](https://docs.cilium.io/)
+- [Cilium GitHub](https://github.com/cilium/cilium)
+- [AWS EKS最佳实践](https://docs.aws.amazon.com/eks/latest/userguide/networking.html)
+
+---
+
+**文档版本**: v1.0.0
+**最后更新**: 2026-01-04
+**维护人**: YYC³ Infrastructure Team

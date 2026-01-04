@@ -1,0 +1,16 @@
+apiVersion: v2
+name: order-service
+description: YYC³餐饮平台 - Order Service Helm Chart (Backend)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - yyc3
+  - order
+  - service
+  - backend
+
+maintainers:
+  - name: YYC³ Platform Team
+    email: platform@yyc3.com

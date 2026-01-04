@@ -1,0 +1,369 @@
+---
+@file: cert-manager-eks.yaml
+@description: AWS EKS Cert Manager配置
+@platform: AWS EKS
+@version: v1.28
+@certificate-manager: Cert Manager
+---
+
+# Cert Manager Configuration for AWS EKS
+
+---
+
+## 📋 Description
+
+本文件定义了YYC³餐饮平台在AWS EKS集群上的Cert Manager配置。
+
+Cert Manager是一个Kubernetes原生的证书管理工具，用于自动获取、更新和管理TLS证书（如Let's Encrypt证书）。
+
+---
+
+## 📁 Cert Manager Features
+
+### 1. 证书管理
+
+- **自动获取TLS证书**
+- **自动更新TLS证书**
+- **自动续签TLS证书**
+
+### 2. 集成功能
+
+- **Let's Encrypt集成**
+- **ACME协议支持**
+- **DNS Challenge验证**
+- **HTTP Challenge验证**
+
+---
+
+## 🚀 Kubernetes Manifests
+
+```yaml
+# cert-manager-eks.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager
+  labels:
+    name: cert-manager
+    app: cert-manager
+    project: yyc3-catering-platform
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: jetstack
+  namespace: cert-manager
+spec:
+  interval: 1h
+  url: https://charts.jetstack.io
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: cert-manager
+  namespace: cert-manager
+spec:
+  chart:
+    spec:
+      chart: cert-manager
+      sourceRef:
+        kind: HelmRepository
+        name: jetstack
+        namespace: cert-manager
+      version: v1.14.0
+  interval: 1h
+  timeout: 5m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    installCRDs: true
+    replicaCount: 2
+    extraArgs:
+    - "--leader-elect"
+    - "--dns01-recursive-nameservers-only"
+    - "--dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53"
+    prometheus:
+      enabled: true
+      servicemonitor:
+        enabled: true
+        namespace: monitoring
+        labels:
+          app: cert-manager
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+    podDnsPolicy: "None"
+    podDnsConfig:
+      nameservers:
+      - 8.8.8.8
+      - 1.1.1.1
+```
+
+---
+
+## 🛠️ 快速开始
+
+### 1. 使用Helm安装Cert Manager
+
+```bash
+# 添加Cert Manager Helm仓库
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+# 安装Cert Manager
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --version v1.14.0 \
+  --create-namespace \
+  --set installCRDs=true \
+  --set replicaCount=2 \
+  --set extraArgs[0]="--leader-elect" \
+  --set extraArgs[1]="--dns01-recursive-nameservers-only" \
+  --set extraArgs[2]="--dns01-recursive-nameservers=8.8.8.8:53,1.1.1.1:53" \
+  --set prometheus.enabled=true \
+  --set prometheus.servicemonitor.enabled=true \
+  --set prometheus.servicemonitor.namespace=monitoring \
+  --set prometheus.servicemonitor.labels."app"=cert-manager \
+  --set resources.requests.cpu=100m \
+  --set resources.requests.memory=100Mi \
+  --set resources.limits.cpu=500m \
+  --set resources.limits.memory=500Mi \
+  --set podDnsPolicy=None \
+  --set podDnsConfig.nameservers[0]=8.8.8.8 \
+  --set podDnsConfig.nameservers[1]=1.1.1.1
+```
+
+---
+
+### 2. 验证Cert Manager安装
+
+```bash
+# 查看Cert Manager Pod
+kubectl get pods -n cert-manager -l app.kubernetes.io/name=cert-manager
+
+# 查看Cert Manager CRDs
+kubectl get crd | grep cert-manager
+
+# 查看Cert Manager状态
+kubectl get -n cert-manager deploy/cert-manager
+```
+
+---
+
+### 3. 配置Let's Encrypt Cluster Issuer
+
+**步骤**：
+1. 创建Cluster Issuer资源：
+   ```yaml
+   apiVersion: cert-manager.io/v1
+   kind: ClusterIssuer
+   metadata:
+     name: letsencrypt-prod
+   spec:
+     acme:
+       server: https://acme-v02.api.letsencrypt.org/directory
+       email: admin@yyc3.com
+       privateKeySecretRef:
+         name: letsencrypt-prod
+       solvers:
+       - http01:
+           ingress:
+             class: nginx
+   ```
+
+2. 应用Cluster Issuer：
+   ```bash
+   kubectl apply -f clusterissuer-letsencrypt-prod.yaml
+   ```
+
+3. 验证Cluster Issuer：
+   ```bash
+   kubectl describe clusterissuer letsencrypt-prod
+   ```
+
+---
+
+### 4. 创建Certificate资源
+
+**步骤**：
+1. 创建Certificate资源：
+   ```yaml
+   apiVersion: cert-manager.io/v1
+   kind: Certificate
+   metadata:
+     name: yyc3-api-tls
+     namespace: production
+   spec:
+     secretName: yyc3-api-tls
+     dnsNames:
+     - api.yyc3.com
+     issuerRef:
+       name: letsencrypt-prod
+       kind: ClusterIssuer
+   ```
+
+2. 应用Certificate资源：
+   ```bash
+   kubectl apply -f certificate.yaml
+   ```
+
+3. 验证Certificate资源：
+   ```bash
+   kubectl get certificate yyc3-api-tls -n production
+   kubectl describe certificate yyc3-api-tls -n production
+   ```
+
+---
+
+### 5. 在Ingress中使用Certificate
+
+**步骤**：
+1. 创建Ingress资源：
+   ```yaml
+   apiVersion: networking.k8s.io/v1
+   kind: Ingress
+   metadata:
+     name: yyc3-api-ingress
+     namespace: production
+     annotations:
+       kubernetes.io/ingress.class: nginx
+       cert-manager.io/cluster-issuer: letsencrypt-prod
+   spec:
+     tls:
+     - hosts:
+       - api.yyc3.com
+       secretName: yyc3-api-tls
+     rules:
+     - host: api.yyc3.com
+       http:
+         paths:
+         - path: /
+           pathType: Prefix
+           backend:
+             service:
+               name: api-gateway
+               port:
+                 number: 8080
+   ```
+
+2. 应用Ingress资源：
+   ```bash
+   kubectl apply -f ingress.yaml
+   ```
+
+3. 验证Ingress资源：
+   ```bash
+   kubectl get ingress yyc3-api-ingress -n production
+   kubectl describe ingress yyc3-api-ingress -n production
+   ```
+
+---
+
+## 📊 输出与交付物
+
+| 交付物 | 内容 |
+|-------|------|
+| Kubernetes Manifest | `cert-manager-eks.yaml` |
+| Helm Chart | `jetstack/cert-manager` (v1.14.0) |
+| Cluster Issuer | `letsencrypt-prod` |
+| Certificate | `yyc3-api-tls` |
+
+---
+
+## 🔍 常见问题
+
+### Q1: Cert Manager Pod一直处于 `Pending` 或 `CrashLoopBackOff` 状态怎么办？
+
+**A**:
+1. 检查Pod日志：
+   ```bash
+   kubectl logs -n cert-manager -l app.kubernetes.io/name=cert-manager
+   ```
+2. 检查Node状态：
+   ```bash
+   kubectl get nodes
+   ```
+3. 检查DNS配置：
+   ```yaml
+   podDnsPolicy: "None"
+   podDnsConfig:
+     nameservers:
+     - 8.8.8.8
+     - 1.1.1.1
+   ```
+
+---
+
+### Q2: Let's Encrypt证书获取失败怎么办？
+
+**A**:
+1. 检查Cluster Issuer状态：
+   ```bash
+   kubectl describe clusterissuer letsencrypt-prod
+   ```
+2. 检查DNS解析：
+   ```bash
+   nslookup api.yyc3.com
+   ```
+3. 检查Ingress配置：
+   ```bash
+   kubectl describe ingress yyc3-api-ingress -n production
+   ```
+4. 检查Certificate资源：
+   ```bash
+   kubectl get certificate yyc3-api-tls -n production
+   kubectl describe certificate yyc3-api-tls -n production
+   ```
+
+---
+
+### Q3: 如何配置Let's Encrypt Staging环境？
+
+**A**:
+1. 创建Staging Cluster Issuer：
+   ```yaml
+   apiVersion: cert-manager.io/v1
+   kind: ClusterIssuer
+   metadata:
+     name: letsencrypt-staging
+   spec:
+     acme:
+       server: https://acme-staging-v02.api.letsencrypt.org/directory
+       email: admin@yyc3.com
+       privateKeySecretRef:
+         name: letsencrypt-staging
+       solvers:
+       - http01:
+           ingress:
+             class: nginx
+   ```
+
+2. 在Ingress中使用Staging Cluster Issuer：
+   ```yaml
+   annotations:
+     cert-manager.io/cluster-issuer: letsencrypt-staging
+   ```
+
+**注意**：Staging环境的证书有效期较短，且不受浏览器信任，仅用于测试。
+
+---
+
+## 📚 参考文档
+
+- [Cert Manager官方文档](https://cert-manager.io/)
+- [Let's Encrypt文档](https://letsencrypt.org/)
+- [ACME协议文档](https://datatracker.ietf.org/wg/acme/documents/)
+
+---
+
+**文档版本**: v1.0.0
+**最后更新**: 2026-01-04
+**维护人**: YYC³ Infrastructure Team

@@ -49,12 +49,13 @@ app.get('/health', (req: express.Request, res: express.Response) => {
 app.use('/api/notifications', notificationRoutes);
 
 // 错误处理中间件
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('全局错误处理:', err);
-  res.status(err.status || 500).json({
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  logger.error('全局错误处理:', error);
+  res.status((error as any).status || 500).json({
     error: {
-      message: err.message || '内部服务器错误',
-      code: err.code || 'INTERNAL_ERROR',
+      message: error.message || '内部服务器错误',
+      code: (error as any).code || 'INTERNAL_ERROR',
     },
   });
 });

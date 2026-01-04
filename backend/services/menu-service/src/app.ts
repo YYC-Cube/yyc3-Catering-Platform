@@ -72,11 +72,12 @@ app.use((req, res) => {
 });
 
 // 全局错误处理中间件
-app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-  logger.error('Global error handler:', err);
-  res.status(err.status || 500).json({
+app.use((err: Error | unknown, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const error = err instanceof Error ? err : new Error(String(err));
+  logger.error('Global error handler:', error);
+  res.status((error as any).status || 500).json({
     success: false,
-    message: err.message || 'Internal Server Error'
+    message: error.message || 'Internal Server Error'
   });
 });
 

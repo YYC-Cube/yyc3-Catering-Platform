@@ -19,10 +19,13 @@ import logger from '../config/logger';
  * @param res 响应对象
  * @param next 下一个中间件
  */
-const errorHandler = (err: any, req: Request, res: Response, next: NextFunction): void => {
+const errorHandler = (err: Error | unknown, req: Request, res: Response, next: NextFunction): void => {
+  // 转换错误对象
+  const error = err instanceof Error ? err : new Error(String(err));
+
   // 记录错误信息
   logger.error('Error occurred:', {
-    error: err,
+    error,
     url: req.url,
     method: req.method,
     params: req.params,
@@ -80,11 +83,11 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
   else {
     // 开发环境下返回详细错误信息
     if (process.env.NODE_ENV === 'development') {
-      response.message = err.message;
+      response.message = error.message;
       response.data = {
-        name: err.name,
-        stack: err.stack,
-        details: err,
+        name: error.name,
+        stack: error.stack,
+        details: error,
       };
     }
   }

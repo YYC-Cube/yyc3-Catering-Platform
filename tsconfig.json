@@ -41,7 +41,14 @@
       "@/shared/*": ["./shared/*"],
       "@backend/*": ["./backend/*"],
       "@agentic-core/*": ["./agentic-core/*"],
-      "@ai/*": ["./ai/*"]
+      "@ai/*": ["./ai/*"],
+      "@yyc3/types/*": ["./types/*"],
+      "@yyc3/types": ["./types/index"],
+      "@yyc3/types/entities/*": ["./types/entities/*"],
+      "@yyc3/types/services/*": ["./types/services/*"],
+      "@yyc3/types/common/*": ["./types/common/*"],
+      "@yyc3/types/config/*": ["./types/config/*"],
+      "@yyc3/types/utils/*": ["./types/utils/*"]
     },
     "typeRoots": ["./node_modules/@types", "./types"],
     "types": ["node"]
@@ -62,6 +69,8 @@
     "tmp",
     "frontend",
     "backend",
-    "agentic-core"
+    "agentic-core",
+    "docs",
+    "tests"
   ]
 }

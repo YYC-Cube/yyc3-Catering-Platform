@@ -1,0 +1,16 @@
+apiVersion: v2
+name: user-service
+description: YYC³餐饮平台 - User Service Helm Chart (Backend)
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - yyc3
+  - user
+  - service
+  - backend
+
+maintainers:
+  - name: YYC³ Platform Team
+    email: platform@yyc3.com

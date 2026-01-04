@@ -11,6 +11,7 @@
 
 import { createCacheClient, createCacheStrategyManager, createCacheKeyGenerator } from '@yyc3/redis-cache';
 import { logger } from '../config/logger';
+import type { ICacheClient } from '../../../../types/services/cache';
 
 /**
  * 缓存配置接口
@@ -63,9 +64,9 @@ export interface CacheStats {
  * Redis缓存服务类
  */
 export class CacheService {
-  private cacheClient: any;
-  private strategyManager: any;
-  private keyGenerator: any;
+  private cacheClient: ICacheClient;
+  private strategyManager: unknown;
+  private keyGenerator: unknown;
   private config: Required<CacheConfig>;
   private stats: CacheStats = {
     hits: 0,
