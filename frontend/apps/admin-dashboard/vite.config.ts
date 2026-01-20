@@ -40,7 +40,8 @@ export default defineConfig({
       scss: {
         // 移除自动导入，改为手动导入以避免变量冲突
       }
-    }
+    },
+    postcss: './postcss.config.js'
   },
 
   server: {

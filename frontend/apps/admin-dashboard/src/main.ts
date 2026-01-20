@@ -18,6 +18,7 @@ import { createPerformancePlugin } from './plugins/performance'
 
 // 样式导入
 import './styles/index.scss'
+import './styles/tailwind.css'
 import 'element-plus/theme-chalk/index.css'
 
 // Element Plus 组件导入
