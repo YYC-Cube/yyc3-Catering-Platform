@@ -9,6 +9,30 @@
     :class="layoutClasses"
     :style="layoutStyles"
   >
+    <!-- 导航进度条 -->
+    <NavigationProgressBar
+      :color="'var(--color-primary)'"
+      :duration="300"
+      :show-on-route-change="true"
+    />
+
+    <!-- 离线状态指示器 -->
+    <OfflineIndicator
+      :show="true"
+      :auto-hide="true"
+      :hide-delay="3000"
+    />
+
+    <!-- 导航加载指示器 -->
+    <NavigationLoader />
+
+    <!-- 导航错误提示 -->
+    <NavigationErrorAlert
+      :retry-action="retryNavigationAction"
+      @retry="handleRetry"
+      @close="handleErrorClose"
+    />
+
     <!-- 移动端遮罩层 -->
     <div
       v-if="isMobile && showSidebar && sidebarOpen"
@@ -113,6 +137,11 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
+import NavigationLoader from '@/components/common/NavigationLoader.vue'
+import NavigationErrorAlert from '@/components/common/NavigationErrorAlert.vue'
+import NavigationProgressBar from '@/components/common/NavigationProgressBar.vue'
+import { useNavigationState } from '@/composables/useNavigationState'
 
 interface Props {
   // 布局配置
@@ -145,11 +174,29 @@ const props = withDefaults(defineProps<Props>(), {
   layoutGap: 'var(--spacing-lg)'
 })
 
-// 响应式状态
+const router = useRouter()
+const navState = useNavigationState()
+const lastNavigationPath = ref<string | null>(null)
+const retryNavigationAction = ref<(() => Promise<void>) | undefined>(undefined)
+
 const windowWidth = ref(0)
 const sidebarOpen = ref(true)
 
-// 响应式断点计算
+const handleRetry = async () => {
+  if (lastNavigationPath.value) {
+    try {
+      await router.push(lastNavigationPath.value)
+    } catch (error) {
+      console.error('重试导航失败:', error)
+    }
+  }
+}
+
+const handleErrorClose = () => {
+  lastNavigationPath.value = null
+  retryNavigationAction.value = undefined
+}
+
 const currentBreakpoint = computed(() => {
   if (windowWidth.value < 640) return 'sm'
   if (windowWidth.value < 768) return 'md'

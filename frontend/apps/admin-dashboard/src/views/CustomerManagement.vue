@@ -1,29 +1,32 @@
 <template>
   <div class="customer-management">
-    <!-- 客户统计概览 -->
-    <div class="customer-overview">
-      <el-row :gutter="20">
-        <el-col :span="6" v-for="stat in customerStats" :key="stat.key">
-          <el-card class="stat-card">
-            <div class="stat-content">
-              <div class="stat-icon" :class="stat.type">
-                <el-icon :size="28"><component :is="stat.icon" /></el-icon>
-              </div>
-              <div class="stat-info">
-                <div class="stat-value">{{ stat.value }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
-                <div class="stat-trend" v-if="stat.trend">
-                  <el-icon :size="14" :color="getTrendColor(stat.trendType)">
-                    <component :is="getTrendIcon(stat.trendType)" />
-                  </el-icon>
-                  <span>{{ stat.trend }}</span>
+    <el-tabs v-model="activeTab" class="customer-tabs">
+      <!-- 客户管理标签页 -->
+      <el-tab-pane label="客户管理" name="customers">
+        <!-- 客户统计概览 -->
+        <div class="customer-overview">
+          <el-row :gutter="20">
+            <el-col :span="6" v-for="stat in customerStats" :key="stat.key">
+              <el-card class="stat-card">
+                <div class="stat-content">
+                  <div class="stat-icon" :class="stat.type">
+                    <el-icon :size="28"><component :is="stat.icon" /></el-icon>
+                  </div>
+                  <div class="stat-info">
+                    <div class="stat-value">{{ stat.value }}</div>
+                    <div class="stat-label">{{ stat.label }}</div>
+                    <div class="stat-trend" v-if="stat.trend">
+                      <el-icon :size="14" :color="getTrendColor(stat.trendType)">
+                        <component :is="getTrendIcon(stat.trendType)" />
+                      </el-icon>
+                      <span>{{ stat.trend }}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+              </el-card>
+            </el-col>
+          </el-row>
+        </div>
 
     <!-- 工具栏 -->
     <div class="toolbar">
@@ -288,6 +291,33 @@
         @updated="handleLoyaltyUpdated"
       />
     </el-dialog>
+      </el-tab-pane>
+
+      <!-- 生命周期管理标签页 -->
+      <el-tab-pane label="生命周期管理" name="lifecycle">
+        <CustomerLifecycleManager />
+      </el-tab-pane>
+
+      <!-- 客户价值评估标签页 -->
+      <el-tab-pane label="客户价值评估" name="value">
+        <CustomerValueAssessment />
+      </el-tab-pane>
+
+      <!-- 流失预测标签页 -->
+      <el-tab-pane label="流失预测" name="churn">
+        <CustomerChurnPrediction />
+      </el-tab-pane>
+
+      <!-- 关怀提醒标签页 -->
+      <el-tab-pane label="关怀提醒" name="care">
+        <CustomerCareReminder />
+      </el-tab-pane>
+
+      <!-- 数据分析标签页 -->
+      <el-tab-pane label="数据分析" name="analytics">
+        <CustomerLifecycleAnalytics />
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -315,8 +345,14 @@ import CustomerDetail from '@/components/Customer/CustomerDetail.vue'
 import CustomerForm from '@/components/Customer/CustomerForm.vue'
 import CustomerSegment from '@/components/Customer/CustomerSegment.vue'
 import CustomerLoyalty from '@/components/Customer/CustomerLoyalty.vue'
+import CustomerLifecycleManager from '@/components/Customer/CustomerLifecycleManager.vue'
+import CustomerValueAssessment from '@/components/Customer/CustomerValueAssessment.vue'
+import CustomerChurnPrediction from '@/components/Customer/CustomerChurnPrediction.vue'
+import CustomerCareReminder from '@/components/Customer/CustomerCareReminder.vue'
+import CustomerLifecycleAnalytics from '@/components/Customer/CustomerLifecycleAnalytics.vue'
 
 // 响应式数据
+const activeTab = ref('customers')
 const loading = ref(false)
 const customers = ref<Customer[]>([])
 const selectedCustomers = ref<Customer[]>([])

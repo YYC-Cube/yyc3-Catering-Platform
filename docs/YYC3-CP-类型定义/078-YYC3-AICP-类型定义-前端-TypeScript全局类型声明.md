@@ -60,6 +60,100 @@ YYC³(YanYuCloudCube)-「智能教育」项目是一个基于「五高五标五�
 
 ### 3. 前端-TypeScript全局类型声明
 
+#### 3.1 类型定义规范
+
+YYC³项目采用统一的TypeScript类型定义体系，确保前后端类型一致性。
+
+#### 3.2 ID类型统一规范
+
+**核心原则**：所有实体ID统一使用 `string` 类型（UUID格式）
+
+```typescript
+// ✅ 正确：使用string类型的UUID
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface Order {
+  id: string;
+  userId: string;
+  status: OrderStatus;
+}
+
+// ❌ 错误：不要使用number类型
+interface UserOld {
+  id: number;  // 已废弃
+  name: string;
+}
+```
+
+#### 3.3 核心实体类型定义
+
+**用户相关类型**：
+- `User`: 用户基础信息
+- `FrontendUser`: 前端用户接口（统一ID为string）
+- `UserRole`: 用户角色枚举
+- `UserStatus`: 用户状态枚举
+
+**订单相关类型**：
+- `Order`: 订单基础信息
+- `OrderStatus`: 订单状态枚举
+- `OrderItem`: 订单项
+- `PaymentInfo`: 支付信息
+
+**菜单相关类型**：
+- `MenuItem`: 菜品信息
+- `MenuCategory`: 菜品分类
+- `MenuTag`: 菜品标签
+
+#### 3.4 类型转换工具
+
+项目提供类型转换工具，处理前后端数据格式转换：
+
+```typescript
+import { typeConverter } from '@/utils/type-converter';
+
+// 转换后端数据到前端格式
+const frontendUser = typeConverter.toFrontendUser(backendUserData);
+
+// 验证数据格式
+const isValid = typeConverter.validateUser(userData);
+```
+
+#### 3.5 类型定义文件结构
+
+```
+types/
+├── entities/           # 实体类型定义
+│   ├── user.d.ts       # 用户相关类型
+│   ├── order.d.ts      # 订单相关类型
+│   └── menu.d.ts       # 菜单相关类型
+├── enums/              # 枚举定义
+│   ├── user.ts         # 用户枚举
+│   └── order.ts        # 订单枚举
+└── utils/              # 类型工具
+    └── type-converter.ts  # 类型转换器
+```
+
+#### 3.6 使用示例
+
+```typescript
+// 在Vue组件中使用
+import type { User, Order, OrderStatus } from '@/types/entities/user';
+
+interface ComponentProps {
+  user: User;
+  orders: Order[];
+  onOrderUpdate: (orderId: string, status: OrderStatus) => void;
+}
+
+// 类型安全的数据访问
+const userName = user.name;  // ✅ 类型安全
+const userId = user.id;      // ✅ string类型
+```
+
 ---
 
 > 「***YanYuCloudCube***」

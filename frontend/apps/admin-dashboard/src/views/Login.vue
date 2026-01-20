@@ -3,7 +3,7 @@
     <div class="login-card">
       <!-- Logo区域 -->
       <div class="logo-section">
-        <img src="/assets/logo.png" alt="YYC³" class="logo" />
+        <img src="/assets/logo.svg" alt="YYC³" class="logo" />
         <h1 class="title">YYC³餐饮管理后台</h1>
         <p class="subtitle">基于五高五标五化理念的智能化管理平台</p>
       </div>

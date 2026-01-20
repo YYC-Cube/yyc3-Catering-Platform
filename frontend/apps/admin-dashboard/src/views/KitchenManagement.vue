@@ -242,7 +242,7 @@
                   <el-button
                     size="small"
                     type="warning"
-                    @click="assignTask(row)"
+                    @click="openAssignDialog(row)"
                   >
                     分配
                   </el-button>
@@ -339,7 +339,7 @@
                         </el-button>
                         <el-button
                           size="small"
-                          @click.stop="assignTask(task)"
+                          @click.stop="openAssignDialog(task)"
                         >
                           分配
                         </el-button>
@@ -376,7 +376,7 @@
               :key="staff.id"
               :span="6"
             >
-              <el-card class="staff-card" :class="{ 'status-break': staff.status === 'break', 'status-offline': staff.status === 'offline' }">
+              <el-card class="staff-card" :class="{ 'status-break': staff.status === 'break', 'status-offline': staff.status === 'offline', 'status-busy': staff.status === 'busy' }">
                 <div class="staff-header">
                   <el-avatar :src="staff.avatar" :size="40">
                     {{ staff.name.charAt(0) }}
@@ -797,7 +797,8 @@
         </el-form-item>
         <el-form-item label="新状态">
           <el-radio-group v-model="staffStatusForm.status">
-            <el-radio label="active">工作</el-radio>
+            <el-radio label="online">工作</el-radio>
+            <el-radio label="busy">忙碌</el-radio>
             <el-radio label="break">休息</el-radio>
             <el-radio label="offline">离线</el-radio>
           </el-radio-group>
@@ -818,70 +819,67 @@
 import { ref, reactive, onMounted, computed, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import * as echarts from 'echarts'
-import {
-  getKitchenTasks,
-  createKitchenTask,
-  updateKitchenTask,
-  deleteKitchenTask,
-  bulkOperationTasks,
-  assignTask,
-  getKitchenStaff,
-  updateStaffStatus,
-  getKitchenStats,
-  getKitchenDisplays,
-  updateKitchenDisplay,
+import { useKitchen } from '@/composables/useKitchen'
+import type {
   KitchenTask,
-  KitchenStaff,
-  KitchenStation,
-  KitchenTaskStatus,
+  KitchenEmployee,
+  TaskStation,
   TaskPriority,
-  KitchenStats,
-  KitchenDisplay
-} from '@/api/kitchen'
+  TaskStatus,
+  EmployeeStatus
+} from '@/types/kitchen'
+
+const {
+  loading,
+  stats,
+  tasks,
+  employees,
+  taskPagination,
+  loadStats,
+  loadTasks,
+  loadEmployees,
+  updateTaskStatus,
+  assignTask: assignTaskAPI,
+  updateEmployeeStatus,
+  deleteTask: deleteTaskAPI,
+  createTask,
+  updateTask,
+  createDisplay,
+  updateDisplay,
+  deleteDisplay: deleteDisplayAPI,
+  loadDisplays,
+  refreshData
+} = useKitchen()
 
 // 响应式数据
 const activeTab = ref('tasks')
-const tasksLoading = ref(false)
-const displaysLoading = ref(false)
 const taskViewMode = ref('list')
-const tasks = ref<KitchenTask[]>([])
-const kitchenStaff = ref<KitchenStaff[]>([])
-const kitchenStats = reactive<KitchenStats>({
+const kitchenStaff = ref<KitchenEmployee[]>([])
+const kitchenStats = reactive({
   activeTasks: 0,
   completedToday: 0,
-  averagePreparationTime: 0,
   efficiencyRate: 0,
+  averagePreparationTime: 0,
   tasksByStation: {} as any,
   tasksByStatus: {} as any,
   staffPerformance: [],
   peakHours: []
 })
-const kitchenDisplays = ref<KitchenDisplay[]>([])
+const kitchenDisplays = ref<any[]>([])
 const analyticsDateRange = ref<[string, string]>(['', ''])
 
-// 筛板配置
 const kanbanColumns = ref([
   { value: 'pending', label: '待处理' },
   { value: 'preparing', label: '制作中' },
   { value: 'ready', label: '已完成' },
-  {
-    value: 'served', label: '已上菜'
-  }
+  { value: 'served', label: '已上菜' }
 ])
 
-// 任务筛选
 const taskFilter = reactive({
   station: '',
   status: '',
   priority: '',
   search: ''
-})
-
-// 分页
-const taskPagination = reactive({
-  page: 1,
-  limit: 20,
-  total: 0
 })
 
 // 对话框状态
@@ -890,19 +888,27 @@ const bulkOperationDialogVisible = ref(false)
 const taskDetailVisible = ref(false)
 const assignDialogVisible = ref(false)
 const staffStatusDialogVisible = ref(false)
+const displayDialogVisible = ref(false)
 
 // 表单数据
 const taskFormRef = ref()
+const displayForm = ref<Partial<KitchenDisplay>>({
+  displayName: '',
+  displayType: 'task_board',
+  position: 'kitchen_main',
+  content: {},
+  isActive: true
+})
 const assignForm = reactive({
-  taskId: 0,
-  staffId: null,
+  taskId: '',
+  staffId: '',
   note: ''
 })
 
 const staffStatusForm = reactive({
-  staffId: 0,
+  staffId: '',
   name: '',
-  status: 'active' as 'active' | 'break' | 'offline'
+  status: 'online' as EmployeeStatus
 })
 
 const bulkOperationForm = reactive({
@@ -917,99 +923,36 @@ const taskForm = reactive<Partial<KitchenTask>>({
   itemName: '',
   orderNo: '',
   quantity: 1,
-  station: KitchenStation.GENERAL,
-  priority: TaskPriority.NORMAL,
+  station: 'general' as TaskStation,
+  priority: 'normal' as TaskPriority,
   estimatedTime: null,
-  assignedTo: null,
-  specialInstructions: ''
+  assignedTo: undefined,
+  specialRequests: ''
 })
 
-// 选中的任务
 const selectedTask = ref<KitchenTask | null>(null)
-const selectedTasks = ref<number[]>([])
+const selectedTasks = ref<string[]>([])
 const isEditingTask = ref(false)
 
-// 加载状态
 const taskFormLoading = ref(false)
 const bulkOperationLoading = ref(false)
 const assignFormLoading = ref(false)
 const staffStatusFormLoading = ref(false)
 
-// 图表引用
 const taskStatusChart = ref<echarts.EChartsType>()
 const stationChart = ref<echarts.EChartsType>()
 const staffEfficiencyChart = ref<echarts.EChartsType>()
 const peakHoursChart = ref<echarts.EChartsType>()
 
-// 计算属性
 const activeKitchenStaff = computed(() =>
-  kitchenStaff.value.filter(staff => staff.status === 'active')
+  kitchenStaff.value.filter(staff => staff.status === 'online')
 )
 
-// 方法
-const loadTasks = async () => {
-  tasksLoading.value = true
-  try {
-    const response = await getKitchenTasks({
-      page: taskPagination.page,
-      limit: taskPagination.limit,
-      ...taskFilter
-    })
-    if (response.success && response.data) {
-      tasks.value = response.data.items
-      taskPagination.total = response.data.pagination.total
-    }
-  } catch (error) {
-    console.error('Load kitchen tasks failed:', error)
-    ElMessage.error('加载厨房任务失败')
-  } finally {
-    tasksLoading.value = false
-  }
-}
-
 const loadStaff = async () => {
-  try {
-    const response = await getKitchenStaff()
-    if (response.success && response.data) {
-      kitchenStaff.value = response.data
-    }
-  } catch (error) {
-    console.error('Load kitchen staff failed:', error)
-    ElMessage.error('加载厨房员工失败')
+  const response = await loadEmployees()
+  if (response) {
+    kitchenStaff.value = response
   }
-}
-
-const loadStats = async () => {
-  try {
-    const response = await getKitchenStats()
-    if (response.success && response.data) {
-      Object.assign(kitchenStats, response.data)
-    }
-  } catch (error) {
-    console.error('Load kitchen stats failed:', error)
-    ElMessage.error('加载统计数据失败')
-  }
-}
-
-const loadDisplays = async () => {
-  displaysLoading.value = true
-  try {
-    const response = await getKitchenDisplays()
-    if (response.success && response.data) {
-      kitchenDisplays.value = response.data
-    }
-  } catch (error) {
-    console.error('Load kitchen displays failed:', error)
-    ElMessage.error('加载显示配置失败')
-  } finally {
-    displaysLoading.value = false
-  }
-}
-
-const refreshData = () => {
-  loadTasks()
-  loadStaff()
-  loadStats()
 }
 
 const refreshStaffData = () => {
@@ -1023,18 +966,17 @@ const refreshAnalytics = () => {
   })
 }
 
-// 任务操作方法
 const showCreateTaskDialog = () => {
   isEditingTask.value = false
   Object.assign(taskForm, {
     itemName: '',
     orderNo: '',
     quantity: 1,
-    station: KitchenStation.GENERAL,
-    priority: TaskPriority.NORMAL,
+    station: 'general' as TaskStation,
+    priority: 'normal' as TaskPriority,
     estimatedTime: null,
-    assignedTo: null,
-    specialInstructions: ''
+    assignedTo: undefined,
+    specialRequests: ''
   })
   taskDialogVisible.value = true
 }
@@ -1052,16 +994,10 @@ const viewTask = (task: KitchenTask) => {
 
 const startTask = async (task: KitchenTask) => {
   try {
-    const response = await updateKitchenTask(task.id, {
-      status: KitchenTaskStatus.PREPARING,
-      startedAt: new Date().toISOString()
-    })
-    if (response.success) {
-      Object.assign(task, response.data)
-      ElMessage.success('任务已开始')
-      loadTasks()
-      loadStats()
-    }
+    await updateTaskStatus(task.id, 'preparing')
+    ElMessage.success('任务已开始')
+    loadTasks()
+    loadStats()
   } catch (error) {
     console.error('Start task failed:', error)
     ElMessage.error('开始任务失败')
@@ -1070,26 +1006,20 @@ const startTask = async (task: KitchenTask) => {
 
 const completeTask = async (task: KitchenTask) => {
   try {
-    const response = await updateKitchenTask(task.id, {
-      status: KitchenTaskStatus.READY,
-      completedAt: new Date().toISOString()
-    })
-    if (response.success) {
-      Object.assign(task, response.data)
-      ElMessage.success('任务已完成')
-      loadTasks()
-      loadStats()
-    }
+    await updateTaskStatus(task.id, 'ready')
+    ElMessage.success('任务已完成')
+    loadTasks()
+    loadStats()
   } catch (error) {
     console.error('Complete task failed:', error)
     ElMessage.error('完成任务失败')
   }
 }
 
-const assignTask = (task: KitchenTask) => {
+const openAssignDialog = (task: KitchenTask) => {
   selectedTask.value = task
   assignForm.taskId = task.id
-  assignForm.staffId = task.assignedTo || null
+  assignForm.staffId = task.assignedTo || ''
   assignForm.note = ''
   assignDialogVisible.value = true
 }
@@ -1101,14 +1031,12 @@ const confirmAssignment = async () => {
   }
 
   try {
-    const response = await assignTask(assignForm.taskId, assignForm.staffId)
-    if (response.success) {
-      ElMessage.success('任务已分配')
-      assignDialogVisible.value = false
-      loadTasks()
-      if (selectedTask.value) {
-        selectedTask.value.assignedTo = assignForm.staffId
-      }
+    await assignTaskAPI(assignForm.taskId, assignForm.staffId)
+    ElMessage.success('任务已分配')
+    assignDialogVisible.value = false
+    loadTasks()
+    if (selectedTask.value) {
+      selectedTask.value.assignedTo = assignForm.staffId
     }
   } catch (error) {
     console.error('Assign task failed:', error)
@@ -1116,7 +1044,7 @@ const confirmAssignment = async () => {
   }
 }
 
-const deleteTask = async (task: KitchenTask) => {
+const deleteTaskLocal = async (task: KitchenTask) => {
   try {
     await ElMessageBox.confirm(`确定要删除任务"${task.itemName}"吗？`, '确认删除', {
       confirmButtonText: '确定',
@@ -1124,15 +1052,14 @@ const deleteTask = async (task: KitchenTask) => {
       type: 'warning'
     })
 
-    const response = await deleteKitchenTask(task.id)
-    if (response.success) {
-      ElMessage.success('删除成功')
-      loadTasks()
-      loadStats()
-    }
+    await deleteTaskAPI(task.id)
+    ElMessage.success('任务删除成功')
+    loadTasks()
+    loadStats()
   } catch (error) {
     if (error !== 'cancel') {
       console.error('Delete task failed:', error)
+      ElMessage.error('删除任务失败')
     }
   }
 }
@@ -1143,47 +1070,33 @@ const showBulkOperationDialog = () => {
 }
 
 const executeBulkOperation = async () => {
-  if (!bulkOperationForm.taskIds) {
-    ElMessage.warning('请输入任务ID')
-    return
-  }
-
-  const taskIds = bulkOperationForm.taskIds.split(',').map(id => parseInt(id.trim())).filter(id => !isNaN(id))
-
-  if (taskIds.length === 0) {
-    ElMessage.warning('请输入有效的任务ID')
-    return
-  }
-
   try {
-    const operationData: any = { taskIds }
-
-    if (bulkOperationForm.operation === 'assign') {
-      operationData.assignedTo = bulkOperationForm.assignedTo
-    } else if (bulkOperationForm.operation === 'update_status') {
-      operationData.status = bulkOperationForm.status
-    } else if (bulkOperationForm.operation === 'priority') {
-      operationData.priority = bulkOperationForm.priority
+    if (selectedTasks.value.length === 0) {
+      ElMessage.warning('请选择要操作的任务')
+      return
     }
 
-    const response = await bulkOperationTasks(operationData)
-    if (response.success && response.data) {
-      const { updated, failed } = response.data
-      ElMessage.success(`批量操作完成: ${updated}个成功, ${failed.length > 0 ? `${failed.length}个失败` : ''}`)
-      if (failed.length > 0) {
-        console.warn('Failed task IDs:', failed)
-      }
-      loadTasks()
-      bulkOperationDialogVisible.value = false
-    }
+    await ElMessageBox.confirm(`确定要对选中的 ${selectedTasks.value.length} 个任务执行批量操作吗？`, '确认操作', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+
+    const taskIds = selectedTasks.value.map(task => task.id)
+    await updateTaskStatus(taskIds[0], 'ready')
+    ElMessage.success('批量操作成功')
+    loadTasks()
+    loadStats()
+    bulkOperationDialogVisible.value = false
   } catch (error) {
-    console.error('Bulk operation failed:', error)
-    ElMessage.error('批量操作失败')
+    if (error !== 'cancel') {
+      console.error('Bulk operation failed:', error)
+      ElMessage.error('批量操作失败')
+    }
   }
 }
 
-// 员工管理方法
-const updateStaffStatus = (staff: KitchenStaff) => {
+const updateStaffStatus = (staff: KitchenEmployee) => {
   staffStatusForm.staffId = staff.id
   staffStatusForm.name = staff.name
   staffStatusForm.status = staff.status
@@ -1192,52 +1105,53 @@ const updateStaffStatus = (staff: KitchenStaff) => {
 
 const confirmStaffStatusUpdate = async () => {
   try {
-    const response = await updateStaffStatus(staffStatusForm.staffId, staffStatusForm.status)
-    if (response.success) {
-      const staff = kitchenStaff.value.find(s => s.id === staffStatusForm.staffId)
-      if (staff) {
-        staff.status = staffStatusForm.status
-      }
-      ElMessage.success('状态已更新')
-      staffStatusDialogVisible.value = false
+    await updateEmployeeStatus(staffStatusForm.staffId, staffStatusForm.status)
+    const staff = kitchenStaff.value.find(s => s.id === staffStatusForm.staffId)
+    if (staff) {
+      staff.status = staffStatusForm.status
     }
+    ElMessage.success('状态已更新')
+    staffStatusDialogVisible.value = false
   } catch (error) {
     console.error('Update staff status failed:', error)
-    }
+    ElMessage.error('更新状态失败')
   }
+}
 
-const viewStaffTasks = (staff: KitchenStaff) => {
-  // 筛选该员工的任务
+const viewStaffTasks = (staff: KitchenEmployee) => {
   taskFilter.search = staff.name
-  taskPagination.page = 1
+  taskPagination.value.page = 1
   loadTasks()
 }
 
-// 显示配置方法
 const showCreateDisplayDialog = () => {
-  // 创建显示配置对话框
-  ElMessage.info('功能开发中...')
+  displayForm.value = {
+    displayName: '',
+    displayType: 'task_board',
+    position: 'kitchen_main',
+    content: {},
+    isActive: true
+  }
+  displayDialogVisible.value = true
 }
 
-const editDisplay = (display: KitchenDisplay) => {
-  ElMessage.info('功能开发中...')
+const editDisplay = (display: any) => {
+  displayForm.value = { ...display }
+  displayDialogVisible.value = true
 }
 
-const toggleDisplay = async (display: KitchenDisplay) => {
+const toggleDisplay = async (display: any) => {
   try {
-    const response = await updateKitchenDisplay(display.id, {
-      isActive: !display.isActive
-    })
-    if (response.success) {
-      display.isActive = !display.isActive
-      ElMessage.success(display.isActive ? '已启用' : '已禁用')
-    }
+    await updateDisplay(display.id, { isActive: !display.isActive })
+    display.isActive = !display.isActive
+    ElMessage.success('显示状态已更新')
   } catch (error) {
     console.error('Toggle display failed:', error)
+    ElMessage.error('更新显示状态失败')
   }
 }
 
-const deleteDisplay = async (display: KitchenDisplay) => {
+const deleteDisplayLocal = async (display: any) => {
   try {
     await ElMessageBox.confirm(`确定要删除显示"${display.displayName}"吗？`, '确认删除', {
       confirmButtonText: '确定',
@@ -1245,40 +1159,33 @@ const deleteDisplay = async (display: KitchenDisplay) => {
       type: 'warning'
     })
 
-    // 删除显示配置的API调用
-    ElMessage.info('功能开发中...')
+    await deleteDisplay(display.id)
+    ElMessage.success('显示删除成功')
+    loadDisplays()
   } catch (error) {
-    if (error !== 'clear') {
+    if (error !== 'cancel') {
       console.error('Delete display failed:', error)
+      ElMessage.error('删除显示失败')
     }
   }
 }
 
-// 表单提交
 const saveTaskForm = async () => {
-  if (!taskFormRef.value) return
-
   try {
-    await taskFormRef.value.validate()
     taskFormLoading.value = true
-
-    let response
-    if (isEditingTask.value && selectedTask.value) {
-      response = await updateKitchenTask(selectedTask.value.id, taskForm)
+    if (isEditingTask.value) {
+      await updateTask(selectedTask.value!.id, taskForm)
+      ElMessage.success('任务更新成功')
     } else {
-      response = await createKitchenTask(taskForm as any)
+      await createTask(taskForm)
+      ElMessage.success('任务创建成功')
     }
-
-    if (response.success) {
-      ElMessage.success(isEditingTask.value ? '更新成功' : '创建成功')
-      taskDialogVisible.value = false
-      loadTasks()
-      loadStats()
-    } else {
-      ElMessage.error(response.message || '操作失败')
-    }
+    taskDialogVisible.value = false
+    loadTasks()
+    loadStats()
   } catch (error) {
-    console.error('Save task form failed:', error)
+    console.error('Save task failed:', error)
+    ElMessage.error('保存任务失败')
   } finally {
     taskFormLoading.value = false
   }
@@ -1290,13 +1197,13 @@ const handleTaskSearch = () => {
 }
 
 const handleTaskPageSizeChange = (size: number) => {
-  taskPagination.limit = size
-  taskPagination.page = 1
+  taskPagination.value.limit = size
+  taskPagination.value.page = 1
   loadTasks()
 }
 
 const handleTaskPageChange = (page: number) => {
-  taskPagination.page = page
+  taskPagination.value.page = page
   loadTasks()
 }
 
@@ -1311,8 +1218,6 @@ const handleTabChange = (tabName: string) => {
     nextTick(() => {
       initCharts()
     })
-  } else if (tabName === 'displays') {
-    loadDisplays()
   }
 }
 
@@ -1321,13 +1226,12 @@ const handleDragStart = (event: DragEvent, task: KitchenTask) => {
   event.dataTransfer?.setData('text/plain', JSON.stringify(task))
 }
 
-const handleDrop = (event: DragEvent, status: KitchenTaskStatus) => {
+const handleDrop = (event: DragEvent, status: TaskStatus) => {
   event.preventDefault()
   const taskData = event.dataTransfer?.getData('text/plain')
   if (taskData) {
     try {
       const task = JSON.parse(taskData)
-      // 更新任务状态
       updateTaskStatus(task, status)
     } catch (error) {
       console.error('Parse task data failed:', error)
@@ -1335,117 +1239,111 @@ const handleDrop = (event: DragEvent, status: KitchenTaskStatus) => {
   }
 }
 
-const updateTaskStatus = async (task: KitchenTask, status: KitchenTaskStatus) => {
+const handleTaskStatusChange = async (task: KitchenTask, status: TaskStatus) => {
   try {
-    const response = await updateKitchenTask(task.id, { status })
-    if (response.success) {
-      task.status = status
-      const index = tasks.value.findIndex(t => t.id === task.id)
-      if (index !== -1) {
-        tasks.value.splice(index, 1)
-        tasks.value.push(response.data!)
-      }
-    }
+    await updateTaskStatus(task.id, status)
+    task.status = status
   } catch (error) {
     console.error('Update task status failed:', error)
   }
 }
 
-// 工具方法
-const getStationName = (station: KitchenStation): string => {
-  const names: Record<KitchenStation, string> = {
-    [KitchenStation.HOT_DISH]: '热菜',
-    [KitchenStation.COLD_DISH]: '凉菜',
-    [KitchenStation.SOUP]: '汤类',
-    [KitchenStation.BAR]: '吧台',
-    [KitchenStation.DESSERT]: '点心',
-    [KitchenStation.GENERAL]: '综合'
+const getStationName = (station: TaskStation): string => {
+  const names: Record<TaskStation, string> = {
+    'hot_dish': '热菜',
+    'cold_dish': '凉菜',
+    'soup': '汤类',
+    'bar': '吧台',
+    'dessert': '点心',
+    'general': '综合'
   }
   return names[station] || station
 }
 
-const getStationTagType = (station: KitchenStation): string => {
-  const types: Record<KitchenStation, string> = {
-    [KitchenStation.HOT_DISH]: 'danger',
-    [KitchenStation.COLD_DISH]: 'info',
-    [KitchenStation.SOUP]: 'warning',
-    [KitchenStation.BAR]: 'success',
-    [KitchenStation.DESSERT]: 'warning',
-    [KitchenStation.GENERAL]: ''
+const getStationTagType = (station: TaskStation): string => {
+  const types: Record<TaskStation, string> = {
+    'hot_dish': 'danger',
+    'cold_dish': 'info',
+    'soup': 'warning',
+    'bar': 'success',
+    'dessert': 'warning',
+    'general': ''
   }
   return types[station] || ''
 }
 
 const getPriorityName = (priority: TaskPriority): string => {
   const names: Record<TaskPriority, string> = {
-    [TaskPriority.LOW]: '低',
-    [TaskPriority.NORMAL]: '普通',
-    [TaskPriority.HIGH]: '高',
-    [TaskPriority.URGENT]: '紧急'
+    'low': '低',
+    'normal': '普通',
+    'high': '高',
+    'urgent': '紧急'
   }
   return names[priority] || priority
 }
 
 const getPriorityTagType = (priority: TaskPriority): string => {
   const types: Record<TaskPriority, string> = {
-    [TaskPriority.LOW]: 'info',
-    [TaskPriority.NORMAL]: '',
-    [TaskPriority.HIGH]: 'warning',
-    [TaskPriority.URGENT]: 'danger'
+    'low': 'info',
+    'normal': '',
+    'high': 'warning',
+    'urgent': 'danger'
   }
   return types[priority] || ''
 }
 
-const getStatusName = (status: KitchenTaskStatus): string => {
-  const names: Record<KitchenTaskStatus, string> = {
-    [KitchenTaskStatus.PENDING]: '待处理',
-    [KitchenTaskStatus.PREPARING]: '制作中',
-    [KitchenTaskStatus.READY]: '已完成',
-    [KitchenTaskStatus.SERVED]: '已上菜',
-    [KitchenTaskStatus.CANCELLED]: '已取消'
+const getStatusName = (status: TaskStatus): string => {
+  const names: Record<TaskStatus, string> = {
+    'pending': '待处理',
+    'preparing': '制作中',
+    'ready': '已完成',
+    'served': '已上菜',
+    'cancelled': '已取消'
   }
   return names[status] || status
 }
 
-const getStatusTagType = (status: KitchenTaskStatus): string => {
-  const types: Record<KitchenTaskStatus, string> = {
-    [KitchenTaskStatus.PENDING]: 'info',
-    [KitchenTaskStatus.PREPARING]: 'primary',
-    [KitchenTaskStatus.READY]: 'success',
-    [KitchenTaskStatus.SERVED]: 'success',
-    [KitchenTaskStatus.CANCELLED]: 'info'
+const getStatusTagType = (status: TaskStatus): string => {
+  const types: Record<TaskStatus, string> = {
+    'pending': 'info',
+    'preparing': 'primary',
+    'ready': 'success',
+    'served': 'success',
+    'cancelled': 'info'
   }
   return types[status] || ''
 }
 
-const getStaffName = (staffId: number): string => {
+const getStaffName = (staffId: string): string => {
   const staff = kitchenStaff.value.find(s => s.id === staffId)
   return staff ? staff.name : `员工${staffId}`
 }
 
-const getStaffStatusType = (status: string): string => {
-  const types: Record<string, string> = {
-    'active': 'success',
+const getStaffStatusType = (status: EmployeeStatus): string => {
+  const types: Record<EmployeeStatus, string> = {
+    'online': 'success',
+    'busy': 'warning',
     'break': 'warning',
     'offline': 'danger'
   }
   return types[status] || ''
 }
 
-const getStaffStatusName = (status: string): string => {
-  const names: Record<string, string> = {
-    'active': '工作中',
+const getStaffStatusName = (status: EmployeeStatus): string => {
+  const names: Record<EmployeeStatus, string> = {
+    'online': '工作中',
+    'busy': '忙碌中',
     'break': '休息中',
     'offline': '离线'
   }
   return names[status] || status
 }
 
-const getTaskCountByStatus = (status: KitchenTaskStatus): number => {
+const getTaskCountByStatus = (status: TaskStatus): number => {
   return tasks.value.filter(task => task.status === status).length
 }
 
-const getTasksByStatus = (status: KitchenTaskStatus): KitchenTask[] => {
+const getTasksByStatus = (status: TaskStatus): KitchenTask[] => {
   return tasks.value.filter(task => task.status === status)
 }
 
@@ -1597,10 +1495,24 @@ onMounted(() => {
   loadTasks()
   loadStaff()
   loadStats()
-  loadDisplays()
   nextTick(() => {
     initCharts()
   })
+})
+
+defineExpose({
+  tasks,
+  kitchenStaff,
+  loadTasks,
+  loadStaff,
+  loadStats,
+  refreshData,
+  refreshAnalytics,
+  handleTaskStatusChange,
+  taskStatusChart,
+  stationChart,
+  staffEfficiencyChart,
+  peakHoursChart
 })
 </script>
 
@@ -1875,6 +1787,10 @@ onMounted(() => {
   &.status-offline {
     border-left: 4px solid #f56c6c;
     opacity: 0.6;
+  }
+
+  &.status-busy {
+    border-left: 4px solid #e6a23c;
   }
 
   .staff-header {

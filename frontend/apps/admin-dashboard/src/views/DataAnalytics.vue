@@ -82,263 +82,22 @@
     <el-tabs v-model="activeTab" @tab-change="onTabChange" class="analytics-tabs">
       <!-- 销售分析 -->
       <el-tab-pane label="销售分析" name="sales">
-        <div class="tab-content">
-          <div class="tab-header">
-            <div class="tab-title">
-              <h3>销售数据分析</h3>
-              <p>深入了解销售趋势和收入表现</p>
-            </div>
-            <div class="tab-actions">
-              <el-button-group>
-                <el-button :type="salesView === 'overview' ? 'primary' : 'default'" @click="salesView = 'overview'">
-                  总览
-                </el-button>
-                <el-button :type="salesView === 'trends' ? 'primary' : 'default'" @click="salesView = 'trends'">
-                  趋势
-                </el-button>
-                <el-button :type="salesView === 'products' ? 'primary' : 'default'" @click="salesView = 'products'">
-                  商品
-                </el-button>
-                <el-button :type="salesView === 'forecast' ? 'primary' : 'default'" @click="salesView = 'forecast'">
-                  预测
-                </el-button>
-              </el-button-group>
-            </div>
-          </div>
-
-          <!-- 销售总览 -->
-          <div v-if="salesView === 'overview'" class="sales-overview">
-            <el-row :gutter="20">
-              <el-col :span="16">
-                <el-card title="销售收入趋势">
-                  <div ref="salesRevenueChart" class="chart-container"></div>
-                </el-card>
-              </el-col>
-              <el-col :span="8">
-                <el-card title="销售分布">
-                  <div ref="salesDistributionChart" class="chart-container"></div>
-                </el-card>
-              </el-col>
-            </el-row>
-
-            <el-row :gutter="20" style="margin-top: 20px;">
-              <el-col :span="12">
-                <el-card title="按小时销售分析">
-                  <div ref="hourlySalesChart" class="chart-container"></div>
-                </el-card>
-              </el-col>
-              <el-col :span="12">
-                <el-card title="支付方式分布">
-                  <div ref="paymentMethodChart" class="chart-container"></div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-
-          <!-- 销售趋势 -->
-          <div v-else-if="salesView === 'trends'" class="sales-trends">
-            <el-row :gutter="20">
-              <el-col :span="24">
-                <el-card title="销售趋势分析">
-                  <div ref="salesTrendsChart" class="large-chart-container"></div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-
-          <!-- 商品销售 -->
-          <div v-else-if="salesView === 'products'" class="product-sales">
-            <el-row :gutter="20">
-              <el-col :span="16">
-                <el-card title="热销商品排行">
-                  <el-table :data="topSellingItems" style="width: 100%">
-                    <el-table-column prop="rank" label="排名" width="80" />
-                    <el-table-column prop="itemName" label="商品名称" />
-                    <el-table-column prop="quantity" label="销量" width="100" />
-                    <el-table-column prop="revenue" label="收入" width="120">
-                      <template #default="{ row }">
-                        ¥{{ row.revenue.toLocaleString() }}
-                      </template>
-                    </el-table-column>
-                    <el-table-column prop="growth" label="增长" width="100">
-                      <template #default="{ row }">
-                        <span :class="row.growth >= 0 ? 'text-success' : 'text-danger'">
-                          {{ row.growth >= 0 ? '+' : '' }}{{ row.growth }}%
-                        </span>
-                      </template>
-                    </el-table-column>
-                  </el-table>
-                </el-card>
-              </el-col>
-              <el-col :span="8">
-                <el-card title="类别销售对比">
-                  <div ref="categorySalesChart" class="chart-container"></div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-
-          <!-- 销售预测 -->
-          <div v-else-if="salesView === 'forecast'" class="sales-forecast">
-            <el-row :gutter="20">
-              <el-col :span="24">
-                <el-card title="销售预测">
-                  <div ref="salesForecastChart" class="large-chart-container"></div>
-                </el-card>
-              </el-col>
-            </el-row>
-          </div>
-        </div>
+        <SalesAnalytics />
       </el-tab-pane>
 
       <!-- 客户分析 -->
       <el-tab-pane label="客户分析" name="customer">
-        <div class="tab-content">
-          <div class="tab-header">
-            <div class="tab-title">
-              <h3>客户数据分析</h3>
-              <p>了解客户行为和价值贡献</p>
-            </div>
-          </div>
-
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-card title="客户增长趋势">
-                <div ref="customerGrowthChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <el-card title="客户分段">
-                <div ref="customerSegmentsChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="20" style="margin-top: 20px;">
-            <el-col :span="16">
-              <el-card title="客户地理分布">
-                <div ref="customerGeoChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card title="客户关键指标">
-                <div class="customer-metrics">
-                  <div class="metric-item">
-                    <div class="metric-label">客户保留率</div>
-                    <div class="metric-value">{{ customerMetrics.retention }}%</div>
-                  </div>
-                  <div class="metric-item">
-                    <div class="metric-label">平均消费频次</div>
-                    <div class="metric-value">{{ customerMetrics.frequency }}次/月</div>
-                  </div>
-                  <div class="metric-item">
-                    <div class="metric-label">客户终身价值</div>
-                    <div class="metric-value">¥{{ customerMetrics.ltv.toLocaleString() }}</div>
-                  </div>
-                  <div class="metric-item">
-                    <div class="metric-label">满意度评分</div>
-                    <div class="metric-value">{{ customerMetrics.satisfaction }}/5.0</div>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
+        <CustomerAnalytics />
       </el-tab-pane>
 
       <!-- 菜单分析 -->
       <el-tab-pane label="菜单分析" name="menu">
-        <div class="tab-content">
-          <div class="tab-header">
-            <div class="tab-title">
-              <h3>菜单数据分析</h3>
-              <p>优化菜单结构和定价策略</p>
-            </div>
-            <div class="tab-actions">
-              <el-button @click="showMenuOptimization = true">
-                <el-icon><MagicStick /></el-icon>
-                菜单优化建议
-              </el-button>
-            </div>
-          </div>
-
-          <el-row :gutter="20">
-            <el-col :span="12">
-              <el-card title="类别表现分析">
-                <div ref="categoryPerformanceChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <el-card title="盈利能力分析">
-                <div ref="profitabilityChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="20" style="margin-top: 20px;">
-            <el-col :span="24">
-              <el-card title="商品表现矩阵">
-                <div ref="itemPerformanceMatrix" class="large-chart-container"></div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
+        <MenuAnalytics />
       </el-tab-pane>
 
       <!-- 运营分析 -->
       <el-tab-pane label="运营分析" name="operational">
-        <div class="tab-content">
-          <div class="tab-header">
-            <div class="tab-title">
-              <h3>运营数据分析</h3>
-              <p>监控运营效率和服务质量</p>
-            </div>
-          </div>
-
-          <el-row :gutter="20">
-            <el-col :span="8">
-              <el-card title="桌位利用率">
-                <div ref="tableUtilizationChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card title="员工效率">
-                <div ref="staffEfficiencyChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="8">
-              <el-card title="厨房效率">
-                <div ref="kitchenEfficiencyChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-          </el-row>
-
-          <el-row :gutter="20" style="margin-top: 20px;">
-            <el-col :span="12">
-              <el-card title="运营成本分析">
-                <div ref="operationalCostsChart" class="chart-container"></div>
-              </el-card>
-            </el-col>
-            <el-col :span="12">
-              <el-card title="服务质量指标">
-                <div class="quality-metrics">
-                  <div class="quality-item">
-                    <div class="quality-label">平均评分</div>
-                    <el-rate v-model="qualityMetrics.rating" disabled show-score />
-                  </div>
-                  <div class="quality-item">
-                    <div class="quality-label">投诉率</div>
-                    <div class="quality-value">{{ qualityMetrics.complaintRate }}%</div>
-                  </div>
-                  <div class="quality-item">
-                    <div class="quality-label">解决时间</div>
-                    <div class="quality-value">{{ qualityMetrics.resolutionTime }}分钟</div>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
+        <OperationalAnalytics />
       </el-tab-pane>
 
       <!-- 预测分析 -->
@@ -372,6 +131,16 @@
             </el-col>
           </el-row>
         </div>
+      </el-tab-pane>
+
+      <!-- 异常预警 -->
+      <el-tab-pane label="异常预警" name="alerts">
+        <AlertSystem />
+      </el-tab-pane>
+
+      <!-- 自定义仪表板 -->
+      <el-tab-pane label="自定义仪表板" name="custom">
+        <CustomDashboard />
       </el-tab-pane>
     </el-tabs>
 
@@ -492,6 +261,12 @@ import {
   DateRange,
   AnalysisType
 } from '@/api/analytics'
+import AlertSystem from '@/components/analytics/AlertSystem.vue'
+import CustomDashboard from '@/components/analytics/CustomDashboard.vue'
+import SalesAnalytics from '@/components/analytics/SalesAnalytics.vue'
+import CustomerAnalytics from '@/components/analytics/CustomerAnalytics.vue'
+import MenuAnalytics from '@/components/analytics/MenuAnalytics.vue'
+import OperationalAnalytics from '@/components/analytics/OperationalAnalytics.vue'
 
 // 响应式数据
 const loading = ref(false)

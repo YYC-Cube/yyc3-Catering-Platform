@@ -35,6 +35,27 @@ const validatePassword = (password: string): { isValid: boolean; error: string }
   return { isValid: true, error: '' };
 };
 
+const refreshTokenSchema = {
+  refreshToken: {
+    type: 'string',
+    required: true,
+    minLength: 1
+  }
+};
+
+const validateRefreshTokenData = (data: any): { isValid: boolean; errors: string[] } => {
+  const errors: string[] = [];
+
+  if (!data.refreshToken || typeof data.refreshToken !== 'string') {
+    errors.push('刷新令牌是必填项');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
+};
+
 // 请求体验证函数
 const validateLoginData = (data: any): { isValid: boolean; errors: string[] } => {
   const errors: string[] = [];
@@ -68,8 +89,8 @@ const validateRegisterData = (data: any): { isValid: boolean; errors: string[] }
 
   if (!data.password || typeof data.password !== 'string') {
     errors.push('密码是必填项');
-  } else if (data.password.length < 8) {
-    errors.push('密码长度至少8位');
+  } else if (data.password.length < 6) {
+    errors.push('密码长度至少6位');
   }
 
   if (!data.name || typeof data.name !== 'string' || data.name.trim().length === 0) {
@@ -478,12 +499,36 @@ export const register = async (request: Request): Promise<Response> => {
  */
 export const refreshToken = async (request: Request): Promise<Response> => {
   try {
-    const validation = await validate({ body: refreshTokenSchema })(request);
-    if (!validation.success) {
-      return validationMiddleware.createErrorResponse(validation);
+    const body = await request.json().catch(() => null);
+    if (!body) {
+      const errorResponse = {
+        success: false,
+        error: '请求体解析失败',
+        code: 'INVALID_JSON',
+        timestamp: new Date().toISOString()
+      };
+      return new Response(JSON.stringify(errorResponse), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
     }
 
-    const { refreshToken } = validation.data!.body;
+    const validation = validateRefreshTokenData(body);
+    if (!validation.isValid) {
+      const errorResponse = {
+        success: false,
+        error: '请求数据验证失败',
+        code: 'VALIDATION_ERROR',
+        errors: validation.errors,
+        timestamp: new Date().toISOString()
+      };
+      return new Response(JSON.stringify(errorResponse), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+
+    const { refreshToken } = body;
 
     // 验证刷新令牌
     const tokenResult = await verifyToken(refreshToken);

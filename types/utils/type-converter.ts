@@ -22,7 +22,7 @@ export class TypeConverter {
    */
   static frontendUserToAuthUser(frontendUser: FrontendUser): AuthUser {
     return {
-      id: String(frontendUser.id),
+      id: frontendUser.id,
       email: frontendUser.email,
       name: frontendUser.name,
       avatar: frontendUser.avatar,
@@ -41,7 +41,7 @@ export class TypeConverter {
   static authUserToFrontendUser(authUser: AuthUser): FrontendUser {
     const primaryRole = authUser.roles[0] || UserRole.CUSTOMER;
     return {
-      id: parseInt(authUser.id, 10) || 0,
+      id: authUser.id,
       email: authUser.email,
       name: authUser.name || '',
       role: primaryRole,
@@ -57,24 +57,6 @@ export class TypeConverter {
           : authUser.lastLoginAt.toISOString()
         : undefined,
     } as FrontendUser;
-  }
-
-  /**
-   * 字符串 ID 转数字 ID
-   */
-  static stringIdToNumber(id: string): number {
-    const num = parseInt(id, 10);
-    if (isNaN(num)) {
-      throw new Error(`Invalid ID format: ${id}`);
-    }
-    return num;
-  }
-
-  /**
-   * 数字 ID 转字符串 ID
-   */
-  static numberIdToString(id: number): string {
-    return String(id);
   }
 
   /**

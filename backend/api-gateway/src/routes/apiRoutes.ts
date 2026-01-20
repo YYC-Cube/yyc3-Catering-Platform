@@ -102,4 +102,13 @@ router.get('/analytics/*', cacheMiddleware.middleware({ ttl: 300 }), proxyServic
 router.post('/analytics/*', proxyService.forwardRequest);
 router.put('/analytics/*', proxyService.forwardRequest);
 
+// 厨房服务路由
+// GET请求使用缓存（厨房状态等）
+router.get('/kitchen', cacheMiddleware.middleware({ ttl: 30 }), proxyService.forwardRequest);
+router.get('/kitchen/*', cacheMiddleware.middleware({ ttl: 30 }), proxyService.forwardRequest);
+// POST/PUT/DELETE请求不缓存
+router.post('/kitchen/*', proxyService.forwardRequest);
+router.put('/kitchen/*', proxyService.forwardRequest);
+router.patch('/kitchen/*', proxyService.forwardRequest);
+
 export default router;

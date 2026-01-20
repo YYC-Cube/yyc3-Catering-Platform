@@ -47,9 +47,10 @@ export class OrderService extends EventEmitter {
     offset: number = 0
   ): Promise<OrderQueue> {
     // 验证输入参数
-    if (!restaurantId) {
-      throw new Error('餐厅ID不能为空');
-    }
+    // 允许空restaurantId用于Dashboard全局数据查询
+    // if (!restaurantId) {
+    //   throw new Error('餐厅ID不能为空');
+    // }
     
     if (limit <= 0 || limit > 100) {
       limit = 50; // 限制查询数量在1-100之间
@@ -59,15 +60,17 @@ export class OrderService extends EventEmitter {
       offset = 0; // 偏移量不能为负数
     }
 
-    const cacheKey = `order-queue:${restaurantId}:${status || 'all'}:${limit}:${offset}`;
+    const cacheKey = `order-queue:${restaurantId || 'all'}:${status || 'all'}:${limit}:${offset}`;
     
     return await cacheService.getWithCache<OrderQueue>(cacheKey, async () => {
-      const queryConditions = {
-        where: {
-          restaurantId,
-          ...(status && { status: status as OrderStatus })
-        }
+      const queryConditions: any = {
+        ...(status && { status: status as OrderStatus })
       };
+
+      // 如果有restaurantId，添加到查询条件
+      if (restaurantId) {
+        queryConditions.where = { restaurantId };
+      }
 
       // 并行执行查询，提高性能
       const [orders, totalCount] = await Promise.all([

@@ -336,7 +336,9 @@ export class TenantMiddleware {
       '/docs',
       '/api-docs',
       '/static',
-      '/favicon.ico'
+      '/favicon.ico',
+      '/api/v1/dashboard',
+      '/api/v1/kitchen'
     ];
 
     return publicPaths.some(publicPath =>

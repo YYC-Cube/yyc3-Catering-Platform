@@ -8,16 +8,29 @@
  * @updated 2024-10-16
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
 import AppSidebar from '../AppSidebar.vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
-// Mock依赖
+const mockRouter = {
+  push: vi.fn(),
+  replace: vi.fn(),
+  go: vi.fn(),
+  back: vi.fn(),
+  forward: vi.fn()
+}
+
+const mockRoute = {
+  path: '/dashboard',
+  name: 'dashboard',
+  params: {},
+  query: {},
+  meta: {}
+}
+
 vi.mock('vue-router', () => ({
-  useRoute: vi.fn(() => ({
-    path: '/dashboard'
-  }))
+  useRoute: vi.fn(() => mockRoute),
+  useRouter: vi.fn(() => mockRouter)
 }))
 
 // 创建共享的stubs配置

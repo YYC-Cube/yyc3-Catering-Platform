@@ -53,11 +53,11 @@ export interface AuthUser extends BaseUser {
 }
 
 /**
- * 前端用户接口 - 前端可以继续使用 number 类型的 id
- * 通过类型转换层与后端对接
+ * 前端用户接口 - 统一使用 string 类型的 ID (UUID)
+ * 与后端保持一致，避免类型转换问题
  */
 export interface FrontendUser {
-  id: number;
+  id: string;
   email: string;
   name: string;
   role: UserRole;

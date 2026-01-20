@@ -22,7 +22,7 @@ export const useAppStore = defineStore('app', () => {
   const appConfig = ref({
     title: 'YYC³餐饮管理后台',
     version: '1.0.0',
-    logo: '/assets/logo.png',
+    logo: '/assets/logo.svg',
     favicon: '/assets/favicon.ico'
   })
 

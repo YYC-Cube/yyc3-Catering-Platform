@@ -4,8 +4,7 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'bun:test'
-import { Database } from 'bun:sqlite'
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest'
 
 // 测试配置
 const API_BASE_URL = process.env['API_BASE_URL'] || 'http://localhost:3006/api/v1'

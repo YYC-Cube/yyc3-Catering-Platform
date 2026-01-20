@@ -217,6 +217,19 @@
   // 布局系统变量  
   // ================================
   
+  // 层级系统 (z-index)
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  --z-loader: 1090;
+  --z-notification: 1100;
+  --z-sidebar: 100;
+  
   // 容器最大宽度
   --container-sm: 640px;
   --container-md: 768px;
@@ -481,17 +494,20 @@ $card-border-radius: $border-radius-lg;
 $card-shadow: var(--shadow-base);
 
 // ================================
-// 层级系统 (z-index)
-// ================================
+  // 层级系统 (z-index)
+  // ================================
 
-$z-index-dropdown: 1000;
-$z-index-sticky: 1020;
-$z-index-fixed: 1030;
-$z-index-modal-backdrop: 1040;
-$z-index-modal: 1050;
-$z-index-popover: 1060;
-$z-index-tooltip: 1070;
-$z-index-toast: 1080;
+  $z-index-dropdown: 1000;
+  $z-index-sticky: 1020;
+  $z-index-fixed: 1030;
+  $z-index-modal-backdrop: 1040;
+  $z-index-modal: 1050;
+  $z-index-popover: 1060;
+  $z-index-tooltip: 1070;
+  $z-index-toast: 1080;
+  $z-index-loader: 1090;
+  $z-index-notification: 1100;
+  $z-index-sidebar: 100;
 
 // ================================
 // 语义化背景色

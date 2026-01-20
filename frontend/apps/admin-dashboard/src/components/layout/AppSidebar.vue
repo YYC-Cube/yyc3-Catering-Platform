@@ -14,8 +14,8 @@
   }">
     <!-- Logo区域 -->
     <div class="sidebar-logo">
-      <img v-if="!collapsed" src="/assets/logo.png" alt="YYC³" class="logo-img" />
-      <img v-else src="/assets/logo-mini.png" alt="YYC³" class="logo-mini" />
+      <img v-if="!collapsed" src="/assets/logo.svg" alt="YYC³" class="logo-img" />
+      <img v-else src="/assets/logo-mini.svg" alt="YYC³" class="logo-mini" />
       <h1 v-if="!collapsed" class="logo-title">YYC³管理后台</h1>
     </div>
 
@@ -29,6 +29,7 @@
         background-color="var(--color-bg-primary)"
         text-color="var(--color-text-secondary)"
         active-text-color="var(--color-text-primary)"
+        @select="handleMenuSelect"
       >
         <el-menu-item index="/dashboard" class="menu-item-dashboard">
           <el-icon><House /></el-icon>
@@ -214,6 +215,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
+import { useNavigationState } from '@/composables/useNavigationState'
 
 interface Props {
   collapsed?: boolean
@@ -230,6 +234,8 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<Emits>()
+const router = useRouter()
+const navState = useNavigationState()
 
 const isMobile = computed(() => {
   return window.innerWidth <= 768
@@ -237,6 +243,21 @@ const isMobile = computed(() => {
 
 const handleToggle = () => {
   emit('toggle')
+}
+
+const handleMenuSelect = async (index: string) => {
+  try {
+    navState.startNavigation(index)
+    await router.push(index)
+    navState.completeNavigation()
+    
+    if (isMobile.value) {
+      emit('toggle')
+    }
+  } catch (error) {
+    navState.failNavigation(error as Error, index)
+    ElMessage.error(`导航失败: ${(error as Error).message}`)
+  }
 }
 </script>
 

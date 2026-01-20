@@ -7,6 +7,7 @@
  * @created 2025-01-30
  */
 
+import { describe, it, expect } from 'vitest';
 import { AIAssistantService } from '../services/AIAssistantService';
 import { AIResponse } from '../models/AIAssistant';
 

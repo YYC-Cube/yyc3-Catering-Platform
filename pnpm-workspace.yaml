@@ -1,0 +1,5 @@
+packages:
+  - 'frontend/*'
+  - 'backend/services/*'
+  - 'backend/common'
+  - 'agentic-core'

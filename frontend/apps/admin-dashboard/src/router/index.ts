@@ -12,10 +12,14 @@ const Login = () => import('@/views/Login.vue')
 const MenuManagement = () => import('@/views/MenuManagement.vue')
 const OrderManagement = () => import('@/views/OrderManagement.vue')
 const KitchenManagement = () => import('@/views/KitchenManagement.vue')
+const KitchenDisplay = () => import('@/views/KitchenDisplay.vue')
+const FoodSafety = () => import('@/views/FoodSafety.vue')
 const DataAnalytics = () => import('@/views/DataAnalytics.vue')
 const CustomerManagement = () => import('@/views/CustomerManagement.vue')
 const PaymentManagement = () => import('@/views/PaymentManagement.vue')
+const ChainManagement = () => import('@/views/ChainManagement.vue')
 const SystemMonitoring = () => import('@/views/SystemMonitoring.vue')
+const SystemManagement = () => import('@/views/SystemManagement.vue')
 const InventoryManagement = () => import('@/views/InventoryManagement.vue')
 const MemberManagement = () => import('@/views/MemberManagement.vue')
 const MarketingManagement = () => import('@/views/MarketingManagement.vue')
@@ -155,12 +159,13 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/kitchen/display',
     name: 'KitchenDisplay',
-    component: KitchenManagement,
+    component: KitchenDisplay,
     meta: {
       title: '厨房显示',
       requiresAuth: true,
       keepAlive: true,
-      icon: 'Monitor'
+      icon: 'Monitor',
+      permissions: ['kitchen:display']
     }
   },
   {
@@ -212,9 +217,21 @@ const routes: Array<RouteRecordRaw> = [
   },
   // 连锁管理路由
   {
+    path: '/chain',
+    name: 'ChainManagement',
+    component: ChainManagement,
+    meta: {
+      title: '连锁管理',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'Shop',
+      permissions: ['chain:read']
+    }
+  },
+  {
     path: '/chain/stores',
     name: 'ChainStores',
-    component: SystemMonitoring,
+    component: ChainManagement,
     meta: {
       title: '门店管理',
       requiresAuth: true,
@@ -223,9 +240,42 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
+    path: '/chain/employees',
+    name: 'ChainEmployees',
+    component: ChainManagement,
+    meta: {
+      title: '员工管理',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'User'
+    }
+  },
+  {
+    path: '/chain/inventory',
+    name: 'ChainInventory',
+    component: ChainManagement,
+    meta: {
+      title: '库存管理',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'Box'
+    }
+  },
+  {
+    path: '/chain/stats',
+    name: 'ChainStats',
+    component: ChainManagement,
+    meta: {
+      title: '数据统计',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'TrendCharts'
+    }
+  },
+  {
     path: '/chain/operations',
     name: 'ChainOperations',
-    component: SystemMonitoring,
+    component: ChainManagement,
     meta: {
       title: '运营管理',
       requiresAuth: true,
@@ -236,7 +286,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/chain/performance',
     name: 'ChainPerformance',
-    component: DataAnalytics,
+    component: ChainManagement,
     meta: {
       title: '绩效分析',
       requiresAuth: true,
@@ -245,6 +295,18 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   // 食品安全管理路由
+  {
+    path: '/safety',
+    name: 'FoodSafety',
+    component: FoodSafety,
+    meta: {
+      title: '食品安全管理',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'Shield',
+      permissions: ['safety:read']
+    }
+  },
   {
     path: '/safety/traceability',
     name: 'SafetyTraceability',
@@ -337,9 +399,21 @@ const routes: Array<RouteRecordRaw> = [
   },
   // 系统管理路由
   {
+    path: '/system',
+    name: 'SystemManagement',
+    component: SystemManagement,
+    meta: {
+      title: '系统管理',
+      requiresAuth: true,
+      keepAlive: true,
+      icon: 'Tools',
+      permissions: ['system:read']
+    }
+  },
+  {
     path: '/system/users',
     name: 'SystemUsers',
-    component: SystemMonitoring,
+    component: SystemManagement,
     meta: {
       title: '用户管理',
       requiresAuth: true,
@@ -350,7 +424,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/system/roles',
     name: 'SystemRoles',
-    component: SystemMonitoring,
+    component: SystemManagement,
     meta: {
       title: '角色管理',
       requiresAuth: true,
@@ -361,7 +435,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/system/settings',
     name: 'SystemSettings',
-    component: SystemMonitoring,
+    component: SystemManagement,
     meta: {
       title: '系统设置',
       requiresAuth: true,

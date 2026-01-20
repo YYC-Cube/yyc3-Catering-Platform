@@ -34,5 +34,13 @@ module.exports = {
     'types/global.d.ts',
     'types/api-versioning.d.ts',
     'types/validation.d.ts',
+    // 忽略测试文件和临时文件
+    'test-*.js',
+    'test-results/**',
+    'ts-checker.js',
+    'check-versions.js',
+    'generate-test-token.js',
+    'packages/**',
+    'scripts/**',
   ],
 };

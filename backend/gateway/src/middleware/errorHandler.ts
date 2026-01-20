@@ -11,6 +11,23 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../utils/logger';
 
+declare module 'express' {
+  interface Request {
+    user?: {
+      id: string;
+      email: string;
+      roles: string[];
+      permissions: string[];
+      name?: string;
+    };
+    context?: {
+      requestId?: string;
+      traceId?: string;
+      [key: string]: any;
+    };
+  }
+}
+
 // 定义错误响应接口
 interface ErrorResponse {
   success: boolean;

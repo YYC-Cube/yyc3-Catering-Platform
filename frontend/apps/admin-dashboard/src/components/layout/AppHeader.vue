@@ -15,22 +15,24 @@
         type="text"
         @click="handleToggleSidebar"
         class="sidebar-toggle-btn"
+        :class="{ 'is-mobile': isMobile }"
       >
         <el-icon size="18">
-          <Fold />
+          <Fold v-if="!isMobile" />
+          <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h18M3 6h18M3 18h18"/>
+          </svg>
         </el-icon>
       </el-button>
 
       <!-- 面包屑导航 -->
-      <el-breadcrumb separator="/" class="breadcrumb">
-        <el-breadcrumb-item
-          v-for="item in breadcrumbList"
-          :key="item.path"
-          :to="item.path"
-        >
-          {{ item.title }}
-        </el-breadcrumb-item>
-      </el-breadcrumb>
+      <BreadcrumbNavigation
+        v-if="!isMobile"
+        :show-icon="true"
+        :max-items="5"
+        home-title="工作台"
+        home-path="/dashboard"
+      />
     </div>
 
     <!-- 右侧区域 -->
@@ -59,6 +61,18 @@
         <el-icon size="18">
           <Aim v-if="isFullscreen" />
           <FullScreen v-else />
+        </el-icon>
+      </el-button>
+
+      <!-- 快捷键帮助 -->
+      <el-button
+        type="text"
+        @click="handleShortcutHelp"
+        class="shortcut-help-btn"
+        title="快捷键帮助 (Alt+H)"
+      >
+        <el-icon size="18">
+          <Key />
         </el-icon>
       </el-button>
 
@@ -94,10 +108,17 @@
   </div>
 </template>
 
+<!-- 快捷键帮助 -->
+<ShortcutHelp :visible="showShortcutHelp" @close="showShortcutHelp = false" />
+
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox, ElNotification } from 'element-plus'
+import { useNavigationState } from '@/composables/useNavigationState'
+import { useShortcuts } from '@/composables/useShortcuts'
+import BreadcrumbNavigation from '@/components/common/BreadcrumbNavigation.vue'
+import ShortcutHelp from '@/components/common/ShortcutHelp.vue'
 
 interface User {
   id: string
@@ -107,20 +128,17 @@ interface User {
   role: string
 }
 
-interface BreadcrumbItem {
-  title: string
-  path: string
-}
-
 const route = useRoute()
 const router = useRouter()
+const navState = useNavigationState()
+const { shortcutManager, registerCommonShortcuts } = useShortcuts()
+const showShortcutHelp = ref(false)
 
-// 响应式数据
 const searchKeyword = ref('')
 const isFullscreen = ref(false)
-const unreadCount = ref(3) // 模拟未读通知数量
+const unreadCount = ref(3)
+const isMobile = ref(false)
 
-// 模拟用户数据
 const user = ref<User>({
   id: '1',
   name: '管理员',
@@ -129,31 +147,22 @@ const user = ref<User>({
   role: 'admin'
 })
 
-// 面包屑计算
-const breadcrumbList = computed(() => {
-  const matched = route.matched.filter(item => item.meta && item.meta.title)
-  return matched.map(item => ({
-    title: item.meta.title as string,
-    path: item.path
-  }))
-})
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+}
 
-// 方法
 const handleToggleSidebar = () => {
-  // 触发侧边栏切换事件
   document.dispatchEvent(new CustomEvent('toggle-sidebar'))
 }
 
 const handleSearch = () => {
   if (searchKeyword.value.trim()) {
     ElMessage.info(`搜索: ${searchKeyword.value}`)
-    // 这里可以实现实际的搜索逻辑
   }
 }
 
 const handleNotification = () => {
   ElMessage.info('打开通知中心')
-  // 这里可以实现通知中心逻辑
 }
 
 const handleFullscreen = () => {
@@ -166,17 +175,26 @@ const handleFullscreen = () => {
   }
 }
 
-const handleCommand = (command: string) => {
-  switch (command) {
-    case 'profile':
-      router.push('/profile')
-      break
-    case 'settings':
-      router.push('/system/settings')
-      break
-    case 'logout':
-      handleLogout()
-      break
+const handleCommand = async (command: string) => {
+  try {
+    navState.startNavigation(command)
+    
+    switch (command) {
+      case 'profile':
+        await router.push('/profile')
+        break
+      case 'settings':
+        await router.push('/system/settings')
+        break
+      case 'logout':
+        await handleLogout()
+        break
+    }
+    
+    navState.completeNavigation()
+  } catch (error) {
+    const navError = navState.failNavigation(error as Error, command)
+    showNavigationError(navError)
   }
 }
 
@@ -188,28 +206,48 @@ const handleLogout = async () => {
       type: 'warning'
     })
 
-    // 清除用户信息和token
     localStorage.removeItem('token')
     localStorage.removeItem('user')
 
     ElMessage.success('退出成功')
-    router.push('/login')
+    await router.push('/login')
   } catch {
-    // 用户取消退出
+    throw new Error('用户取消退出')
   }
 }
 
-// 监听全屏状态变化
+const showNavigationError = (error: NavigationError) => {
+  ElNotification({
+    title: '导航错误',
+    message: error.message,
+    type: 'error',
+    duration: 5000,
+    showClose: true
+  })
+}
+
 const handleFullscreenChange = () => {
   isFullscreen.value = !!document.fullscreenElement
 }
 
+const handleShortcutHelp = () => {
+  showShortcutHelp.value = !showShortcutHelp.value
+}
+
 onMounted(() => {
   document.addEventListener('fullscreenchange', handleFullscreenChange)
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+  
+  document.addEventListener('keydown', (event) => shortcutManager.handleKeyDown(event))
+  
+  registerCommonShortcuts()
 })
 
 onUnmounted(() => {
   document.removeEventListener('fullscreenchange', handleFullscreenChange)
+  window.removeEventListener('resize', checkMobile)
+  document.removeEventListener('keydown', (event) => shortcutManager.handleKeyDown(event))
 })
 </script>
 
@@ -451,6 +489,15 @@ onUnmounted(() => {
   .notification-badge,
   .fullscreen-btn {
     padding: var(--spacing-xs);
+  }
+
+  .sidebar-toggle-btn {
+    &.is-mobile {
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
   }
 
   .user-info {

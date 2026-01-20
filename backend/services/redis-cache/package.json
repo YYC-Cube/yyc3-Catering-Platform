@@ -25,7 +25,7 @@
     "yyc3"
   ],
   "dependencies": {
-    "ioredis": "^5.3.2",
+    "ioredis": "^5.9.0",
     "winston": "^3.11.0",
     "lodash": "^4.17.21"
   },

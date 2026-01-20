@@ -269,15 +269,50 @@ export class OrderController {
         throw new Error('订单ID不能为空');
       }
 
-      // TODO: 从数据库查询订单详情
-      console.log('🔍 查询订单详情:', id);
+      await dbManager.createPool();
 
-      // 模拟数据
-      const order = null;
+      const result = await dbManager.query(`
+        SELECT
+          id, order_number, customer_id, customer_name, customer_phone,
+          restaurant_id, order_type, status, payment_status, payment_method,
+          items, price_breakdown, delivery_info, scheduled_time,
+          estimated_ready_time, actual_ready_time, delivery_start_time, delivery_end_time,
+          notes, source, promo_code, promo_discount, created_at, updated_at
+        FROM orders
+        WHERE id = $1
+      `, [id]);
 
-      if (!order) {
+      if (result.rows.length === 0) {
         throw new Error('订单不存在');
       }
+
+      const row = result.rows[0];
+      const order = {
+        id: row.id,
+        orderNumber: row.order_number,
+        customerId: row.customer_id,
+        customerName: row.customer_name,
+        customerPhone: row.customer_phone,
+        restaurantId: row.restaurant_id,
+        orderType: row.order_type,
+        status: row.status,
+        paymentStatus: row.payment_status,
+        paymentMethod: row.payment_method,
+        items: row.items,
+        priceBreakdown: row.price_breakdown,
+        deliveryInfo: row.delivery_info,
+        scheduledTime: row.scheduled_time,
+        estimatedReadyTime: row.estimated_ready_time,
+        actualReadyTime: row.actual_ready_time,
+        deliveryStartTime: row.delivery_start_time,
+        deliveryEndTime: row.delivery_end_time,
+        notes: row.notes,
+        source: row.source,
+        promoCode: row.promo_code,
+        promoDiscount: row.promo_discount,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at,
+      };
 
       return {
         success: true,
@@ -753,21 +788,40 @@ export class OrderController {
       const oldStatus = existingResult.rows[0].status;
 
       // 更新订单状态
-      const result = await dbManager.query(`
+      let updateQuery = `
         UPDATE orders
         SET status = $1, updated_at = NOW()
         WHERE id = $2
         RETURNING id, updated_at
-      `, [status, id]);
+      `;
+      let queryParams = [status, id];
+
+      // 如果提供了notes，则更新notes字段
+      if (notes !== undefined) {
+        updateQuery = `
+          UPDATE orders
+          SET status = $1, notes = $2, updated_at = NOW()
+          WHERE id = $3
+          RETURNING id, updated_at, notes
+        `;
+        queryParams = [status, notes, id];
+      }
+
+      const result = await dbManager.query(updateQuery, queryParams);
 
       // 添加状态变更日志
       await this.addOrderLog(id, 'status_changed', `订单状态从 ${oldStatus} 变更为 ${status}`, null, '系统');
 
       console.log(`✅ 订单状态更新成功: ${id} -> ${status}`);
 
+      const responseData: any = { id, status, updatedAt: result.rows[0].updated_at };
+      if (notes !== undefined) {
+        responseData.notes = result.rows[0].notes;
+      }
+
       return {
         success: true,
-        data: { id, status, updatedAt: result.rows[0].updated_at },
+        data: responseData,
         message: '订单状态更新成功',
       };
     } catch (error) {
@@ -877,6 +931,23 @@ export class OrderController {
         paidOrders: parseInt(result.rows[0].paid_orders),
         totalRevenue: parseFloat(result.rows[0].total_revenue),
         avgOrderValue: parseFloat(result.rows[0].avg_order_value),
+        statusBreakdown: {
+          pending: 0,
+          confirmed: 0,
+          preparing: 0,
+          ready: 0,
+          delivering: 0,
+          completed: 0,
+          cancelled: 0,
+          refunded: 0,
+        },
+        paymentMethodBreakdown: {},
+        orderTypeBreakdown: {
+          dine_in: 0,
+          takeaway: 0,
+          delivery: 0,
+        },
+        dailyStats: [],
       };
 
       console.log('✅ 获取订单统计成功');

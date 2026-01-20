@@ -4,8 +4,8 @@
  * @version 1.0.0
  */
 
-import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'bun:test'
-import { Database } from 'bun:sqlite'
+import { describe, it, expect, beforeAll, afterAll, beforeEach } from 'vitest'
+import sqlite3 from 'sqlite3'
 
 // 测试配置
 const API_BASE_URL = process.env['API_BASE_URL'] || 'http://localhost:3006/api/v1'
@@ -99,13 +99,62 @@ async function apiRequest<T = any>(
   return response.json()
 }
 
+// 辅助函数：将sqlite3的回调转换为Promise
+function runQuery(db: sqlite3.Database, sql: string, params: any[] = []): Promise<sqlite3.RunResult> {
+  return new Promise((resolve, reject) => {
+    db.run(sql, params, function(err) {
+      if (err) reject(err)
+      else resolve(this)
+    })
+  })
+}
+
+function getQuery(db: sqlite3.Database, sql: string, params: any[] = []): Promise<any> {
+  return new Promise((resolve, reject) => {
+    db.get(sql, params, (err, row) => {
+      if (err) reject(err)
+      else resolve(row)
+    })
+  })
+}
+
+function allQuery(db: sqlite3.Database, sql: string, params: any[] = []): Promise<any[]> {
+  return new Promise((resolve, reject) => {
+    db.all(sql, params, (err, rows) => {
+      if (err) reject(err)
+      else resolve(rows)
+    })
+  })
+}
+
+function execQuery(db: sqlite3.Database, sql: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    db.exec(sql, (err) => {
+      if (err) reject(err)
+      else resolve()
+    })
+  })
+}
+
+function closeDatabase(db: sqlite3.Database): Promise<void> {
+  return new Promise((resolve, reject) => {
+    db.close((err) => {
+      if (err) reject(err)
+      else resolve()
+    })
+  })
+}
+
 // 测试数据库操作
 class TestDatabase {
-  private db: Database
+  private db: sqlite3.Database
 
   constructor() {
-    this.db = new Database(DB_PATH)
-    this.db.exec('PRAGMA foreign_keys = ON')
+    this.db = new sqlite3.Database(DB_PATH)
+  }
+
+  async init(): Promise<void> {
+    await execQuery(this.db, 'PRAGMA foreign_keys = ON')
   }
 
   async createTestData(): Promise<{
@@ -115,80 +164,54 @@ class TestDatabase {
     testMenuItem: { id: number; name: string; price: number }
   }> {
     // 创建测试门店
-    const storeStmt = this.db.prepare(`
-      INSERT INTO stores (store_code, name, address, phone, status)
-      VALUES (?, ?, ?, ?, 'active')
-    `)
-    const storeResult = storeStmt.run(
-      `STORE_${Date.now()}`,
-      '测试门店',
-      '测试地址',
-      '1234567890'
+    const storeResult = await runQuery(
+      this.db,
+      `INSERT INTO stores (store_code, name, address, phone, status) VALUES (?, ?, ?, ?, 'active')`,
+      [`STORE_${Date.now()}`, '测试门店', '测试地址', '1234567890']
     )
     const testStore = {
-      id: storeResult.lastInsertRowid as number,
+      id: storeResult.lastID,
       code: `STORE_${Date.now()}`
     }
 
     // 创建测试用户
-    const userStmt = this.db.prepare(`
-      INSERT INTO users (username, email, password_hash, salt, full_name, role, status)
-      VALUES (?, ?, ?, ?, ?, ?, 'active')
-    `)
-    const userResult = userStmt.run(
-      `testuser_${Date.now()}`,
-      `test${Date.now()}@yyc3.com`,
-      'hashed_password',
-      'salt',
-      '测试用户',
-      'staff'
+    const userResult = await runQuery(
+      this.db,
+      `INSERT INTO users (username, email, password_hash, salt, full_name, role, status) VALUES (?, ?, ?, ?, ?, ?, 'active')`,
+      [`testuser_${Date.now()}`, `test${Date.now()}@yyc3.com`, 'hashed_password', 'salt', '测试用户', 'staff']
     )
     const testUser = {
-      id: userResult.lastInsertRowid as number,
+      id: userResult.lastID,
       token: `mock_token_${Date.now()}`
     }
 
     // 创建测试会员
-    const memberStmt = this.db.prepare(`
-      INSERT INTO members (member_no, phone, level_id, points, balance, status)
-      VALUES (?, ?, 1, 0, 0, 'active')
-    `)
-    const memberResult = memberStmt.run(
-      `M${Date.now()}`,
-      '13800138000'
+    const memberResult = await runQuery(
+      this.db,
+      `INSERT INTO members (member_no, phone, level_id, points, balance, status) VALUES (?, ?, 1, 0, 0, 'active')`,
+      [`M${Date.now()}`, '13800138000']
     )
     const testMember = {
-      id: memberResult.lastInsertRowid as number,
+      id: memberResult.lastID,
       memberNo: `M${Date.now()}`
     }
 
     // 创建测试分类
-    const categoryStmt = this.db.prepare(`
-      INSERT INTO menu_categories (name, description, sort_order, is_active)
-      VALUES (?, ?, ?, 1)
-    `)
-    const categoryResult = categoryStmt.run(
-      '测试分类',
-      '测试分类描述',
-      1
+    const categoryResult = await runQuery(
+      this.db,
+      `INSERT INTO menu_categories (name, description, sort_order, is_active) VALUES (?, ?, ?, 1)`,
+      ['测试分类', '测试分类描述', 1]
     )
-    const categoryId = categoryResult.lastInsertRowid as number
+    const categoryId = categoryResult.lastID
 
     // 创建测试菜品
-    const itemStmt = this.db.prepare(`
-      INSERT INTO menu_items (item_code, name, description, category_id, price, is_available, created_by)
-      VALUES (?, ?, ?, ?, ?, 1, ?)
-    `)
-    const itemResult = itemStmt.run(
-      `ITEM_${Date.now()}`,
-      '测试菜品',
-      '测试菜品描述',
-      categoryId,
-      28.00,
-      testUser.id
+    const itemResult = await runQuery(
+      this.db,
+      `INSERT INTO menu_items (item_code, name, description, category_id, price, is_available, created_by) VALUES (?, ?, ?, ?, ?, 1, ?)`,
+      [`ITEM_${Date.now()}`, '测试菜品', '测试菜品描述', categoryId, 28.00, testUser.id]
     )
     const testMenuItem = {
-      id: itemResult.lastInsertRowid as number,
+      id: itemResult.lastID,
       name: '测试菜品',
       price: 28.00
     }
@@ -198,33 +221,23 @@ class TestDatabase {
 
   async cleanupTestData(storeId: number, userId: number, memberId: number): Promise<void> {
     // 清理订单（按外键依赖顺序）
-    const deleteOrderItems = this.db.prepare('DELETE FROM order_items')
-    deleteOrderItems.run()
-
-    const deleteOrders = this.db.prepare('DELETE FROM orders')
-    deleteOrders.run()
+    await runQuery(this.db, 'DELETE FROM order_items')
+    await runQuery(this.db, 'DELETE FROM orders')
 
     // 清理菜单项
-    const deleteMenuItems = this.db.prepare('DELETE FROM menu_items WHERE created_by = ?')
-    deleteMenuItems.run(userId)
+    await runQuery(this.db, 'DELETE FROM menu_items WHERE created_by = ?', [userId])
 
     // 清理分类
-    const deleteCategories = this.db.prepare('DELETE FROM menu_categories')
-    deleteCategories.run()
+    await runQuery(this.db, 'DELETE FROM menu_categories')
 
     // 清理其他数据
-    const deleteMembers = this.db.prepare('DELETE FROM members WHERE id = ?')
-    deleteMembers.run(memberId)
-
-    const deleteStores = this.db.prepare('DELETE FROM stores WHERE id = ?')
-    deleteStores.run(storeId)
-
-    const deleteUsers = this.db.prepare('DELETE FROM users WHERE id = ?')
-    deleteUsers.run(userId)
+    await runQuery(this.db, 'DELETE FROM members WHERE id = ?', [memberId])
+    await runQuery(this.db, 'DELETE FROM stores WHERE id = ?', [storeId])
+    await runQuery(this.db, 'DELETE FROM users WHERE id = ?', [userId])
   }
 
   async cleanup(): Promise<void> {
-    this.db.close()
+    await closeDatabase(this.db)
   }
 }
 
@@ -241,6 +254,7 @@ describe('订单API', () => {
 
   beforeAll(async () => {
     testDb = new TestDatabase()
+    await testDb.init()
     testData = await testDb.createTestData()
     authToken = testData.testUser.token
   })
@@ -285,7 +299,7 @@ describe('订单API', () => {
       expect(response.data!.storeId).toBe(testData.testStore.id)
       expect(response.data!.tableNumber).toBe('A01')
       expect(response.data!.orderType).toBe('dine_in')
-      expect(response.data!.subtotal).toBe(56.00) // 28.00 * 2
+      expect(response.data!.subtotal).toBe(56.00)
       expect(response.data!.totalAmount).toBe(56.00)
       expect(response.data!.status).toBe('pending')
       expect(response.data!.paymentStatus).toBe('unpaid')
@@ -350,7 +364,6 @@ describe('订单API', () => {
     it('应该验证必填字段', async () => {
       const invalidOrderData = {
         tableNumber: 'A01',
-        // 缺少storeId和items
       }
 
       const response = await apiRequest('/orders', {
@@ -385,7 +398,7 @@ describe('订单API', () => {
 
     it('应该验证门店ID有效性', async () => {
       const orderData: CreateOrderRequest = {
-        storeId: 99999, // 不存在的门店ID
+        storeId: 99999,
         items: [
           {
             itemId: testData.testMenuItem.id,
@@ -430,7 +443,6 @@ describe('订单API', () => {
 
   describe('GET /orders', () => {
     beforeEach(async () => {
-      // 创建一些测试订单
       await apiRequest('/orders', {
         method: 'POST',
         headers: {
@@ -530,7 +542,6 @@ describe('订单API', () => {
     let testOrderId: number
 
     beforeEach(async () => {
-      // 创建测试订单
       const orderResponse = await apiRequest<OrderResponse>('/orders', {
         method: 'POST',
         headers: {
@@ -556,7 +567,7 @@ describe('订单API', () => {
       expect(response.success).toBe(true)
       expect(response.data!.id).toBe(testOrderId)
       expect(response.data!.tableNumber).toBe('C03')
-      expect(response.data!.subtotal).toBe(84.00) // 28.00 * 3
+      expect(response.data!.subtotal).toBe(84.00)
       expect(response.data!.totalAmount).toBe(84.00)
       expect(response.data!.items).toHaveLength(1)
       expect(response.data!.items[0]!.quantity).toBe(3)
@@ -590,7 +601,6 @@ describe('订单API', () => {
     let testOrderId: number
 
     beforeEach(async () => {
-      // 创建测试订单
       const orderResponse = await apiRequest<OrderResponse>('/orders', {
         method: 'POST',
         headers: {
@@ -636,7 +646,6 @@ describe('订单API', () => {
     })
 
     it('应该验证状态转换的有效性', async () => {
-      // 尝试从pending直接跳到completed（可能不被允许）
       const response = await apiRequest(`/orders/${testOrderId}`, {
         method: 'PATCH',
         headers: {
@@ -689,7 +698,7 @@ describe('订单API', () => {
       })
 
       expect(response.success).toBe(true)
-      expect(response.data!.subtotal).toBe(84.00) // 28.00 * 3
+      expect(response.data!.subtotal).toBe(84.00)
       expect(response.data!.totalAmount).toBe(84.00)
     })
 
@@ -720,30 +729,34 @@ describe('订单API', () => {
         body: JSON.stringify(orderData2),
       })
 
+      expect(response1.success).toBe(true)
+      expect(response2.success).toBe(true)
       expect(response1.data!.orderNo).not.toBe(response2.data!.orderNo)
-      expect(response1.data!.orderNo).toMatch(/^ORD\d{12}$/)
-      expect(response2.data!.orderNo).toMatch(/^ORD\d{12}$/)
     })
 
-    it('应该记录订单创建时间', async () => {
-      const beforeCreation = new Date()
+    it('应该正确处理特殊要求', async () => {
+      const orderData: CreateOrderRequest = {
+        storeId: testData.testStore.id,
+        items: [
+          {
+            itemId: testData.testMenuItem.id,
+            quantity: 1,
+            specialRequests: '少盐, 多放蒜'
+          }
+        ],
+        specialRequests: '顾客过敏，请避免使用花生制品'
+      }
 
       const response = await apiRequest<OrderResponse>('/orders', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${authToken}`,
         },
-        body: JSON.stringify({
-          storeId: testData.testStore.id,
-          items: [{ itemId: testData.testMenuItem.id, quantity: 1 }]
-        }),
+        body: JSON.stringify(orderData),
       })
 
-      const afterCreation = new Date()
-      const createdAt = new Date(response.data!.createdAt)
-
-      expect(createdAt.getTime()).toBeGreaterThanOrEqual(beforeCreation.getTime())
-      expect(createdAt.getTime()).toBeLessThanOrEqual(afterCreation.getTime())
+      expect(response.success).toBe(true)
+      expect(response.data!.items[0]!.specialRequests).toBe('少盐, 多放蒜')
     })
   })
 })

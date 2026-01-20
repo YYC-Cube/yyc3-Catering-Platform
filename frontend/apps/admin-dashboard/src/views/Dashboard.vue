@@ -68,6 +68,16 @@
       />
     </div>
 
+    <!-- 快捷操作和待办事项 -->
+    <div class="quick-actions-section">
+      <div class="quick-actions-wrapper">
+        <QuickActions />
+      </div>
+      <div class="todo-list-wrapper">
+        <TodoList />
+      </div>
+    </div>
+
     <!-- 图表区域 -->
     <div class="charts-section">
       <div class="chart-row">
@@ -200,7 +210,7 @@
         <div class="monitoring-card">
           <div class="card-header">
             <h4>厨房状态</h4>
-            <el-badge :value="kitchenBusyCount" :max="99" class="kitchen-badge">
+            <el-badge :value="busyCount" :max="99" class="kitchen-badge">
               <i class="icon-kitchen"></i>
             </el-badge>
           </div>
@@ -208,19 +218,19 @@
             <div class="kitchen-stats">
               <div class="stat-item">
                 <span class="stat-label">进行中</span>
-                <span class="stat-value">{{ kitchenStats.inProgress }}</span>
+                <span class="stat-value">{{ kitchenMetrics.inProgress }}</span>
               </div>
               <div class="stat-item">
                 <span class="stat-label">待制作</span>
-                <span class="stat-value">{{ kitchenStats.pending }}</span>
+                <span class="stat-value">{{ kitchenMetrics.pending }}</span>
               </div>
               <div class="stat-item">
                 <span class="stat-label">已完成</span>
-                <span class="stat-value">{{ kitchenStats.completed }}</span>
+                <span class="stat-value">{{ kitchenMetrics.completed }}</span>
               </div>
               <div class="stat-item">
                 <span class="stat-label">平均制作时间</span>
-                <span class="stat-value">{{ kitchenStats.avgPrepTime }}分钟</span>
+                <span class="stat-value">{{ kitchenMetrics.avgPrepTime }}分钟</span>
               </div>
             </div>
             <div class="kitchen-progress">
@@ -316,6 +326,8 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import MetricCard from '@/components/MetricCard.vue'
+import QuickActions from '@/components/dashboard/QuickActions.vue'
+import TodoList from '@/components/dashboard/TodoList.vue'
 import RevenueChart from '@/components/charts/RevenueChart.vue'
 import OrderStatusChart from '@/components/charts/OrderStatusChart.vue'
 import TopDishesChart from '@/components/charts/TopDishesChart.vue'
@@ -324,6 +336,7 @@ import OrderDetailDialog from '@/components/OrderDetailDialog.vue'
 import { useDashboardStore } from '@/stores/dashboard'
 import { useTableStore } from '@/stores/table'
 import { useAlertStore } from '@/stores/alert'
+import { useKitchenStore } from '@/stores/kitchen'
 import type { Order, Table } from '@/types/dashboard'
 import { formatDateTime } from '@/utils/format'
 
@@ -331,6 +344,7 @@ const router = useRouter()
 const dashboardStore = useDashboardStore()
 const tableStore = useTableStore()
 const alertStore = useAlertStore()
+const kitchenStore = useKitchenStore()
 
 // 响应式状态
 const dateRange = ref<[string, string]>([
@@ -364,24 +378,22 @@ const tableStatus = computed(() => tableStore.tableStatus)
 const alerts = computed(() => alertStore.alerts)
 
 // 厨房统计数据模拟
-const kitchenStats = computed(() => ({
-  inProgress: 5,
-  pending: 8,
-  completed: 42,
-  avgPrepTime: 15
+const kitchenMetrics = computed(() => ({
+  inProgress: kitchenStore.kitchenStats.inProgress,
+  pending: kitchenStore.kitchenStats.pending,
+  completed: kitchenStore.kitchenStats.completed,
+  avgPrepTime: kitchenStore.kitchenStats.avgPrepTime
 }))
 
 const pendingOrdersCount = computed(() =>
   recentOrders.value.filter(order => ['pending', 'confirmed'].includes(order.status)).length
 )
 
-const kitchenBusyCount = computed(() =>
-  kitchenStats.value.inProgress + kitchenStats.value.pending
-)
+const busyCount = computed(() => kitchenMetrics.inProgress + kitchenMetrics.pending)
 
 const kitchenUtilization = computed(() => {
-  const total = kitchenStats.value.inProgress + kitchenStats.value.pending + kitchenStats.value.completed
-  return total > 0 ? Math.round((kitchenStats.value.inProgress / total) * 100) : 0
+  const total = kitchenMetrics.inProgress + kitchenMetrics.pending + kitchenMetrics.completed
+  return total > 0 ? Math.round((kitchenMetrics.inProgress / total) * 100) : 0
 })
 
 const tableOccupancyRate = computed(() => {
@@ -419,7 +431,10 @@ const refreshData = async () => {
 
 const exportReport = async () => {
   try {
-    await dashboardStore.exportReport('excel')
+    await dashboardStore.exportReport('excel', {
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1]
+    })
     ElMessage.success('报表导出成功')
   } catch (error) {
     ElMessage.error('报表导出失败')
@@ -429,7 +444,13 @@ const exportReport = async () => {
 const loadCoreMetrics = async () => {
   try {
     metricsLoading.value = true
-    await dashboardStore.loadDashboardData()
+    await Promise.all([
+      dashboardStore.loadDashboardData({
+        startDate: dateRange.value[0],
+        endDate: dateRange.value[1]
+      }),
+      kitchenStore.loadKitchenStats()
+    ])
   } finally {
     metricsLoading.value = false
   }
@@ -438,7 +459,11 @@ const loadCoreMetrics = async () => {
 const loadRevenueData = async () => {
   try {
     revenueLoading.value = true
-    await dashboardStore.loadDashboardData()
+    await dashboardStore.loadDashboardData({
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1],
+      period: revenuePeriod.value as 'day' | 'week' | 'month'
+    })
   } finally {
     revenueLoading.value = false
   }
@@ -447,7 +472,10 @@ const loadRevenueData = async () => {
 const loadOrderDistribution = async () => {
   try {
     orderDistributionLoading.value = true
-    await dashboardStore.loadDashboardData()
+    await dashboardStore.loadDashboardData({
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1]
+    })
   } finally {
     orderDistributionLoading.value = false
   }
@@ -456,7 +484,11 @@ const loadOrderDistribution = async () => {
 const loadTopDishes = async () => {
   try {
     topDishesLoading.value = true
-    await dashboardStore.loadDashboardData()
+    await dashboardStore.loadDashboardData({
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1],
+      period: topDishesPeriod.value as 'today' | 'week' | 'month'
+    })
   } finally {
     topDishesLoading.value = false
   }
@@ -465,7 +497,10 @@ const loadTopDishes = async () => {
 const loadCustomerFlow = async () => {
   try {
     customerFlowLoading.value = true
-    await dashboardStore.loadDashboardData()
+    await dashboardStore.loadDashboardData({
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1]
+    })
   } finally {
     customerFlowLoading.value = false
   }
@@ -553,10 +588,12 @@ const loadAllData = async () => {
 
 // WebSocket 连接用于实时数据更新
 let wsConnection: WebSocket | null = null
+let wsReconnectAttempts = 0
+const MAX_RECONNECT_ATTEMPTS = 3
 
 const connectWebSocket = () => {
   try {
-    wsConnection = new WebSocket(`${import.meta.env?.VITE_WS_URL || 'ws://localhost:3001'}/dashboard`)
+    wsConnection = new WebSocket(`${import.meta.env?.VITE_WS_URL || 'ws://localhost:3000'}/dashboard`)
 
     wsConnection.onmessage = async (event) => {
       const data = JSON.parse(event.data)
@@ -565,14 +602,22 @@ const connectWebSocket = () => {
 
     wsConnection.onclose = () => {
       // 断线重连逻辑
-      setTimeout(connectWebSocket, 5000)
+      if (wsReconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
+        wsReconnectAttempts++
+        setTimeout(connectWebSocket, 5000)
+      } else {
+        console.warn('WebSocket连接失败，已达到最大重连次数，切换到轮询模式')
+        // 可以在这里启动轮询作为备用方案
+      }
     }
 
     wsConnection.onerror = (error: Event) => {
-      console.error('WebSocket error:', error)
+      console.warn('WebSocket连接失败，将使用HTTP轮询获取实时数据:', error)
+      // 不显示错误，只是警告
     }
   } catch (error: any) {
-    console.error('Failed to connect WebSocket:', error)
+    console.warn('无法建立WebSocket连接，将使用HTTP轮询获取实时数据:', error)
+    // 不显示错误，只是警告
   }
 }
 
@@ -1122,6 +1167,38 @@ onUnmounted(() => {
     .logs-section {
       display: none; // 在迷你版本中隐藏日志
     }
+  }
+}
+
+.quick-actions-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.quick-actions-wrapper,
+.todo-list-wrapper {
+  background: var(--color-bg-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: $breakpoint-lg) {
+  .quick-actions-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .quick-actions-section {
+    gap: var(--spacing-md);
+  }
+
+  .quick-actions-wrapper,
+  .todo-list-wrapper {
+    padding: var(--spacing-md);
   }
 }
 </style>

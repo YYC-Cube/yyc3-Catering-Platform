@@ -1,0 +1,245 @@
+# Global Configuration for Test Environment
+global:
+  # Image Repository (Docker Hub / ECR / CR)
+  imageRegistry: "registry.yyc3.com"
+
+  # Environment (production, staging, development, test)
+  environment: "test"
+
+  # Domain
+  domain: "test.yyc3.com"
+
+  # Namespace
+  namespace: "test"
+
+  # Image Pull Secret
+  imagePullSecrets:
+    - name: "yyc3-registry-secret"
+
+  # Labels
+  labels:
+    project: "yyc3-catering-platform"
+    team: "platform-team"
+
+---
+
+# API Gateway Configuration
+api-gateway:
+  enabled: true
+
+  image:
+    repository: "yyc3/api-gateway"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    hosts:
+      - host: "api.test.yyc3.com"
+        paths:
+          - path: "/"
+            pathType: "Prefix"
+    tls:
+      - secretName: "yyc3-api-test-tls"
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+---
+
+# Business Gateway Configuration
+business-gateway:
+  enabled: true
+
+  image:
+    repository: "yyc3/business-gateway"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    hosts:
+      - host: "business.test.yyc3.com"
+        paths:
+          - path: "/"
+            pathType: "Prefix"
+    tls:
+      - secretName: "yyc3-business-test-tls"
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+---
+
+# User Service Configuration
+user-service:
+  enabled: true
+
+  image:
+    repository: "yyc3/user-service"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "64Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+---
+
+# Order Service Configuration
+order-service:
+  enabled: true
+
+  image:
+    repository: "yyc3/order-service"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+
+---
+
+# Menu Service Configuration
+menu-service:
+  enabled: true
+
+  image:
+    repository: "yyc3/menu-service"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "64Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+---
+
+# Payment Service Configuration
+payment-service:
+  enabled: true
+
+  image:
+    repository: "yyc3/payment-service"
+    tag: "v1.0.0"
+    pullPolicy: "Always"
+
+  replicaCount: 1
+
+  service:
+    type: "ClusterIP"
+    port: 8080
+
+  autoscaling:
+    enabled: false
+
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "64Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+---
+
+# Disabled Services (Not Yet Implemented)
+delivery-service:
+  enabled: false
+
+notification-service:
+  enabled: false
+
+analytics-service:
+  enabled: false
+
+smart-kitchen:
+  enabled: false
+
+smart-ops-service:
+  enabled: false
+
+ai-assistant:
+  enabled: false
+
+food-safety:
+  enabled: false
+
+o2o-system:
+  enabled: false
+
+chain-operation:
+  enabled: false
+
+redis-cache:
+  enabled: false

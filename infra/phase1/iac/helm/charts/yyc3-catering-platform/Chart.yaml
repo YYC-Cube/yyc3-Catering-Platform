@@ -64,72 +64,72 @@ dependencies:
     alias: payment-service
     condition: payment-service.enabled
 
-  # Delivery Service
-  - name: delivery-service
-    version: 0.1.0
-    repository: "file://./charts/delivery-service"
-    alias: delivery-service
-    condition: delivery-service.enabled
+  # Delivery Service (TODO: Not yet implemented)
+  # - name: delivery-service
+  #   version: 0.1.0
+  #   repository: "file://./charts/delivery-service"
+  #   alias: delivery-service
+  #   condition: delivery-service.enabled
 
-  # Notification Service
-  - name: notification-service
-    version: 0.1.0
-    repository: "file://./charts/notification-service"
-    alias: notification-service
-    condition: notification-service.enabled
+  # Notification Service (TODO: Not yet implemented)
+  # - name: notification-service
+  #   version: 0.1.0
+  #   repository: "file://./charts/notification-service"
+  #   alias: notification-service
+  #   condition: notification-service.enabled
 
-  # Analytics Service
-  - name: analytics-service
-    version: 0.1.0
-    repository: "file://./charts/analytics-service"
-    alias: analytics-service
-    condition: analytics-service.enabled
+  # Analytics Service (TODO: Not yet implemented)
+  # - name: analytics-service
+  #   version: 0.1.0
+  #   repository: "file://./charts/analytics-service"
+  #   alias: analytics-service
+  #   condition: analytics-service.enabled
 
-  # Smart Kitchen
-  - name: smart-kitchen
-    version: 0.1.0
-    repository: "file://./charts/smart-kitchen"
-    alias: smart-kitchen
-    condition: smart-kitchen.enabled
+  # Smart Kitchen (TODO: Not yet implemented)
+  # - name: smart-kitchen
+  #   version: 0.1.0
+  #   repository: "file://./charts/smart-kitchen"
+  #   alias: smart-kitchen
+  #   condition: smart-kitchen.enabled
 
-  # Smart Ops Service
-  - name: smart-ops-service
-    version: 0.1.0
-    repository: "file://./charts/smart-ops-service"
-    alias: smart-ops-service
-    condition: smart-ops-service.enabled
+  # Smart Ops Service (TODO: Not yet implemented)
+  # - name: smart-ops-service
+  #   version: 0.1.0
+  #   repository: "file://./charts/smart-ops-service"
+  #   alias: smart-ops-service
+  #   condition: smart-ops-service.enabled
 
-  # AI Assistant
-  - name: ai-assistant
-    version: 0.1.0
-    repository: "file://./charts/ai-assistant"
-    alias: ai-assistant
-    condition: ai-assistant.enabled
+  # AI Assistant (TODO: Not yet implemented)
+  # - name: ai-assistant
+  #   version: 0.1.0
+  #   repository: "file://./charts/ai-assistant"
+  #   alias: ai-assistant
+  #   condition: ai-assistant.enabled
 
-  # Food Safety
-  - name: food-safety
-    version: 0.1.0
-    repository: "file://./charts/food-safety"
-    alias: food-safety
-    condition: food-safety.enabled
+  # Food Safety (TODO: Not yet implemented)
+  # - name: food-safety
+  #   version: 0.1.0
+  #   repository: "file://./charts/food-safety"
+  #   alias: food-safety
+  #   condition: food-safety.enabled
 
-  # O2O System
-  - name: o2o-system
-    version: 0.1.0
-    repository: "file://./charts/o2o-system"
-    alias: o2o-system
-    condition: o2o-system.enabled
+  # O2O System (TODO: Not yet implemented)
+  # - name: o2o-system
+  #   version: 0.1.0
+  #   repository: "file://./charts/o2o-system"
+  #   alias: o2o-system
+  #   condition: o2o-system.enabled
 
-  # Chain Operation
-  - name: chain-operation
-    version: 0.1.0
-    repository: "file://./charts/chain-operation"
-    alias: chain-operation
-    condition: chain-operation.enabled
+  # Chain Operation (TODO: Not yet implemented)
+  # - name: chain-operation
+  #   version: 0.1.0
+  #   repository: "file://./charts/chain-operation"
+  #   alias: chain-operation
+  #   condition: chain-operation.enabled
 
-  # Redis Cache
-  - name: redis-cache
-    version: 0.1.0
-    repository: "file://./charts/redis-cache"
-    alias: redis-cache
-    condition: redis-cache.enabled
+  # Redis Cache (TODO: Not yet implemented)
+  # - name: redis-cache
+  #   version: 0.1.0
+  #   repository: "file://./charts/redis-cache"
+  #   alias: redis-cache
+  #   condition: redis-cache.enabled

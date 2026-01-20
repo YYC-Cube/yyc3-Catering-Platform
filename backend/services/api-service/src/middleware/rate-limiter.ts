@@ -251,9 +251,11 @@ export class RateLimitMiddleware {
         timestamp: new Date().toISOString()
       };
 
+      headers.set('Content-Type', 'application/json');
+
       return new Response(JSON.stringify(errorResponse), {
         status: 429,
-        headers: Object.assign(headers, { 'Content-Type': 'application/json' })
+        headers
       });
     }
 

@@ -5,16 +5,17 @@
  * @author YYC³
  * @version 1.0.0
  * @created 2025-01-30
+ * @updated 2025-12-29
  */
 
-import { describe, it, expect, beforeEach, afterEach, vi } from '@jest/globals';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import request from 'supertest';
 import express from 'express';
-import kafkaRoutes from '../../routes/kafkaRoutes';
-import { kafkaService } from '../../services/kafkaService';
+import kafkaRoutes from '../../../routes/kafkaRoutes';
+import { kafkaService } from '../../../services/kafkaService';
 
 // Mock Kafka服务
-vi.mock('../../services/kafkaService', () => ({
+vi.mock('../../../services/kafkaService', () => ({
   kafkaService: {
     getStatus: vi.fn(),
     createTopic: vi.fn(),
@@ -48,12 +49,12 @@ describe('Kafka Routes Unit Tests', () => {
   describe('GET /api/kafka/status', () => {
     it('应该返回Kafka服务状态', async () => {
       const mockStatus = {
-        connected: true,
-        brokers: ['localhost:9092'],
-        topics: 10,
+        initialized: true,
+        producerConnected: true,
+        consumerCount: 0,
       };
 
-      vi.mocked(kafkaService.getStatus).mockResolvedValue(mockStatus);
+      vi.mocked(kafkaService.getStatus).mockReturnValue(mockStatus);
 
       const response = await request(app).get('/api/kafka/status');
 
@@ -66,16 +67,16 @@ describe('Kafka Routes Unit Tests', () => {
     });
 
     it('应该处理服务状态获取失败', async () => {
-      vi.mocked(kafkaService.getStatus).mockRejectedValue(
-        new Error('Failed to get status')
-      );
+      vi.mocked(kafkaService.getStatus).mockImplementation(() => {
+        throw new Error('Failed to get status');
+      });
 
       const response = await request(app).get('/api/kafka/status');
 
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to get Kafka status',
+        error: '获取Kafka状态失败',
       });
     });
   });
@@ -91,7 +92,7 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        data: mockTopics,
+        data: { topics: mockTopics },
       });
       expect(kafkaService.listTopics).toHaveBeenCalled();
     });
@@ -106,12 +107,12 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to list topics',
+        error: '获取主题列表失败',
       });
     });
   });
 
-  describe('GET /api/kafka/topics/:topicName', () => {
+  describe('GET /api/kafka/topics/:topic/metadata', () => {
     it('应该返回指定主题的元数据', async () => {
       const topicName = 'test-topic';
       const mockMetadata = {
@@ -122,12 +123,12 @@ describe('Kafka Routes Unit Tests', () => {
 
       vi.mocked(kafkaService.getTopicMetadata).mockResolvedValue(mockMetadata);
 
-      const response = await request(app).get(`/api/kafka/topics/${topicName}`);
+      const response = await request(app).get(`/api/kafka/topics/${topicName}/metadata`);
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        data: mockMetadata,
+        data: { topic: topicName, metadata: mockMetadata },
       });
       expect(kafkaService.getTopicMetadata).toHaveBeenCalledWith(topicName);
     });
@@ -139,12 +140,12 @@ describe('Kafka Routes Unit Tests', () => {
         new Error('Topic not found')
       );
 
-      const response = await request(app).get(`/api/kafka/topics/${topicName}`);
+      const response = await request(app).get(`/api/kafka/topics/${topicName}/metadata`);
 
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to get topic metadata',
+        error: '获取主题元数据失败',
       });
     });
   });
@@ -152,15 +153,12 @@ describe('Kafka Routes Unit Tests', () => {
   describe('POST /api/kafka/topics', () => {
     it('应该成功创建主题', async () => {
       const topicData = {
-        name: 'new-topic',
+        topic: 'new-topic',
         partitions: 3,
         replicationFactor: 2,
       };
 
-      vi.mocked(kafkaService.createTopic).mockResolvedValue({
-        success: true,
-        message: 'Topic created successfully',
-      });
+      vi.mocked(kafkaService.createTopic).mockResolvedValue(undefined);
 
       const response = await request(app)
         .post('/api/kafka/topics')
@@ -169,10 +167,11 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(201);
       expect(response.body).toEqual({
         success: true,
-        message: 'Topic created successfully',
+        message: '主题创建成功',
+        data: { topic: 'new-topic', partitions: 3, replicationFactor: 2 },
       });
       expect(kafkaService.createTopic).toHaveBeenCalledWith(
-        topicData.name,
+        topicData.topic,
         topicData.partitions,
         topicData.replicationFactor
       );
@@ -180,8 +179,7 @@ describe('Kafka Routes Unit Tests', () => {
 
     it('应该验证请求体参数', async () => {
       const invalidData = {
-        name: 'test-topic',
-        // 缺少partitions和replicationFactor
+        // 缺少topic
       };
 
       const response = await request(app)
@@ -191,13 +189,13 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(400);
       expect(response.body).toEqual({
         success: false,
-        error: 'Name, partitions, and replicationFactor are required',
+        error: '主题名称不能为空',
       });
     });
 
     it('应该处理主题创建失败', async () => {
       const topicData = {
-        name: 'new-topic',
+        topic: 'new-topic',
         partitions: 3,
         replicationFactor: 2,
       };
@@ -213,7 +211,7 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to create topic',
+        error: '创建主题失败',
       });
     });
   });
@@ -222,17 +220,15 @@ describe('Kafka Routes Unit Tests', () => {
     it('应该成功删除主题', async () => {
       const topicName = 'test-topic';
 
-      vi.mocked(kafkaService.deleteTopic).mockResolvedValue({
-        success: true,
-        message: 'Topic deleted successfully',
-      });
+      vi.mocked(kafkaService.deleteTopic).mockResolvedValue(undefined);
 
       const response = await request(app).delete(`/api/kafka/topics/${topicName}`);
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        message: 'Topic deleted successfully',
+        message: '主题删除成功',
+        data: { topic: topicName },
       });
       expect(kafkaService.deleteTopic).toHaveBeenCalledWith(topicName);
     });
@@ -249,67 +245,17 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to delete topic',
+        error: '删除主题失败',
       });
-    });
-  });
-
-  describe('POST /api/kafka/topics/create', () => {
-    it('应该批量创建多个主题', async () => {
-      const topicsData = {
-        topics: [
-          { name: 'topic1', partitions: 3, replicationFactor: 2 },
-          { name: 'topic2', partitions: 5, replicationFactor: 2 },
-        ],
-      };
-
-      vi.mocked(kafkaService.createTopic)
-        .mockResolvedValueOnce({ success: true, message: 'Topic 1 created' })
-        .mockResolvedValueOnce({ success: true, message: 'Topic 2 created' });
-
-      const response = await request(app)
-        .post('/api/kafka/topics/create')
-        .send(topicsData);
-
-      expect(response.status).toBe(201);
-      expect(response.body).toEqual({
-        success: true,
-        message: 'Topics created successfully',
-        results: [
-          { success: true, message: 'Topic 1 created' },
-          { success: true, message: 'Topic 2 created' },
-        ],
-      });
-    });
-
-    it('应该处理部分主题创建失败', async () => {
-      const topicsData = {
-        topics: [
-          { name: 'topic1', partitions: 3, replicationFactor: 2 },
-          { name: 'topic2', partitions: 5, replicationFactor: 2 },
-        ],
-      };
-
-      vi.mocked(kafkaService.createTopic)
-        .mockResolvedValueOnce({ success: true, message: 'Topic 1 created' })
-        .mockRejectedValueOnce(new Error('Failed to create topic 2'));
-
-      const response = await request(app)
-        .post('/api/kafka/topics/create')
-        .send(topicsData);
-
-      expect(response.status).toBe(207); // Multi-Status
-      expect(response.body).toHaveProperty('success', true);
-      expect(response.body.results).toHaveLength(2);
     });
   });
 
   describe('POST /api/kafka/messages/send', () => {
-    it('应该成功发送单条消息', async () => {
+    it('应该成功发送消息', async () => {
       const messageData = {
         topic: 'test-topic',
+        message: JSON.stringify({ test: 'data' }),
         key: 'test-key',
-        value: JSON.stringify({ test: 'data' }),
       };
 
       vi.mocked(kafkaService.sendMessage).mockResolvedValue({
@@ -324,18 +270,16 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        data: { success: true, offset: 100 },
+        message: '消息发送成功',
+        data: { topic: 'test-topic', key: 'test-key' },
       });
-      expect(kafkaService.sendMessage).toHaveBeenCalledWith(
-        messageData.topic,
-        { key: messageData.key, value: messageData.value }
-      );
+      expect(kafkaService.sendMessage).toHaveBeenCalledWith(messageData);
     });
 
     it('应该验证消息参数', async () => {
       const invalidData = {
         topic: 'test-topic',
-        // 缺少key和value
+        // 缺少message
       };
 
       const response = await request(app)
@@ -345,20 +289,17 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(400);
       expect(response.body).toEqual({
         success: false,
-        error: 'Topic, key, and value are required',
+        error: '主题和消息内容不能为空',
       });
     });
 
     it('应该处理消息发送失败', async () => {
       const messageData = {
         topic: 'test-topic',
-        key: 'test-key',
-        value: JSON.stringify({ test: 'data' }),
+        message: JSON.stringify({ test: 'data' }),
       };
 
-      vi.mocked(kafkaService.sendMessage).mockRejectedValue(
-        new Error('Failed to send message')
-      );
+      vi.mocked(kafkaService.sendMessage).mockResolvedValue(false);
 
       const response = await request(app)
         .post('/api/kafka/messages/send')
@@ -367,7 +308,7 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Failed to send message',
+        error: '消息发送失败',
       });
     });
   });
@@ -375,17 +316,13 @@ describe('Kafka Routes Unit Tests', () => {
   describe('POST /api/kafka/messages/batch', () => {
     it('应该成功批量发送消息', async () => {
       const batchData = {
-        topic: 'test-topic',
         messages: [
-          { key: 'msg1', value: 'value1' },
-          { key: 'msg2', value: 'value2' },
+          { topic: 'test-topic', message: 'message1' },
+          { topic: 'test-topic', message: 'message2' },
         ],
       };
 
-      vi.mocked(kafkaService.sendBatchMessages).mockResolvedValue([
-        { success: true, offset: 100 },
-        { success: true, offset: 101 },
-      ]);
+      vi.mocked(kafkaService.sendBatchMessages).mockResolvedValue(true);
 
       const response = await request(app)
         .post('/api/kafka/messages/batch')
@@ -394,10 +331,8 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        data: [
-          { success: true, offset: 100 },
-          { success: true, offset: 101 },
-        ],
+        message: '批量消息发送成功',
+        data: { count: 2 },
       });
     });
 
@@ -414,7 +349,7 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(400);
       expect(response.body).toEqual({
         success: false,
-        error: 'Topic and messages array are required',
+        error: '消息列表不能为空',
       });
     });
   });
@@ -422,11 +357,11 @@ describe('Kafka Routes Unit Tests', () => {
   describe('POST /api/kafka/subscribe', () => {
     it('应该成功订阅主题', async () => {
       const subscribeData = {
-        topic: 'test-topic',
+        topics: ['test-topic'],
         groupId: 'test-group',
       };
 
-      vi.mocked(kafkaService.subscribe).mockResolvedValue(undefined);
+      vi.mocked(kafkaService.subscribe).mockResolvedValue('consumer-123');
 
       const response = await request(app)
         .post('/api/kafka/subscribe')
@@ -435,17 +370,18 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        message: 'Subscribed to topic successfully',
+        message: '订阅成功',
+        data: { consumerId: 'consumer-123', topics: ['test-topic'], groupId: 'test-group' },
       });
       expect(kafkaService.subscribe).toHaveBeenCalledWith(
-        subscribeData.topic,
+        subscribeData,
         expect.any(Function)
       );
     });
 
     it('应该验证订阅参数', async () => {
       const invalidData = {
-        // 缺少topic和groupId
+        // 缺少topics和groupId
       };
 
       const response = await request(app)
@@ -455,44 +391,41 @@ describe('Kafka Routes Unit Tests', () => {
       expect(response.status).toBe(400);
       expect(response.body).toEqual({
         success: false,
-        error: 'Topic and groupId are required',
+        error: '主题列表不能为空',
       });
     });
   });
 
-  describe('POST /api/kafka/unsubscribe', () => {
+  describe('DELETE /api/kafka/subscribe/:consumerId', () => {
     it('应该成功取消订阅', async () => {
-      const unsubscribeData = {
-        topic: 'test-topic',
-      };
+      const consumerId = 'consumer-123';
 
       vi.mocked(kafkaService.unsubscribe).mockResolvedValue(undefined);
 
       const response = await request(app)
-        .post('/api/kafka/unsubscribe')
-        .send(unsubscribeData);
+        .delete(`/api/kafka/subscribe/${consumerId}`);
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual({
         success: true,
-        message: 'Unsubscribed from topic successfully',
+        message: '取消订阅成功',
+        data: { consumerId },
       });
-      expect(kafkaService.unsubscribe).toHaveBeenCalledWith(unsubscribeData.topic);
+      expect(kafkaService.unsubscribe).toHaveBeenCalledWith(consumerId);
     });
 
     it('应该验证取消订阅参数', async () => {
-      const invalidData = {
-        // 缺少topic
-      };
+      const consumerId = 'consumer-123';
+
+      vi.mocked(kafkaService.unsubscribe).mockRejectedValue(new Error('Consumer not found'));
 
       const response = await request(app)
-        .post('/api/kafka/unsubscribe')
-        .send(invalidData);
+        .delete(`/api/kafka/subscribe/${consumerId}`);
 
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(500);
       expect(response.body).toEqual({
         success: false,
-        error: 'Topic is required',
+        error: '取消订阅失败',
       });
     });
   });

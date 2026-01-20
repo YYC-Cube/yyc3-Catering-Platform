@@ -95,6 +95,10 @@ const limiter = rateLimit({
   keyGenerator: (req: express.Request) => {
     return req.ip + ':' + (req.headers['x-tenant-id'] || 'default')
   },
+  skip: (req: express.Request) => {
+    // 跳过Dashboard和Kitchen路径的限流
+    return req.path.startsWith('/api/v1/dashboard') || req.path.startsWith('/api/v1/kitchen')
+  }
 })
 
 app.use(limiter)
@@ -108,6 +112,49 @@ app.use('/health', healthCheck)
 
 // 多租户中间件
 app.use(tenantMiddleware)
+
+// Dashboard和Kitchen代理中间件（无需认证，移到限流中间件之前）
+app.use('/api/v1/dashboard', createProxyMiddleware({
+  target: config.services.smartKitchen.url,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/v1/dashboard': '/api/dashboard',
+  },
+  onProxyReq: (proxyReq: any, req: AuthenticatedRequest, res: express.Response) => {
+    proxyReq.setHeader('X-Tenant-ID', req.headers['x-tenant-id'] || 'default')
+    proxyReq.setHeader('X-Request-ID', req.headers['x-request-id'] || '')
+    proxyReq.setHeader('X-User-ID', req.user?.id || '')
+  },
+  onError: (err: Error, req: express.Request, res: express.Response) => {
+    logger.error('Dashboard service proxy error', { error: err.message, url: req.url })
+    res.status(503).json({
+      success: false,
+      message: 'Dashboard service unavailable',
+      code: 'SERVICE_UNAVAILABLE'
+    })
+  }
+}))
+
+app.use('/api/v1/kitchen', createProxyMiddleware({
+  target: config.services.smartKitchen.url,
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/v1/kitchen': '/api/kitchen',
+  },
+  onProxyReq: (proxyReq: any, req: AuthenticatedRequest, res: express.Response) => {
+    proxyReq.setHeader('X-Tenant-ID', req.headers['x-tenant-id'] || 'default')
+    proxyReq.setHeader('X-Request-ID', req.headers['x-request-id'] || '')
+    proxyReq.setHeader('X-User-ID', req.user?.id || '')
+  },
+  onError: (err: Error, req: express.Request, res: express.Response) => {
+    logger.error('Kitchen service proxy error', { error: err.message, url: req.url })
+    res.status(503).json({
+      success: false,
+      message: 'Kitchen service unavailable',
+      code: 'SERVICE_UNAVAILABLE'
+    })
+  }
+}))
 
 // 认证中间件（排除特定路由）
 const excludeAuth = ['/health', '/api/v1/auth/login', '/api/v1/auth/register', '/docs']
@@ -229,8 +276,14 @@ const serviceProxies: Record<string, Options> = {
   },
 }
 
-// 注册代理中间件
+// 注册其他代理中间件
+const otherProxies: Record<string, Options> = {}
 Object.entries(serviceProxies).forEach(([path, options]) => {
+  if (path !== '/api/v1/smart-kitchen') {
+    otherProxies[path] = options
+  }
+})
+Object.entries(otherProxies).forEach(([path, options]) => {
   app.use(path, createProxyMiddleware(options))
 })
 

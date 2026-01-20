@@ -14,6 +14,9 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import { OrderController } from './controllers/OrderController';
+import { KitchenController } from './controllers/KitchenController';
+import { ExportController } from './controllers/ExportController';
+import { DashboardController } from './controllers/DashboardController';
 import { OrderService } from './services/OrderService';
 import { DishRepository } from './repositories/DishRepository';
 import { KitchenResourceRepository } from './repositories/KitchenResourceRepository';
@@ -51,6 +54,10 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: '请求过于频繁，请稍后再试' },
+  skip: (req: express.Request) => {
+    // 跳过Dashboard和Kitchen路径的限流
+    return req.path.startsWith('/api/dashboard') || req.path.startsWith('/api/kitchen')
+  }
 });
 app.use(limiter);
 
@@ -75,6 +82,14 @@ const orderService = new OrderService(dishRepository, kitchenResourceRepository,
 // 订单控制器路由
 const orderController = new OrderController(orderService);
 app.use('/api/orders', orderController.router);
+
+// 厨房控制器路由
+const kitchenController = new KitchenController(orderService);
+app.use('/api/kitchen', kitchenController.router);
+
+// Dashboard控制器路由
+const dashboardController = new DashboardController(orderService, dishRepository);
+app.use('/api/dashboard', dashboardController.router);
 
 // 根路径欢迎页面
 app.get('/', (req, res) => {
