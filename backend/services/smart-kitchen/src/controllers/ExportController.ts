@@ -63,27 +63,26 @@ export class ExportController {
       let contentType: string;
       let filename: string;
       
-      // SECURITY FIX: Generate safe filename with sanitization
+      // SECURITY FIX: Generate safe filename with timestamp
       const timestamp = Date.now();
-      const safeFilename = this.generateSafeFilename(timestamp, format);
       
       switch (format) {
         case 'excel':
           exportData = this.generateExcelData(orderQueue.orders, dishes);
           contentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-          filename = `${safeFilename}.xlsx`;
+          filename = `dashboard-export-${timestamp}.xlsx`;
           break;
           
         case 'pdf':
           exportData = this.generatePdfData(orderQueue.orders, dishes);
           contentType = 'application/pdf';
-          filename = `${safeFilename}.pdf`;
+          filename = `dashboard-export-${timestamp}.pdf`;
           break;
           
         case 'csv':
           exportData = this.generateCsvData(orderQueue.orders, dishes);
           contentType = 'text/csv';
-          filename = `${safeFilename}.csv`;
+          filename = `dashboard-export-${timestamp}.csv`;
           break;
           
         default:
@@ -107,15 +106,6 @@ export class ExportController {
         timestamp: Date.now()
       });
     }
-  }
-
-  /**
-   * SECURITY: Generate safe filename to prevent directory traversal
-   */
-  private generateSafeFilename(timestamp: number, format: string): string {
-    // Only allow alphanumeric characters and hyphens
-    const safeFormat = format.replace(/[^a-z0-9-]/gi, '');
-    return `dashboard-export-${timestamp}-${safeFormat}`;
   }
 
   private generateExcelData(orders: any[], dishes: any[]) {
