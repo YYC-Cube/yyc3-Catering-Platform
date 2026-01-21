@@ -9,7 +9,7 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
-import { createHmac, createSecretKey, randomBytes } from 'crypto';
+import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 
 // 定义JWT有效载荷类型
@@ -29,88 +29,46 @@ export interface UserInfo {
 }
 
 // JWT配置
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-me-in-production';
+// SECURITY FIX: Require JWT_SECRET to be set in environment
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET || JWT_SECRET.length < 32) {
+  throw new Error('JWT_SECRET environment variable must be set with at least 32 characters');
+}
 const JWT_EXPIRATION = process.env.JWT_EXPIRATION || '1h';
-const JWT_ALGORITHM = 'HS256' as const;
 
 /**
  * 认证中间件类
  */
 export class AuthenticationMiddleware {
   /**
-   * 生成JWT令牌 (简化版，使用Node.js内置crypto模块)
+   * 生成JWT令牌
+   * SECURITY FIX: Use jsonwebtoken library instead of custom implementation
    */
   public async generateToken(payload: Omit<JWTPayload, 'exp' | 'iat'>): Promise<string> {
-    const now = Math.floor(Date.now() / 1000);
-    let expiresIn: number;
-
-    // 解析过期时间
-    const timeUnit = JWT_EXPIRATION.slice(-1);
-    const timeValue = parseInt(JWT_EXPIRATION.slice(0, -1), 10);
-
-    switch (timeUnit) {
-      case 's':
-        expiresIn = timeValue;
-        break;
-      case 'm':
-        expiresIn = timeValue * 60;
-        break;
-      case 'h':
-        expiresIn = timeValue * 3600;
-        break;
-      case 'd':
-        expiresIn = timeValue * 86400;
-        break;
-      default:
-        expiresIn = 3600; // 默认1小时
-    }
-
-    const jwtPayload = {
-      ...payload,
-      iat: now,
-      exp: now + expiresIn
-    };
-
-    // 简单的JWT生成 (不使用jose库)
-    const header = Buffer.from(JSON.stringify({ alg: JWT_ALGORITHM, typ: 'JWT' })).toString('base64url');
-    const body = Buffer.from(JSON.stringify(jwtPayload)).toString('base64url');
-    const signature = createHmac('sha256', JWT_SECRET)
-      .update(`${header}.${body}`)
-      .digest('base64url');
-
-    return `${header}.${body}.${signature}`;
+    return jwt.sign(payload, JWT_SECRET, {
+      expiresIn: JWT_EXPIRATION,
+      issuer: 'yyc3-catering-platform',
+      audience: 'yyc3-api'
+    });
   }
 
   /**
-   * 验证JWT令牌 (简化版，使用Node.js内置crypto模块)
+   * 验证JWT令牌
+   * SECURITY FIX: Use jsonwebtoken library for secure verification
    */
   public async verifyToken(token: string): Promise<JWTPayload> {
     try {
-      const [header, body, signature] = token.split('.');
-      if (!header || !body || !signature) {
-        throw new Error('无效的令牌格式');
-      }
-
-      // 验证签名
-      const expectedSignature = createHmac('sha256', JWT_SECRET)
-        .update(`${header}.${body}`)
-        .digest('base64url');
-
-      if (signature !== expectedSignature) {
+      const decoded = jwt.verify(token, JWT_SECRET, {
+        issuer: 'yyc3-catering-platform',
+        audience: 'yyc3-api'
+      }) as JWTPayload;
+      return decoded;
+    } catch (error: any) {
+      if (error.name === 'TokenExpiredError') {
+        throw new Error('令牌已过期');
+      } else if (error.name === 'JsonWebTokenError') {
         throw new Error('无效的令牌签名');
       }
-
-      // 解析有效载荷
-      const payload = JSON.parse(Buffer.from(body, 'base64url').toString());
-
-      // 检查令牌是否过期
-      const now = Math.floor(Date.now() / 1000);
-      if (payload.exp && payload.exp < now) {
-        throw new Error('令牌已过期');
-      }
-
-      return payload as JWTPayload;
-    } catch (error) {
       throw new Error('无效的令牌');
     }
   }

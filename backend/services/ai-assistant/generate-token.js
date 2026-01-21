@@ -8,7 +8,13 @@ import { createSecretKey } from 'crypto';
 import { SignJWT } from 'jose';
 
 // JWT配置
-const JWT_SECRET = 'your-secret-key-change-me-in-production';
+// SECURITY: Read JWT_SECRET from environment variable
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET || JWT_SECRET.length < 32) {
+  console.error('ERROR: JWT_SECRET environment variable must be set with at least 32 characters');
+  console.error('Usage: JWT_SECRET=your-secret-key node generate-token.js');
+  process.exit(1);
+}
 const JWT_EXPIRATION = '1h';
 const JWT_ALGORITHM = 'HS256';
 
