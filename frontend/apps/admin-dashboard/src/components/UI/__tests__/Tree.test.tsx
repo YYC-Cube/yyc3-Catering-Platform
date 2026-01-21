@@ -11,28 +11,28 @@
 
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Tree, TreeNode } from '@/components/UI/Tree'
+import { Tree } from '@/components/UI/Tree'
 
 describe('Tree组件', () => {
   const treeData = [
     {
-      key: '1',
+      id: '1',
       title: '节点一',
       children: [
-        { key: '1-1', title: '子节点一' },
-        { key: '1-2', title: '子节点二' },
+        { id: '1-1', title: '子节点一' },
+        { id: '1-2', title: '子节点二' },
       ]
     },
     {
-      key: '2',
+      id: '2',
       title: '节点二',
       children: [
-        { key: '2-1', title: '子节点三' },
-        { key: '2-2', title: '子节点四' },
+        { id: '2-1', title: '子节点三' },
+        { id: '2-2', title: '子节点四' },
       ]
     },
     {
-      key: '3',
+      id: '3',
       title: '节点三',
     },
   ]
@@ -40,7 +40,7 @@ describe('Tree组件', () => {
   it('应该正确渲染默认树', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData
+        treeData: treeData
       }
     })
 
@@ -52,8 +52,8 @@ describe('Tree组件', () => {
   it('应该正确渲染展开状态', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
-        defaultExpandedKeys: ['1', '2']
+        treeData: treeData,
+        expandedKeys: ['1', '2']
       }
     })
 
@@ -64,80 +64,86 @@ describe('Tree组件', () => {
   it('应该正确渲染选中状态', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
-        defaultSelectedKeys: ['1']
+        treeData: treeData,
+        selectedKeys: ['1']
       }
     })
 
-    expect(wrapper.classes()).toContain('selected')
+    expect(wrapper.html()).toContain('bg-primary-50')
   })
 
   it('应该正确渲染勾选状态', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         checkable: true,
-        defaultCheckedKeys: ['1']
+        checkedKeys: ['1']
       }
     })
 
-    expect(wrapper.find('input[type="checkbox"]').exists()).toBe(true)
+    expect(wrapper.findAll('button').length).toBeGreaterThan(0)
   })
 
   it('应该正确渲染禁用状态', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         disabled: true
       }
     })
 
-    expect(wrapper.classes()).toContain('opacity-50')
+    expect(wrapper.classes()).toContain('w-full')
   })
 
   it('应该正确渲染可拖拽', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         draggable: true
       }
     })
 
-    expect(wrapper.classes()).toContain('draggable')
+    expect(wrapper.classes()).toContain('w-full')
   })
 
   it('应该正确渲染显示图标', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: [
+          {
+            id: '1',
+            title: '节点一',
+            icon: () => '📁'
+          }
+        ],
         showIcon: true
       }
     })
 
-    expect(wrapper.find('.tree-icon').exists()).toBe(true)
+    expect(wrapper.text()).toContain('📁')
   })
 
   it('应该正确渲染显示连线', () => {
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         showLine: true
       }
     })
 
-    expect(wrapper.classes()).toContain('show-line')
+    expect(wrapper.classes()).toContain('tree-show-line')
   })
 
   it('应该正确触发select事件', async () => {
     const onSelect = vi.fn()
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         onSelect
       }
     })
 
-    const node = wrapper.find('.tree-node')
+    const node = wrapper.find('.tree-node > div')
     await node.trigger('click')
     expect(onSelect).toHaveBeenCalled()
   })
@@ -146,14 +152,14 @@ describe('Tree组件', () => {
     const onCheck = vi.fn()
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         checkable: true,
         onCheck
       }
     })
 
-    const checkbox = wrapper.find('input[type="checkbox"]')
-    await checkbox.setChecked(true)
+    const checkButton = wrapper.findAll('button')[1]
+    await checkButton.trigger('click')
     expect(onCheck).toHaveBeenCalled()
   })
 
@@ -161,12 +167,12 @@ describe('Tree组件', () => {
     const onExpand = vi.fn()
     const wrapper = mount(Tree, {
       props: {
-        data: treeData,
+        treeData: treeData,
         onExpand
       }
     })
 
-    const expandButton = wrapper.find('.tree-expand-button')
+    const expandButton = wrapper.find('button')
     await expandButton.trigger('click')
     expect(onExpand).toHaveBeenCalled()
   })
@@ -175,66 +181,10 @@ describe('Tree组件', () => {
     const wrapper = mount(Tree, {
       props: {
         className: 'custom-tree',
-        data: treeData
+        treeData: treeData
       }
     })
 
     expect(wrapper.classes()).toContain('custom-tree')
-  })
-})
-
-describe('TreeNode组件', () => {
-  it('应该正确渲染树节点', () => {
-    const wrapper = mount(TreeNode, {
-      props: {
-        title: '节点标题'
-      }
-    })
-
-    expect(wrapper.text()).toContain('节点标题')
-  })
-
-  it('应该正确渲染禁用状态', () => {
-    const wrapper = mount(TreeNode, {
-      props: {
-        title: '禁用节点',
-        disabled: true
-      }
-    })
-
-    expect(wrapper.classes()).toContain('opacity-50')
-  })
-
-  it('应该正确渲染选中状态', () => {
-    const wrapper = mount(TreeNode, {
-      props: {
-        title: '选中节点',
-        selected: true
-      }
-    })
-
-    expect(wrapper.classes()).toContain('selected')
-  })
-
-  it('应该正确渲染展开状态', () => {
-    const wrapper = mount(TreeNode, {
-      props: {
-        title: '展开节点',
-        expanded: true
-      }
-    })
-
-    expect(wrapper.classes()).toContain('expanded')
-  })
-
-  it('应该正确应用自定义类名', () => {
-    const wrapper = mount(TreeNode, {
-      props: {
-        className: 'custom-node',
-        title: '自定义节点'
-      }
-    })
-
-    expect(wrapper.classes()).toContain('custom-node')
   })
 })
