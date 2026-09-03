@@ -27,7 +27,7 @@
     "dotenv": "^17.2.3",
     "winston": "^3.19.0",
     "sequelize": "^6.37.7",
-    "mysql2": "^3.16.0",
+    "mysql2": "^3.23.1",
     "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
